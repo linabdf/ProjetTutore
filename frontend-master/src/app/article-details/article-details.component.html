@@ -1,0 +1,101 @@
+<header>
+  <ul>
+    <li><a href="main">Rechercher</a></li>
+    <li><a href="listeSuivi">Liste d'articles suivis</a></li>
+    <li><a href="profil">Profil</a></li>
+  </ul>
+</header>
+
+<body>
+<p>Détails de {{ article.nom }}</p>
+<div class="container">
+  <table>
+    <thead>
+    <tr>
+      <th> Image de l'article</th>
+      <th> Description</th>
+      <th> Sites disponibles</th>
+      <th> Seuil choisi</th>
+      <th> Meilleur prix</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- todo: mettre le for(tout les articles dans la liste de suivi de l'utilisateur)-->
+    <tr>
+      <td> img</td>
+      <td> {{ article.description }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let s of article.sites">
+            {{ s.nom }}
+            <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
+              <!-- todo : faire bouton pour afficher la tendance de prix de l'article en fonction du site -->
+              📈
+            </button>
+            <div [attr.id]="'tendPrixArt' + article.id" class="divGraphS"> <!-- + article.site -->
+              <canvasjs-chart [options]="{
+                    animationEnabled: true,
+                    zoomEnabled : true,
+                    title: { text: s.graph.nom },
+                    data: [{
+                      type: s.graph.type,
+                      dataPoints: s.graph.dataPoints,
+                      xValueType : 'number',
+                      yValueType : 'DateTime',
+                    }],
+                    axisX : {
+                      title : 'Temps',
+                      valueFormatString: 'YYYY-MM-DD HH:mm',
+                      labelAngle : 0,
+                      minimum : s.graph.dataPoints[0].x,
+                    },
+                    axisY : {
+                      title : 'Prix',
+                      suffix : ' €',
+                    }
+                  }"></canvasjs-chart>
+            </div>
+          </li>
+
+        </ul>
+      </td>
+
+      <td>{{ article.seuil }} €
+        <button (click)="modifierSeuil()" class="btnTendancePrix" type="button">
+          📝
+        </button>
+      </td>
+      <td>
+        <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
+          <!-- todo : faire bouton pour afficher la tendance de prix de l'article en fonction du site -->
+          📈
+        </button>
+        <div [attr.id]="'tendPrixArt'" class="divGraphS">
+          <!-- <canvasjs-chart [options]="{
+                    animationEnabled: true,
+                    zoomEnabled : true,
+                    title: { text: article.graph.nom },
+                    data: [{
+                      type: article.graph.type,
+                      dataPoints: article.graph.dataPoints,
+                      xValueType : 'number',
+                      yValueType : 'DateTime',
+                    }],
+                    axisX : {
+                      title : 'Temps',
+                      valueFormatString: 'YYYY-MM-DD HH:mm',
+                      labelAngle : 0,
+                      minimum : article.graph.dataPoints[0].x,
+                    },
+                    axisY : {
+                      title : 'Prix',
+                      suffix : ' €',
+                    }
+                  }"></canvasjs-chart> -->
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
