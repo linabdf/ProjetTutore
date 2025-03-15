@@ -1,0 +1,47 @@
+<h2>Ajouter un article</h2>
+<form (ngSubmit)="onSubmit()">
+  <p>Recherche d'articles :</p>
+  <div>
+    <label for="nom">Nom de l'Article</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="article.nom" required />
+
+    <label for="seuil">Seuil</label>
+    <input type="text" id="seuil" name="seuil" [(ngModel)]="article.seuil" required />
+
+    <label for="frequence">Fréquence</label>
+    <input type="text" id="frequence" name="frequence" [(ngModel)]="article.frequence" required />
+
+    <label for="notif">Type de notification</label>
+    <select id="notif" name="notif" [(ngModel)]="article.notif" required>
+      <option value="email">Email</option>
+      <option value="push">Push Notification</option>
+    </select>
+
+    <p>Sites associés :</p>
+    <label class="switch">
+      <div>Amazon</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.amazon" name="amazon" />
+      <span class="slider round"></span>
+    </label>
+
+    <label class="switch">
+      <div>FNAC</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.fnac" name="fnac" />
+      <span class="slider round"></span>
+    </label>
+
+    <label class="switch">
+      <div>Darty</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.darty" name="darty" />
+      <span class="slider round"></span>
+    </label>
+
+    <label class="switch">
+      <div>LeBonCoin</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.leboncoin" name="leboncoin" />
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <button type="submit">Valider</button>
+</form>

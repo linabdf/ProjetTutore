@@ -1,0 +1,49 @@
+<ul>
+  <li><a href="main">Rechercher</a></li>
+  <li><a href="listeSuivi">Liste d'articles suivis</a></li>
+  <li><a href="profil">Profil</a></li>
+</ul>
+
+<div>
+  <p>Recherche d'articles :</p>
+</div>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Fréquence</th>
+    <th>Seuil</th>
+    <th>Type de Notification</th>
+    <th>Image</th>
+    <th>Action</th>
+  </tr>
+
+  <tr *ngFor="let article of articles">
+    <td>{{ article.nom }}</td>
+    <td>
+      <input type="number" [(ngModel)]="article.frequence" />
+    </td>
+    <td>
+      <input type="number" [(ngModel)]="article.seuil" />
+    </td>
+    <select id="notif" name="notif" [(ngModel)]="article.notif" required>
+      <!-- Affiche la valeur de notification récupérée de la base de données comme sélectionnée -->
+      <option *ngIf="article.notif" [value]="article.notif" selected>{{ article.notif === 'email' ? 'Email' : 'Push Notification' }}</option>
+      
+      <!-- Les autres options disponibles -->
+      <option *ngIf="article.notif !== 'email'" value="email">Email</option>
+      <option *ngIf="article.notif !== 'push'" value="push">Push Notification</option>
+    </select>
+    
+    <td>
+      <button class="btn btn-info">Afficher les détails</button>
+    </td>
+  </tr>
+ 
+</table>
+<td>
+  <button class="btn btn-success" (click)="ajouterArticle()">➕</button>
+</td>
+<td>
+  <button class="btn btn-success" (click)="deconnexion()">deconnexion</button>
+</td>

@@ -1,0 +1,82 @@
+p {
+  font-size: 30px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+header li {
+  float: left;
+}
+
+header li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+header li a:hover {
+  background-color: #111;
+}
+
+
+.container {
+  display: flex;
+  justify-items: baseline;
+}
+
+.btnTendancePrix {
+  background-color: transparent;
+  color: #444;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 20px;
+}
+
+.active, .btnTendancePrix:hover {
+  background-color: #ccc;
+}
+
+.divGraphS {
+  display: none;
+  overflow: hidden;
+  padding: 10px;
+}
+
+
+table {
+  width: 95%;
+  font-size: 25px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border: transparent;
+}
+
+td {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+
+td:nth-child(5) {
+  width: 30%;
+}
+
+td:nth-child(3) {
+  width: 30%;
+}
