@@ -1,9 +1,12 @@
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #333;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
 
 li {
@@ -20,4 +23,64 @@ li a {
 
 li a:hover {
   background-color: #111;
+}
+
+li.button {
+  justify-self: end;
+  display: inline;
+  float: right;
+  color: #dc1414;
+}
+
+.form-card {
+  box-sizing: border-box;
+  width: 50%;
+  margin: 20px auto;
+  padding: 10px 30px;
+  box-shadow: lightgray 4px 4px 20px;
+}
+
+.form-group {
+  margin: 10px auto;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input, textarea {
+  width: 50%;
+  height: 25px;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.action-buttons {
+  width: 100%;
+}
+
+button {
+  display: block;
+  margin: 20px auto;
+}
+
+p {
+  justify-self: center;
+  font-size: 40px;
+  font-family: "Open sans", Arial, serif;
+}
+
+.container {
+  justify-self: center;
+  justify-items: center;
+  width: 70%;
+  font-size: 30px;
+  font-family: "Open sans", Arial, serif;
+  background:linear-gradient(to bottom, #A43222 0%, #CD503A 100%);
+  border-radius: 10px;
+  padding: 25px;
+}
+
+.container div {
+  margin: 10px;
 }

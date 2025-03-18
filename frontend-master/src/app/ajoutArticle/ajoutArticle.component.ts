@@ -8,6 +8,7 @@ import { UserService } from '../signin/user/user.service';
   imports: [FormsModule],
   templateUrl: './ajoutArticle.component.html',
   styleUrls: ['./ajoutArticle.component.css'],
+  standalone: true
 })
 export class AjoutArticle {
   constructor(private router: Router, private userService: UserService) {}
@@ -40,6 +41,7 @@ export class AjoutArticle {
       }
     );
   }*/
+
     onSubmit() {
       // Créer l'objet requestBody
       const requestBody = {
@@ -51,9 +53,9 @@ export class AjoutArticle {
         },
         selectedSites: this.article.selectedSites
       };
-  
+
       console.log('Données envoyées:', requestBody);
-  
+
       // Envoi de la requête au backend
       this.userService.addArticleWithSites(requestBody).subscribe(
         (response) => {
@@ -66,7 +68,12 @@ export class AjoutArticle {
         }
       );
       this.router.navigateByUrl('/main');
-      
+
+    }
+    deconnexion() {
+      this.userService.logout;
+      this.router.navigateByUrl('');
+      return "ajout test";
     }
   }
 

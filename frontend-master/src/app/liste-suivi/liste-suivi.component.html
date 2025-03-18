@@ -1,21 +1,22 @@
 <header>
-<ul>
-  <li><a href="main">Rechercher</a></li>
-  <li><a href="listeSuivi">Liste d'articles suivis</a></li>
-  <li><a href="profil">Profil</a></li>
-</ul>
+  <ul>
+    <li><a href="main">Rechercher</a></li>
+    <li><a href="listeSuivi">Liste d'articles suivis</a></li>
+    <li><a href="profil">Profil</a></li>
+  </ul>
 </header>
 
 <body>
 <p> Voici votre liste d'articles suivis</p>
 <div class="container">
-
-  <table>
+  <a class='pasArticle' *ngIf="articles.length == 0"> Vous n'avez pas ajouté d'articles dans votre liste</a>
+  <table *ngIf="articles.length > 0">
     <thead>
     <tr>
       <th> Nom de l'article</th>
       <th> Image de l'article</th>
       <th> Description</th>
+      <th> Supprimer l'article</th>
     </tr>
     </thead>
     <tbody>

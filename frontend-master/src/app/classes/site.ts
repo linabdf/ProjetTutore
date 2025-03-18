@@ -3,6 +3,10 @@ import {Graphique} from './graph';
 export class Site {
 
   private _id: string = "S000";
+  private _urlSite: string = "";
+  private _urlArticle: string = "";
+  private _nom: string = "";
+  private _graph: Graphique = new Graphique();
 
   get id(): string {
     return this._id;
@@ -12,8 +16,6 @@ export class Site {
     this._id = value;
   }
 
-  private _urlSite: string = "";
-
   get urlSite(): string {
     return this._urlSite;
   }
@@ -21,8 +23,6 @@ export class Site {
   set urlSite(value: string) {
     this._urlSite = value;
   }
-
-  private _urlArticle: string = "";
 
   get urlArticle(): string {
     return this._urlArticle;
@@ -32,8 +32,6 @@ export class Site {
     this._urlArticle = value;
   }
 
-  private _nom: string = "";
-
   get nom(): string {
     return this._nom;
   }
@@ -41,8 +39,6 @@ export class Site {
   set nom(value: string) {
     this._nom = value;
   }
-
-  private _graph: Graphique = new Graphique();
 
   get graph(): Graphique {
     return this._graph;

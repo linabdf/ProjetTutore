@@ -5,40 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ba57530-8d6f-4278-a555-678e6aedca87" name="Changes" comment="Fusion du front">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2025-03-18T174203.405.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/2025-03-18T174218.404.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/selenium.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/selenium_firefox_driver_4_29_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ProjetTutore.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProjetTutore.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScrping-main/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScrping-main/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScrping-main/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScrping-main/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScrping-main/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScrping-main/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/WebScrping-main/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScrping-main/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebScrping-main/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScrping-main/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/WebScrping-main/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="boudefoua &lt;linaboudefoua12@gmail.com&gt;" />
       </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -77,16 +66,16 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/hug0z/Documents/Cours de la Faculté de Pau/S8/Projet tutoré/ProjetTutore/WebScrping-main/src/main/java/org/seleniumhq/selenium-firefox-driver-4.29.0.jar",
+    "last_opened_file_path": "C:/Users/hug0z/Documents/Cours de la Faculté de Pau/S8/Projet tutoré/ProjetTutore/frontend-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.5632184",
-    "settings.editor.selected.configurable": "MavenSettings",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "C:\\Users\\hug0z\\Documents\\Cours de la Faculté de Pau\\S8\\Projet tutoré\\ProjetTutore\\frontend-master\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -100,7 +89,7 @@
       <recent name="C:\Users\hug0z\Documents\Cours de la Faculté de Pau\S8\Projet tutoré\ProjetTutore\frontend-master" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #21">
+  <component name="RunManager" selected="Application.Run">
     <configuration name="Run" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Run" />
       <module name="webscraper-jsoup" />
@@ -171,7 +160,8 @@
       <workItem from="1742305164966" duration="476000" />
       <workItem from="1742305673256" duration="781000" />
       <workItem from="1742306494857" duration="66000" />
-      <workItem from="1742306585230" duration="9750000" />
+      <workItem from="1742306585230" duration="10090000" />
+      <workItem from="1742316950328" duration="1214000" />
     </task>
     <task id="LOCAL-00001" summary="Fusion du front">
       <option name="closed" value="true" />
@@ -181,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742227404932</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Fusion du front">
+      <option name="closed" value="true" />
+      <created>1742316627839</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1742316627839</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +204,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout de frontend-master sans le dépôt imbriqué FrontEndScrapping" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Fusion du front" />
     <option name="LAST_COMMIT_MESSAGE" value="Fusion du front" />
   </component>

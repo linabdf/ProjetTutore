@@ -1,7 +1,8 @@
 <ul>
-  <li><a href="main">Rechercher</a></li>
-  <li><a href="listeSuivi">Liste d'articles suivis</a></li>
+  <li><a href="AjoutArticle" >Rechercher</a></li>
+  <li><a href="main">Liste d'articles suivis</a></li>
   <li><a href="profil">Profil</a></li>
+  <li><button class="btn btn-success" (click)="deconnexion()">Déconnexion</button></li>
 </ul>
 
 <div>
@@ -29,21 +30,18 @@
     <select id="notif" name="notif" [(ngModel)]="article.notif" required>
       <!-- Affiche la valeur de notification récupérée de la base de données comme sélectionnée -->
       <option *ngIf="article.notif" [value]="article.notif" selected>{{ article.notif === 'email' ? 'Email' : 'Push Notification' }}</option>
-      
+
       <!-- Les autres options disponibles -->
       <option *ngIf="article.notif !== 'email'" value="email">Email</option>
       <option *ngIf="article.notif !== 'push'" value="push">Push Notification</option>
     </select>
-    
+
     <td>
       <button class="btn btn-info">Afficher les détails</button>
     </td>
   </tr>
- 
+
 </table>
 <td>
   <button class="btn btn-success" (click)="ajouterArticle()">➕</button>
-</td>
-<td>
-  <button class="btn btn-success" (click)="deconnexion()">deconnexion</button>
 </td>

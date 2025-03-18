@@ -1,17 +1,21 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {catchError, Observable, throwError} from 'rxjs';
 import { User } from './user';
 import{Article} from'../../classes/article';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  http = inject(HttpClient);
 
-  private baseUrl: string = 'http://localhost:8080/auth'; 
-  private articlebaseUrl: string = 'http://localhost:8080/article'; 
+  private baseUrl: string = 'http://localhost:8080/auth';
+  private articlebaseUrl: string = 'http://localhost:8080/article';
+  private userUrl: string = 'http://localhost:8080/utilisateur';
+
   public createUser(user: User): Observable<User> {
     console.log('User data being sent:', user);  // Ajoute cette ligne pour voir l'objet avant envoi
-  
+
     return new Observable((observer) => {
       fetch(this.baseUrl, {
         method: 'POST',
@@ -33,21 +37,22 @@ export class UserService {
       });
     });
   }
+
   public loginUser(user: { email: string, password: string }): Observable<any> {
-    console.log('Login data being sent:', user);  
+    console.log('Login data being sent:', user);
     return new Observable((observer) => {
-      fetch(`${this.baseUrl}/login`, {  
+      fetch(`${this.baseUrl}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user),  
+        body: JSON.stringify(user),
       })
-      .then(response => response.json())  
+      .then(response => response.json())
       .then(data => {
-        console.log('Response from API:', data);  
+        console.log('Response from API:', data);
         if (data.token) {
-          localStorage.setItem('token', data.token); 
+          localStorage.setItem('token', data.token);
           alert('Connexion réussie!');
         } else {
           alert('Erreur de connexion : ' + data.message);
@@ -61,7 +66,8 @@ export class UserService {
         observer.error(error);
       });
     });
-  }/*
+  }
+  /*
   createArticle(article: any): Observable<any> {
     console.log('article a envoyer',article);
     const token = this.getToken();
@@ -90,10 +96,12 @@ export class UserService {
       });
   });
 }*/
+
 public addArticleWithSites(requestBody: any): Observable<any> {
   return new Observable((observer) => {
+
     const token = localStorage.getItem('token'); // Récupérer le token d'authentification
-    
+
     if (!token) {
       observer.error('Aucun token trouvé. Veuillez vous connecter.');
       return;
@@ -131,7 +139,7 @@ public addArticleWithSites(requestBody: any): Observable<any> {
         observer.error(error); // Envoie l'erreur aux abonnés
       });
   });
-  
+
 }
  // ✅ Déconnexion (supprime le token)
  public logout(): void {
@@ -140,7 +148,7 @@ public addArticleWithSites(requestBody: any): Observable<any> {
   // ✅ Récupérer le token
   public getToken(): string | null {
     return localStorage.getItem('token');
-    
+
   }
 
   isAuthenticated(): boolean {
@@ -148,12 +156,12 @@ public addArticleWithSites(requestBody: any): Observable<any> {
     return token !== null;
   }
 
- 
+
   public getMyArticles(): Observable<any> {
     return new Observable((observer) => {
       const token = localStorage.getItem('token');
       console.log(token); // Récupérer le token
-      
+
       if (!token) {
         observer.error('Aucun token trouvé. Veuillez vous connecter.');
         return;
@@ -182,17 +190,19 @@ public addArticleWithSites(requestBody: any): Observable<any> {
           observer.error(error);
         });
     });
-    
+
   }
-  /*public addSiteToArticle(articleId: string, site: any): Observable<any> {
+
+  /*
+  public addSiteToArticle(articleId: string, site: any): Observable<any> {
     return new Observable((observer) => {
       const token = localStorage.getItem('token'); // Récupérer le token
-  
+
       if (!token) {
         observer.error('Aucun token trouvé. Veuillez vous connecter.');
         return;
       }
-  
+
       fetch(`${this.articlebaseUrl}/articles/${articleId}/addSite`, {
         method: 'POST',
         headers: {
@@ -219,7 +229,30 @@ public addArticleWithSites(requestBody: any): Observable<any> {
         });
     });
   }
-*/  
+*/
+
+  getUser(): Observable<any> {
+    const token = localStorage.getItem('token');
+    console.log(token);
+
+    if (!token) {
+      return throwError(() => 'Aucun token trouvé. Veuillez vous connecter.');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<any>(this.userUrl, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: any) {
+    console.error('Erreur lors de la récupération de l\'utilisateur :', error);
+    return throwError(() => 'Erreur lors de la récupération de l\'utilisateur.');
+  }
 }
 
 

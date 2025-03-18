@@ -1,12 +1,12 @@
 export class Graphique {
   private _nom: string = "";
   private _type: string = "line";
-  private _dataPoints: { x: Date, y: number }[] = []; // Données du graphique
+  private _dataPoints: { x: Date, y: number, toolTipContent?: string }[] = []; // Données du graphique
 
   constructor() {
   }
 
-
+  // setters et getters
   get type(): string {
     return this._type;
   }

@@ -1,3 +1,11 @@
+<ul>
+  <li><a href="AjoutArticle" >Rechercher</a></li>
+  <li><a href="main">Liste d'articles suivis</a></li>
+  <li><a href="profil">Profil</a></li>
+  <li><button class="btn btn-success" (click)="deconnexion()">Déconnexion</button></li>
+</ul>
+
+
 <h2>Ajouter un article</h2>
 <form (ngSubmit)="onSubmit()">
   <p>Recherche d'articles :</p>
@@ -43,5 +51,5 @@
     </label>
   </div>
 
-  <button type="submit">Valider</button>
+  <button class="btnSubmit" type="submit">Valider</button>
 </form>

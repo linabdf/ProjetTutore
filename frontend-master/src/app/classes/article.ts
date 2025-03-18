@@ -10,10 +10,6 @@ export class Article {
   private _seuil: number = 0;
   private _sites: Site[] = [];
 
-  get sites(): Site[] {
-    return this._sites;
-  }
-
   constructor() {
   }
 
@@ -47,6 +43,10 @@ export class Article {
 
   set seuil(value: number) {
     this._seuil = value;
+  }
+
+  get sites(): Site[] {
+    return this._sites;
   }
 
   set sites(value: Site[]) {

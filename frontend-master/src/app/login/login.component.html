@@ -1,12 +1,24 @@
-<div>
-  <h2>Connexion :</h2>
-  <form (ngSubmit)="onSubmit()">
-    <label for="username">email</label>
-    <input type="text" id="username" [(ngModel)]="user.email" name="username" required>
+<div class="login">
+  <div class="login-screen">
+    <div class="app-title">
+      <h1>Connectez-vous</h1>
+    </div>
 
-    <label for="password">Mot de passe:</label>
-    <input type="password" id="password" [(ngModel)]="user.password" name="password" required>
+    <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="control-group">
+        <input type="email" class="login-field" value="" placeholder="Email" id="login-email" formControlName="email">
+        <label class="login-field-icon fui-user" for="login-email"></label>
+      </div>
 
-    <button type="submit">Login</button>
-  </form>
+      <div class="control-group">
+        <input type="password" class="login-field" value="" placeholder="Mot de passe" id="login-pass"
+               formControlName="password">
+        <label class="login-field-icon fui-lock" for="login-pass"></label>
+      </div>
+
+      <button class="btn btn-primary btn-large btn-block" type="submit">Connexion</button>
+      <a class="login-link" href="#">Mot de passe perdu ?</a>
+      <a class="login-noacc" href="/signin"> Pas de compte ?</a>
+    </form>
+  </div>
 </div>

@@ -9,14 +9,13 @@ import {ArticleDetailsComponent} from './article-details/article-details.compone
 import {AjoutArticle} from './ajoutArticle/ajoutArticle.component';
 
 export const routes: Routes = [
-  {path:'AjouterArticle',component:AjoutArticle},
+  {path:'AjoutArticle',component:AjoutArticle}, // rajouter canActivate: [Guards]
   {path: 'login', component: LoginComponent},
-  {path : 'main', component: MainComponent},
-  {path: '', component: AccueilComponent}, // rajouter canActivate: [AuthGuard]
+  {path : 'main', component: MainComponent}, // rajouter canActivate: [Guards]
+  {path: '', component: AccueilComponent},
   {path : 'signin', component: SigninComponent},
-  {path: 'listeSuivi', component: ListeSuiviComponent}, // rajouter canActivate: [AuthGuard]
-  {path: 'profil', component: ProfilComponent}, // rajouter canActivate: [AuthGuard]
-  {path: 'article/:id', component: ArticleDetailsComponent}
-   // rajouter canActivate: [AuthGuard]
-  
+  {path: 'listeSuivi', component: ListeSuiviComponent}, // rajouter canActivate: [Guards]
+  {path: 'profil', component: ProfilComponent}, // rajouter canActivate: [Guards]
+  {path: 'article/:id', component: ArticleDetailsComponent} // rajouter canActivate: [Guards]
+
 ];
