@@ -1,0 +1,18 @@
+GET http://localhost:8080/scrapping/auth
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-03-18T174218.404.json
+
+###
+
+GET http://localhost:8080/auth
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-03-18T174203.405.json
+
+###
+

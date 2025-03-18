@@ -5,5 +5,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="selenium" level="project" />
+    <orderEntry type="library" exported="" name="selenium-firefox-driver-4.29.0" level="project" />
   </component>
 </module>

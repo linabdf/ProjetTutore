@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="selenium-firefox-driver-4.29.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WebScrping-main/src/main/java/org/seleniumhq/selenium-firefox-driver-4.29.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

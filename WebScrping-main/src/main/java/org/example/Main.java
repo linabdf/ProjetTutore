@@ -21,7 +21,7 @@ public class Main {
 
     public Main() {
         INSTANCE = this;
-        dm = new DatabaseManager("jdbc:mysql://", "localhost", "scrapping", "root", "your_new_password");
+        dm = new DatabaseManager("jdbc:mysql://", "localhost", "scrapping", "root", "admin");
         dm.connexion();
     }
 
