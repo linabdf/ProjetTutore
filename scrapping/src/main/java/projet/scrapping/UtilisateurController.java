@@ -1,5 +1,6 @@
 package projet.scrapping;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -75,6 +77,26 @@ public class UtilisateurController {
         } catch (Exception e) {
             response.put("message", "Erreur lors de la connexion de l'utilisateur");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+    @GetMapping("/me")
+    public ResponseEntity<?> obtenirUtilisateurParToken(HttpServletRequest request) {
+        String token = JwtUtil.resolveToken(request);
+        if (token == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token manquant");
+        }
+
+        try {
+            String email = JwtUtil.extractEmail(token);
+            Optional<Utilisateur> utilisateur = utilisateurService.trouverUtilisateurParEmail(email);
+
+            if (utilisateur.isPresent()) {
+                return ResponseEntity.ok(utilisateur.get());
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utilisateur non trouvé");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de la récupération de l'utilisateur");
         }
     }
 }

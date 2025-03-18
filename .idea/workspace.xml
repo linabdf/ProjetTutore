@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ba57530-8d6f-4278-a555-678e6aedca87" name="Changes" comment="Fusion du front">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,9 +126,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Run" />
         <item itemvalue="HTTP Request.generated-requests | #21" />
         <item itemvalue="HTTP Request.generated-requests | #22" />
-        <item itemvalue="Application.Run" />
         <item itemvalue="Docker.scrapping/compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -161,7 +161,7 @@
       <workItem from="1742305673256" duration="781000" />
       <workItem from="1742306494857" duration="66000" />
       <workItem from="1742306585230" duration="10090000" />
-      <workItem from="1742316950328" duration="1214000" />
+      <workItem from="1742316950328" duration="3724000" />
     </task>
     <task id="LOCAL-00001" summary="Fusion du front">
       <option name="closed" value="true" />

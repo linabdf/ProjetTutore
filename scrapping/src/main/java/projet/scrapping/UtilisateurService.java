@@ -23,6 +23,11 @@ public class UtilisateurService {
         this.utilisateurRepository = utilisateurRepository;
         this.jwtUtil = jwtUtil;
     }
+
+    public Optional<Utilisateur> trouverUtilisateurParEmail(String email) {
+        return Optional.ofNullable(utilisateurRepository.findByEmail(email));
+    }
+
 /*
     // Générer le prochain ID utilisateur
     public String generateNextArticle() {

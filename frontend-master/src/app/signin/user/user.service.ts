@@ -11,7 +11,7 @@ export class UserService {
 
   private baseUrl: string = 'http://localhost:8080/auth';
   private articlebaseUrl: string = 'http://localhost:8080/article';
-  private userUrl: string = 'http://localhost:8080/utilisateur';
+  private userUrl: string = 'http://localhost:8080/auth/me';
 
   public createUser(user: User): Observable<User> {
     console.log('User data being sent:', user);  // Ajoute cette ligne pour voir l'objet avant envoi
