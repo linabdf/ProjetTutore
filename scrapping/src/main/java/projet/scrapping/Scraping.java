@@ -1,6 +1,8 @@
 package projet.scrapping;
 
 import jakarta.persistence.*;
+import projet.scrapping.Article.Article;
+import projet.scrapping.Site.Site;
 
 import java.sql.Timestamp;
 @Entity

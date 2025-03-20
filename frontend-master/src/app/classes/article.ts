@@ -1,23 +1,26 @@
 import {Graphique} from './graph';
 import {Site} from './site';
 
-
 export class Article {
-  //ok changer mettre 1 graph ici et un graph pour chaque site
-  private _id: string = "A000";
+
+  private _id: number = 0;
   private _nom: string = "";
   private _description: string = "";
-  private _seuil: number = 0;
-  private _sites: Site[] = [];
+  private _seuil: number = 0; // seuil de l'article (que l'utilisateur choisi)
+  private _frequence: number = 0; // fréquence du scrapping (que l'utilisateur choisi)
+  private _sites: Site[] = []; // liste des sites sur lesquels l'article est disponible
+  private _graph: Graphique = new Graphique(); // graphique du meilleur prix global
+
 
   constructor() {
   }
 
-  get id(): string {
+  // setters et getters
+  get id(): number {
     return this._id;
   }
 
-  set id(value: string) {
+  set id(value: number) {
     this._id = value;
   }
 
@@ -45,6 +48,14 @@ export class Article {
     this._seuil = value;
   }
 
+  get frequence(): number {
+    return this._frequence;
+  }
+
+  set frequence(value: number) {
+    this._frequence = value;
+  }
+
   get sites(): Site[] {
     return this._sites;
   }
@@ -52,8 +63,6 @@ export class Article {
   set sites(value: Site[]) {
     this._sites = value;
   }
-
-  private _graph: Graphique = new Graphique(); // graphique du meilleur prix global
 
   get graph(): Graphique {
     return this._graph;

@@ -23,19 +23,19 @@ export class ListeSuiviComponent {
 
   constructor(private articleService: ArticleService, private router: Router,) {
   }
-
+/*
   ngOnInit() {
     this.articleService.getArticles().subscribe(articles => {
       this.articles = articles;
     });
 
   }
-
+*/
   supprimerArticleListe() {
 
   }
 
-  afficherArticle(id: string) {
+  afficherArticle(id: number) {
     this.router.navigate(['article', id]);
   }
 }

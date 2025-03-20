@@ -46,4 +46,7 @@ export class MainComponent implements OnInit {
     }
   }
 
+  afficherArticle(id : string) {
+    this.router.navigate(['article', id]);
+  }
 }

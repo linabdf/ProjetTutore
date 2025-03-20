@@ -2,18 +2,19 @@ import {Graphique} from './graph';
 
 export class Site {
 
-  private _id: string = "S000";
-  private _urlSite: string = "";
-  private _urlArticle: string = "";
-  private _nom: string = "";
-  private _graph: Graphique = new Graphique();
+  private _numS: number = 0;
+  private _urlSite: string = ""; // url global du site
+  private _urlArticle: string = ""; // url de l'article sur le site
+  private _nomSite: string = "";
+  private _graph: Graphique = new Graphique(); // graphique des prix de l'article sur ce site
 
-  get id(): string {
-    return this._id;
+  //setters et getters
+  get numS(): number {
+    return this._numS;
   }
 
-  set id(value: string) {
-    this._id = value;
+  set numS(value: number) {
+    this._numS = value;
   }
 
   get urlSite(): string {
@@ -32,12 +33,12 @@ export class Site {
     this._urlArticle = value;
   }
 
-  get nom(): string {
-    return this._nom;
+  get nomSite(): string {
+    return this._nomSite;
   }
 
-  set nom(value: string) {
-    this._nom = value;
+  set nomSite(value: string) {
+    this._nomSite = value;
   }
 
   get graph(): Graphique {

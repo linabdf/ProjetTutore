@@ -7,15 +7,16 @@ import {ListeSuiviComponent} from './liste-suivi/liste-suivi.component';
 import {ProfilComponent} from './profil/profil.component';
 import {ArticleDetailsComponent} from './article-details/article-details.component';
 import {AjoutArticle} from './ajoutArticle/ajoutArticle.component';
+import {Guards} from './login/guards';
 
 export const routes: Routes = [
-  {path:'AjoutArticle',component:AjoutArticle}, // rajouter canActivate: [Guards]
+  {path:'AjoutArticle',component:AjoutArticle, canActivate: [Guards]}, // rajouter canActivate: [Guards]
   {path: 'login', component: LoginComponent},
-  {path : 'main', component: MainComponent}, // rajouter canActivate: [Guards]
+  {path : 'main', component: MainComponent, canActivate: [Guards]}, // rajouter canActivate: [Guards]
   {path: '', component: AccueilComponent},
   {path : 'signin', component: SigninComponent},
-  {path: 'listeSuivi', component: ListeSuiviComponent}, // rajouter canActivate: [Guards]
-  {path: 'profil', component: ProfilComponent}, // rajouter canActivate: [Guards]
-  {path: 'article/:id', component: ArticleDetailsComponent} // rajouter canActivate: [Guards]
+  {path: 'listeSuivi', component: ListeSuiviComponent, canActivate: [Guards]}, // rajouter canActivate: [Guards]
+  {path: 'profil', component: ProfilComponent, canActivate: [Guards]}, // rajouter canActivate: [Guards]
+  {path: 'article/:id', component: ArticleDetailsComponent, canActivate: [Guards]} // rajouter canActivate: [Guards]
 
 ];

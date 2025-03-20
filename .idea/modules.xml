@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/frontend-master/frontend-master.iml" filepath="$PROJECT_DIR$/frontend-master/frontend-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scrapping/scrapping.iml" filepath="$PROJECT_DIR$/scrapping/scrapping.iml" />
     </modules>
   </component>
 </project>
