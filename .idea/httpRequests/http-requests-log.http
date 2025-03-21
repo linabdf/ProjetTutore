@@ -1,3 +1,30 @@
+GET http://localhost:8080/tendance/site/5
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-03-21T155956.404.txt
+
+###
+
+GET http://localhost:8080/tendance/site/3
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-03-21T155942.200.json
+
+###
+
+GET http://localhost:8080/tendance/site/3
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-03-21T155918.200.json
+
+###
+
 GET http://localhost:8080/tendance/site/3
 User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.5
 Accept-Encoding: br, deflate, gzip, x-gzip

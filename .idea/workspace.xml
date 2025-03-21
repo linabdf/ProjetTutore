@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ba57530-8d6f-4278-a555-678e6aedca87" name="Changes" comment="Fusion du front">
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +111,7 @@
       <recent name="C:\Users\hug0z\Documents\Cours de la Faculté de Pau\S8\Projet tutoré\ProjetTutore\frontend-master" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Run">
+  <component name="RunManager" selected="HTTP Request.generated-requests | #31">
     <configuration name="Run" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.Run" />
       <module name="webscraper-jsoup" />
@@ -145,8 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Run" />
         <item itemvalue="HTTP Request.generated-requests | #31" />
+        <item itemvalue="Application.Run" />
         <item itemvalue="HTTP Request.generated-requests | #32" />
         <item itemvalue="HTTP Request.generated-requests | #30" />
         <item itemvalue="HTTP Request.generated-requests | #29" />
@@ -188,6 +189,8 @@
       <workItem from="1742458804068" duration="12415000" />
       <workItem from="1742475793992" duration="3409000" />
       <workItem from="1742484077183" duration="2103000" />
+      <workItem from="1742562101539" duration="775000" />
+      <workItem from="1742565584389" duration="4434000" />
     </task>
     <task id="LOCAL-00001" summary="Fusion du front">
       <option name="closed" value="true" />
@@ -231,6 +234,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout de frontend-master sans le dépôt imbriqué FrontEndScrapping" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <MESSAGE value="Réorganisation backend et ajout tendance service et controller" />
     <MESSAGE value="Fusion du front" />
     <option name="LAST_COMMIT_MESSAGE" value="Fusion du front" />
   </component>

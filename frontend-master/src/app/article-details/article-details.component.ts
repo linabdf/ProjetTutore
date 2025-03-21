@@ -35,7 +35,6 @@ export class ArticleDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
 
-
     this.articleService.getArticleByID(this.id).subscribe(data => {
       this.article.id = data.id;
       this.article.nom = data.nom;
@@ -44,11 +43,11 @@ export class ArticleDetailsComponent implements OnInit {
       this.article.frequence = data.frequence;
       this.article.sites = data.sites;
       this.article.graph = new Graphique();
-      console.log(this.article.sites);
+      console.log("this.articles.sites", this.article.sites);
 
       // Initialisation de s.graph pour chaque site
       this.article.sites.forEach(s => {
-        console.log(s);
+        console.log("sites forEach init", s);
         s.graph = new Graphique(); // Crée une instance de Graphique
       });
 
@@ -64,22 +63,24 @@ export class ArticleDetailsComponent implements OnInit {
               if (item && item.date && item.prix) {
                 s.graph.dataPoints.push({
                   x: new Date(item.date),
-                  y: Number(item.prix)
+                  y: Number(item.prix),
+                  toolTipContent: `${Number(item.prix)} €, le ${new Date(item.date).getDate()}/${new Date(item.date).getDay()} à ${new Date(item.date).getHours()}h${new Date(item.date).getMinutes()}`,
                 });
-                console.log(s.graph.dataPoints);
+                console.log("s.graph.dps :", s.graph.dataPoints);
               } else {
                 console.warn("Item invalide détecté:", item); // Affiche un avertissement pour les éléments invalides
               }
             });
           }
         });
+
+        // Appel de construireGraphGlobal ici, après que les données sont disponibles
+        console.log("article avant construiregraphgloaal: ", this.article);
+        console.log("article.sites avant construiregraphgloaal: ", this.article.sites);
+        this.construireGraphGlobal(this.article, this.article.sites);
+
       }, error => console.log("Erreur getTendanceBySiteId", error));
     }, error => console.log("Erreur getArticleByID", error));
-
-
-    console.log("articles avant construiregraphgloaal: ", this.article);
-
-    this.construireGraphGlobal(this.article);
   }
 
   afficherTendancePrix() {
@@ -101,8 +102,10 @@ export class ArticleDetailsComponent implements OnInit {
     });
   }
 
-  construireGraphGlobal(article : Article): void {
+  construireGraphGlobal(article : Article, sites : Site[]): void {
     console.log("articles en parametre", article);
+    console.log("sites de l'article", article.sites);
+    console.log("sites de l'article", sites);
 
     const allDataPoints: { x: Date; y: number; nomGraphique: string }[] = [];
 
@@ -110,7 +113,7 @@ export class ArticleDetailsComponent implements OnInit {
       console.log("sites of article", s);
       const dataPointsAvecNom = s.graph.dataPoints.map(point => ({
         ...point,
-        nomGraphique: article.nom
+        nomGraphique: s.nomSite,
       }));
       allDataPoints.push(...dataPointsAvecNom);
     })
@@ -120,7 +123,7 @@ export class ArticleDetailsComponent implements OnInit {
     article.graph.dataPoints = Object.keys(minYParX).map(xStr => ({
       x: new Date(xStr),
       y: minYParX[xStr].y,
-      toolTipContent: `${minYParX[xStr].y} €, ${minYParX[xStr].nomGraphique}`
+      toolTipContent: `${minYParX[xStr].y} € sur ${minYParX[xStr].nomGraphique} le ${new Date(xStr).getDate()}/${new Date(xStr).getDay()} à ${new Date(xStr).getHours()}h${new Date(xStr).getMinutes()}`,
     }))
 
     console.log("construiregraphglobal :", article.graph.dataPoints);

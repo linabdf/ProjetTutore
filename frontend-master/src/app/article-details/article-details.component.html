@@ -65,11 +65,17 @@
                       valueFormatString: 'YYYY-MM-DD HH:mm',
                       labelAngle : 0,
                       minimum : s.graph.dataPoints[0].x,
-                      interval : article.frequence
+                      interval : article.frequence,
+                      intervalType : 'minute',
                     },
                     axisY : {
                       title : 'Prix',
                       suffix : ' €',
+                      stripLines:[{
+				                startValue: article.seuil,
+				                endValue: article.seuil - 1,
+				                color:'#d8d8d8'
+                        }]
                     }
                   }"></canvasjs-chart>
         </div>
@@ -99,10 +105,17 @@
               valueFormatString: 'YYYY-MM-DD HH:mm',
               labelAngle : 0,
               minimum : article.graph.dataPoints[0].x,
+              interval : article.frequence,
+              intervalType : 'minute',
           },
           axisY : {
               title : 'Prix',
               suffix : ' €',
+              stripLines:[{
+				                startValue: article.seuil,
+				                endValue: article.seuil - 1,
+				                color:'#d8d8d8'
+                        }]
           }
       }"></canvasjs-chart>
     </div>
