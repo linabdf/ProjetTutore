@@ -7,6 +7,7 @@ import {NgForOf, NgIf} from '@angular/common';
 import {forkJoin} from 'rxjs';
 import {Graphique} from '../classes/graph';
 import {FormsModule} from '@angular/forms';
+import {Site} from '../classes/site';
 
 @Component({
   selector: 'app-article-details',
@@ -42,6 +43,7 @@ export class ArticleDetailsComponent implements OnInit {
       this.article.description = data.description;
       this.article.frequence = data.frequence;
       this.article.sites = data.sites;
+      this.article.graph = new Graphique();
       console.log(this.article.sites);
 
       // Initialisation de s.graph pour chaque site
@@ -75,6 +77,8 @@ export class ArticleDetailsComponent implements OnInit {
     }, error => console.log("Erreur getArticleByID", error));
 
 
+    console.log("articles avant construiregraphgloaal: ", this.article);
+
     this.construireGraphGlobal(this.article);
   }
 
@@ -97,36 +101,19 @@ export class ArticleDetailsComponent implements OnInit {
     });
   }
 
-  afficherTendancePrixGlobal() {
-    const btn = document.querySelectorAll(".btnTendancePrix") as NodeListOf<HTMLElement>;
-
-
-    btn.forEach(element => {
-      element.addEventListener("click", () => { // Arrow function to preserve 'this' context
-        element.classList.toggle("active");
-        const content = element.nextElementSibling as HTMLElement;
-
-        if (content.style.display === 'none') {
-          content.style.display = 'block';
-          content.style.width = '100%';
-        } else {
-          content.style.display = 'none';
-        }
-      });
-    });
-  }
-
-  construireGraphGlobal(article: Article): void {
+  construireGraphGlobal(article : Article): void {
+    console.log("articles en parametre", article);
 
     const allDataPoints: { x: Date; y: number; nomGraphique: string }[] = [];
 
-    for (const site of article.sites) {
-      const dataPointsAvecNom = site.graph.dataPoints.map(point => ({
+    article.sites.forEach(s => {
+      console.log("sites of article", s);
+      const dataPointsAvecNom = s.graph.dataPoints.map(point => ({
         ...point,
         nomGraphique: article.nom
       }));
       allDataPoints.push(...dataPointsAvecNom);
-    }
+    })
 
     const minYParX = this.trouverYMinParX(allDataPoints);
 
@@ -135,9 +122,11 @@ export class ArticleDetailsComponent implements OnInit {
       y: minYParX[xStr].y,
       toolTipContent: `${minYParX[xStr].y} €, ${minYParX[xStr].nomGraphique}`
     }))
+
+    console.log("construiregraphglobal :", article.graph.dataPoints);
   }
 
-  // trouver le prix minium de chaque graphiques de chaque site
+  // trouver le prix minium de chaque graphique de chaque site
   trouverYMinParX(dataPoints: { x: Date; y: number; nomGraphique: string }[]): {
     [x: string]: { y: number; nomGraphique: string }
   } {
@@ -150,6 +139,7 @@ export class ArticleDetailsComponent implements OnInit {
       }
     }
 
+    console.log("minYParX :", minYParX);
     return minYParX;
   }
 

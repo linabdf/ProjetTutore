@@ -30,6 +30,7 @@ public class InfoSite {
         this.description = description;
         this.image = image;
     }
+
 public  InfoSite(){}
     public String getNom() {
         return nom;

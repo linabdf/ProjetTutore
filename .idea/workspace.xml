@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ba57530-8d6f-4278-a555-678e6aedca87" name="Changes" comment="Fusion du front">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +22,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -112,9 +110,19 @@
       <recent name="C:\Users\hug0z\Documents\Cours de la Faculté de Pau\S8\Projet tutoré\ProjetTutore\frontend-master" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #31">
-    <configuration name="generated-requests | #28" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#28" index="28" runType="Run single request">
-      <method v="2" />
+  <component name="RunManager" selected="Application.Run">
+    <configuration name="Run" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Run" />
+      <module name="webscraper-jsoup" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="generated-requests | #29" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#29" index="29" runType="Run single request">
       <method v="2" />
@@ -137,11 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Run" />
         <item itemvalue="HTTP Request.generated-requests | #31" />
         <item itemvalue="HTTP Request.generated-requests | #32" />
         <item itemvalue="HTTP Request.generated-requests | #30" />
         <item itemvalue="HTTP Request.generated-requests | #29" />
-        <item itemvalue="HTTP Request.generated-requests | #28" />
       </list>
     </recent_temporary>
   </component>
@@ -178,6 +186,8 @@
       <workItem from="1742401177002" duration="3103000" />
       <workItem from="1742411917364" duration="6955000" />
       <workItem from="1742458804068" duration="12415000" />
+      <workItem from="1742475793992" duration="3409000" />
+      <workItem from="1742484077183" duration="2103000" />
     </task>
     <task id="LOCAL-00001" summary="Fusion du front">
       <option name="closed" value="true" />

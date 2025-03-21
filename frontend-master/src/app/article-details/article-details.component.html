@@ -51,11 +51,10 @@
           📈
         </button>
         <div class="divGraphS">
-         <canvasjs-chart
+           <canvasjs-chart
                     [options]="{
                     animationEnabled: true,
                     zoomEnabled : true,
-                    title: { text: s.nomSite },
                     data: [{
                       type: 'line',
                       dataPoints: s.graph.dataPoints,
@@ -83,31 +82,29 @@
   <div class="divBestA">
     <h2>Meilleur prix :</h2>
     <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
-      <!-- todo : faire bouton pour afficher la tendance de prix de l'article en fonction du site -->
       📈
     </button>
-    <div [attr.id]="'tendPrixArt'" class="divGraphS">
-        <!-- <canvasjs-chart [options]="{
-                animationEnabled: true,
-                zoomEnabled : true,
-                title: { text: article.nom },
-                data: [{
-                  type:'line',
-                  dataPoints: article.graph.dataPoints,
-                  xValueType : 'number',
-                  yValueType : 'DateTime',
-                }],
-                axisX : {
-                  title : 'Temps',
-                  valueFormatString: 'YYYY-MM-DD HH:mm',
-                  labelAngle : 0,
-                  minimum : article.graph.dataPoints[0].x,
-                },
-                axisY : {
-                  title : 'Prix',
-                  suffix : ' €',
-                }
-              }"></canvasjs-chart> -->
+    <div class="divGraphS">
+      <canvasjs-chart  *ngIf="article.graph && article.graph.dataPoints && article.graph.dataPoints.length > 0" [options]="{
+          animationEnabled: true,
+          zoomEnabled : true,
+          data: [{
+              type:'line',
+              dataPoints: article.graph.dataPoints,
+              xValueType : 'DateTime',
+              yValueType : 'number',
+          }],
+          axisX : {
+              title : 'Temps',
+              valueFormatString: 'YYYY-MM-DD HH:mm',
+              labelAngle : 0,
+              minimum : article.graph.dataPoints[0].x,
+          },
+          axisY : {
+              title : 'Prix',
+              suffix : ' €',
+          }
+      }"></canvasjs-chart>
     </div>
 
   </div>
