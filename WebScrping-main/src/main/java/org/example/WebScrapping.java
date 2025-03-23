@@ -9,6 +9,8 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -24,8 +26,9 @@ public class WebScrapping {
         if(url.contains(" ")){
             result2 = url.replaceAll("\\s",result);
         }else{
-            result2 = url+result;
+            result2 = url + URLEncoder.encode(result, StandardCharsets.UTF_8);
         }
+        System.out.println("URL générée : " + result2);
         System.out.println(result2);
         return result2;
     }
@@ -36,6 +39,14 @@ public class WebScrapping {
         String finalinput = ".*"+result+".*";
         System.out.println(finalinput);
         return finalinput;
+    }
+    public boolean isValidUrl(String url) {
+        try {
+            new java.net.URL(url).toURI();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 
@@ -48,11 +59,14 @@ public class WebScrapping {
 
         // Configurer Firefox en mode headless
         FirefoxOptions options = new FirefoxOptions();
+
         options.addArguments("--headless"); // Active le mode headless
+        options.addArguments("--no-headless");
+        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");
 
         // Crée une instance du navigateur
         WebDriver driver = new FirefoxDriver(options);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
         if (newarticle) {
             String url7 = "";
@@ -61,12 +75,19 @@ public class WebScrapping {
             Scraping site = null;
 
             try {
+                if (!isValidUrl(urlRecherche)) {
+                    System.out.println("URL invalide : " + urlRecherche);
+                    driver.quit();
+                    return null; // ou gérez l'erreur de manière appropriée
+                }
+                System.out.println("URL à charger : " + urlRecherche);
                 // Ouvrir l'URL
                 driver.get(urlRecherche);
                 String url4 = driver.getCurrentUrl();
                 System.out.println("Title: " + url4);
 
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
+              //
+                // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
 
                 // Récupérer la liste des articles affichés
                 List<WebElement> produitstitre = driver.findElements(By.cssSelector(cssSelector));
@@ -75,6 +96,7 @@ public class WebScrapping {
                 for (WebElement produit : produitstitre) {
 
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelectortitre)));
+
                     String titre2 = produit.findElement(By.cssSelector(cssSelectortitre)).getText();
                     wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(url2)));
                     url7 = produit.findElement(By.cssSelector(url2)).getAttribute("href");

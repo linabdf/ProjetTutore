@@ -50,7 +50,7 @@ export class UserService {
           localStorage.setItem('token', data.token); 
           alert('Connexion réussie!');
         } else {
-          alert('Erreur de connexion : ' + data.message);
+          alert('Connexion échoué ,verifiez votre email et  votre mot de passe');
         }
 
         observer.next(data);
@@ -184,43 +184,98 @@ public addArticleWithSites(requestBody: any): Observable<any> {
     });
     
   }
-  /*public addSiteToArticle(articleId: string, site: any): Observable<any> {
-    return new Observable((observer) => {
-      const token = localStorage.getItem('token'); // Récupérer le token
   
-      if (!token) {
-        observer.error('Aucun token trouvé. Veuillez vous connecter.');
-        return;
-      }
+public updateArticle( updatedArticle: any): Observable<any> {
+  return new Observable((observer) => {
+    const token = localStorage.getItem('token'); // Récupérer le token d'authentification
+    
+    if (!token) {
+      observer.error('Aucun token trouvé. Veuillez vous connecter.');
+      return;
+    }
+
+    // URL pour mettre à jour l'article (avec son ID)
+    const url = `${this.articlebaseUrl}/updateArticle`;
+
+    // Configuration des options de la requête PUT
+    const options: RequestInit = {
+      method: 'PUT', // Méthode PUT pour modifier l'article
+      headers: {
+        'Authorization': `Bearer ${token}`, // En-tête d'authentification avec le token
+        'Content-Type': 'application/json', // Spécifie que les données envoyées sont en JSON
+      },
+      body: JSON.stringify(updatedArticle), // Données mises à jour sous forme de JSON
+    };
+
+    // Effectuer la requête avec `fetch`
+    fetch(url, options)
+      .then(async (response) => {
+      
   
-      fetch(`${this.articlebaseUrl}/articles/${articleId}/addSite`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(site), // Convertir l'objet site en JSON
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Erreur ${response.status}: ${errorText}`);
+        }
+        return response.json();
       })
-        .then(async (response) => {
-          if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Erreur ${response.status} : ${errorText}`);
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log(`✅ Site ajouté à l'article ${articleId} :`, data);
-          observer.next(data);  // Envoie la réponse aux abonnés
-          observer.complete();  // Termine l'observable
-        })
-        .catch((error) => {
-          console.error('❌ Erreur lors de l\'ajout du site à l\'article :', error);
-          observer.error(error);
-        });
-    });
-  }
-*/  
+      .then((data) => {
+        console.log('Article modifié avec succès:', data);
+     // window.location.reload();
+        observer.next(data); // Envoie la réponse aux abonnés
+        observer.complete();   // Terminer l'observable
+      })
+      .catch((error) => {
+        console.error('Erreur lors de la modification de l\'article:', error);
+        observer.error(error); // Envoie l'erreur aux abonnés
+      });
+  });
 }
+public supprimerArticle(article: any): Observable<any> {
+  return new Observable((observer) => {
+    const token = localStorage.getItem('token'); // Récupérer le token d'authentification
+
+    if (!token) {
+      observer.error('Aucun token trouvé. Veuillez vous connecter.');
+      return;
+    }
+
+    // URL pour supprimer l'article en passant le nom dans l'URL
+    const url = `${this.articlebaseUrl}/supprimerArticle/${article.nom}`;
+
+    // Configuration des options de la requête DELETE
+    const options: RequestInit = {
+      method: 'DELETE', // Méthode DELETE pour supprimer l'article
+      headers: {
+        'Authorization': `Bearer ${token}`, // En-tête d'authentification avec le token
+        'Content-Type': 'application/json', // Spécifie que le corps est en JSON, bien que ce ne soit pas nécessaire pour DELETE
+      },
+    };
+
+    // Effectuer la requête avec `fetch`
+    fetch(url, options)
+      .then(async (response) => {
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Erreur ${response.status}: ${errorText}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Article supprimé avec succès:', data);
+        // Vous pouvez recharger la page ou mettre à jour la liste d'articles ici.
+        window.location.reload(); // Recharger la page après suppression
+        observer.next(data); // Envoie la réponse aux abonnés
+        observer.complete();   // Terminer l'observable
+      })
+      .catch((error) => {
+        console.error('Erreur lors de la suppression de l\'article:', error);
+        observer.error(error); // Envoie l'erreur aux abonnés
+      });
+  });
+}
+
+}
+
 
 
 

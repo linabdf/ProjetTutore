@@ -1,49 +1,68 @@
+<!-- articles-suivi.component.html -->
 <ul>
-  <li><a href="main">Rechercher</a></li>
-  <li><a href="listeSuivi">Liste d'articles suivis</a></li>
+  <li><a href="AjoutArticle" >Rechercher</a></li>
+  <li><a href="main">Liste d'articles suivis</a></li>
   <li><a href="profil">Profil</a></li>
 </ul>
+<div class="container mt-4">
+  <h2 class="mb-3 text-center">Liste des Articles Suivis</h2>
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Nom</th>
+        <!--<th>description</th>
+        <th>Fréquence</th>
+        <th>Seuil</th>
+        <th>Type de Notification</th>-->
+        <th>Sites</th>
+        <th>Action</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let article of articles">
+        <td>{{ article.nom }}</td>
+       <!-- <td>{{article.Description}}
+        <td><input type="number" [(ngModel)]="article.frequence" class="form-control" /></td>
+        <td><input type="number" [(ngModel)]="article.seuil" class="form-control" /></td>
+        <td>
+          <select class="form-select" [(ngModel)]="article.notif">
+            <option value="email">Email</option>
+            <option value="push">Push Notification</option>
+          </select>
+        </td>--> 
+        <td>
+          <button class="btn btn-warning" (click)="voirArticle(article.numA)">➕ </button>
+        </td>
+        <td>
+          <!-- Bouton pour afficher/masquer les sites de cet article -->
+          <button class="btn btn-warning btn-sm mt-2" (click)="toggleArticleSitesVisibility(article)">
+            {{ article.isSitesVisible ? 'Masquer les sites' : 'Afficher les sites' }}
+          </button>
 
-<div>
-  <p>Recherche d'articles :</p>
+          <!-- Affichage des sites horizontalement, conditionnellement basé sur isSitesVisible -->
+          <div *ngIf="article.isSitesVisible" class="mt-2">
+            <div *ngFor="let site of siteNames(article.selectedSites)" class="form-check mb-2">
+              <input 
+                type="checkbox" 
+                class="form-check-input" 
+                [(ngModel)]="article.selectedSites[site]" 
+                [id]="site" />
+              <label class="form-check-label" for="{{site}}">{{ site }}</label>
+            </div>
+          </div>   
+        </td>
+        
+        <td>
+          <button class="btn btn-info" (click)="modifierArticle(article)">Modifier</button>
+          <button class="btn btn-danger" (click)="SupprimeArticle(article)">Supprimer</button>
+        
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <button class="btn btn-success me-2" (click)="ajouterArticle()">➕ Ajouter</button>
+    <button class="btn btn-warning" (click)="deconnexion()">Déconnexion</button>
+  </div>
 </div>
-
-<table>
-  <tr>
-    <th>Nom</th>
-    <th>Fréquence</th>
-    <th>Seuil</th>
-    <th>Type de Notification</th>
-    <th>Image</th>
-    <th>Action</th>
-  </tr>
-
-  <tr *ngFor="let article of articles">
-    <td>{{ article.nom }}</td>
-    <td>
-      <input type="number" [(ngModel)]="article.frequence" />
-    </td>
-    <td>
-      <input type="number" [(ngModel)]="article.seuil" />
-    </td>
-    <select id="notif" name="notif" [(ngModel)]="article.notif" required>
-      <!-- Affiche la valeur de notification récupérée de la base de données comme sélectionnée -->
-      <option *ngIf="article.notif" [value]="article.notif" selected>{{ article.notif === 'email' ? 'Email' : 'Push Notification' }}</option>
-      
-      <!-- Les autres options disponibles -->
-      <option *ngIf="article.notif !== 'email'" value="email">Email</option>
-      <option *ngIf="article.notif !== 'push'" value="push">Push Notification</option>
-    </select>
-    
-    <td>
-      <button class="btn btn-info">Afficher les détails</button>
-    </td>
-  </tr>
- 
-</table>
-<td>
-  <button class="btn btn-success" (click)="ajouterArticle()">➕</button>
-</td>
-<td>
-  <button class="btn btn-success" (click)="deconnexion()">deconnexion</button>
-</td>

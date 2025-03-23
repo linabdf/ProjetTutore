@@ -20,8 +20,12 @@ export class AjoutArticle {
     selectedSites: {
       amazon: false,
       fnac: false,
-      darty: false,
-      leboncoin: false,
+      ldlc: false,
+      rueducommerce: false,
+      boulanger:false,
+      leclerc:false,
+      alternate:false,
+      ebay:false
     },
   };
 
@@ -67,6 +71,11 @@ export class AjoutArticle {
       );
       this.router.navigateByUrl('/main');
       
+    }
+    deconnexion() {
+      this.userService.logout;
+      this.router.navigateByUrl('');
+      return "ajout test";
     }
   }
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ArticleService
@@ -186,4 +187,9 @@ public Article insererArticle(String nomA, double seuil, Utilisateur utilisateur
 public  List<Article>getArticlesByUtilisateur(Utilisateur utilisateur){
     return articleRepository.findByUtilisateur(utilisateur);
 }
+
+@Transactional
+public Optional<Article> getArticleById(int id) {
+        return articleRepository.findById(id);
+    }
 }

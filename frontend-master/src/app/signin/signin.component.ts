@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormsModule } from "@angular/forms";
+import {Component, inject} from '@angular/core';
+import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from './user/user.service';
 
@@ -7,16 +7,26 @@ import { UserService } from './user/user.service';
   selector: 'app-signin',
   standalone: true,
   imports: [
-    FormsModule, RouterModule
+    FormsModule, RouterModule, ReactiveFormsModule
   ],
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']  // Utilise styleUrls pour le fichier CSS
 })
+
 export class SigninComponent {
-  
-   user = { username: '', password: '', email: '', firstname: '' };
+
+  user = { username: '', password: '', email: '', firstname: '' };
 
   constructor(private userService: UserService, private router: Router) {}
+
+  fb = inject(FormBuilder);
+  form = this.fb.nonNullable.group({
+    username: ['', Validators.required],
+    firstname: ['', Validators.required],
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+    mdpconf: ['', Validators.required],
+  })
 
   // Cette méthode permet de construire le payload de l'utilisateur
   toPayload(): any {
@@ -25,18 +35,33 @@ export class SigninComponent {
       "password": this.user.password,
       "email": this.user.email,
       "firstname": this.user.firstname,
-     
     };
   }
 
   onSubmit() {
-    // Affichage dans la console pour déboguer les champs
-    console.debug("Email: ", this.user.email);
-    console.debug("Username: ", this.user.username);
-    console.debug("Firstname: ", this.user.firstname);
-    console.debug("Password: ", this.user.password);
+    if (this.form.valid) {
+      if(this.form.get('password')?.value == this.form.get('mdpconf')?.value) {
 
-    this.saveUser();
+        this.user.username = this.form.get('username')!.value;
+        this.user.password = this.form.get('password')!.value;
+        this.user.email = this.form.get('email')!.value;
+        this.user.firstname = this.form.get('firstname')!.value;
+
+        // Affichage dans la console pour déboguer les champs
+        console.debug("Email: ", this.user.email);
+        console.debug("Username: ", this.user.username);
+        console.debug("Firstname: ", this.user.firstname);
+        console.debug("Password: ", this.user.password);
+
+        this.saveUser();
+      } else {
+        window.alert("Les mots de passe de correspondent pas");
+      }
+    } else {
+      window.alert("Le formulaire est invalide");
+    }
+
+
   }
 
   saveUser() {

@@ -1,28 +1,106 @@
-.form-card {
-  box-sizing: border-box;
-  width: 50%;
-  margin: 20px auto;
-  padding: 10px 30px;
-  box-shadow: lightgray 4px 4px 20px;
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
 }
 
-.form-group {
-  margin: 10px auto;
-  width: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Header avec dégradé orange */
+.header {
+  background: linear-gradient(45deg, #FF7F50, #FF4500); /* Dégradé orange */
+  color: white;
+  padding: 80px 0;
+  text-align: center;
 }
 
-input, textarea {
-  width: 50%;
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
-.action-buttons {
-  width: 100%;
+.header h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-button {
-  display: block;
-  margin: 20px auto;
+.header .lead {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+}
+
+/* Image avec des coins arrondis */
+.feature-img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Bouton avec dégradé orange */
+.btn-custom {
+  background-color: #FF7F50; /* Orange clair */
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 12px 30px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+  background-color: #FF4500; /* Orange foncé au survol */
+}
+
+/* Bouton outline avec dégradé orange */
+.btn-outline-custom {
+  color: #FF7F50;
+  border: 2px solid #FF7F50;
+  font-weight: bold;
+  border-radius: 30px;
+  padding: 12px 30px;
+  text-transform: uppercase;
+}
+
+.btn-outline-custom:hover {
+  background-color: #FF7F50; /* Fond orange clair au survol */
+  color: white;
+}
+
+/* Section content */
+.content {
+  padding: 50px 0;
+}
+
+/* Liste de fonctionnalités */
+.featurelist {
+  margin-bottom: 50px;
+}
+
+.featurelist h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.featurelist p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Footer avec fond sombre */
+.footer {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Adaptation pour les petits écrans */
+@media (max-width: 768px) {
+  .header h1 {
+      font-size: 2.5rem;
+  }
+  .header h2 {
+      font-size: 1.8rem;
+  }
 }

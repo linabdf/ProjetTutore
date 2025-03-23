@@ -8,4 +8,7 @@ import java.util.List;
 @Repository
 public interface SiteRepository extends JpaRepository<Site,Integer> {
     List<Site> findByArticle(Article article);
+
+
+    Site findByArticleAndNomSite(Article article, String siteName);
 }

@@ -42,7 +42,7 @@ public class Article {
     @Column(name="derniereupdate")
 
     private Timestamp derniereupdate;
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     @Column(name="selectedSites")
     private List<Site> sites;  // Liste des sites associés à cet article
 
@@ -71,6 +71,9 @@ public class Article {
     public int getFrequence(){
         return frequence ;
     }
+    public String getUrlImage(){
+        return urlImage ;
+    }
 
     public String getNotif(){
         return notif ;
@@ -78,9 +81,15 @@ public class Article {
     public Article() {
 
     }
+    public String getDescription(){
+        return Description ;
+    }
 
 
 
+    public void setDerniereupdate(Timestamp currentTimestamp) {
+        this.derniereupdate=currentTimestamp;
+    }
 
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur= utilisateur;
@@ -96,6 +105,9 @@ public class Article {
 
     public void setSeuil(double v) {
         this.seuil= v;
+    }
+    public void setFrequence(int  v) {
+        this.frequence= v;
     }
    public  void setNotif(String notif){
         this.notif=notif;
@@ -116,4 +128,6 @@ public class Article {
     public void setSites(List<Site> sites) {
         this.sites = sites;
     }
+
+
 }

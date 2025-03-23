@@ -1,41 +1,155 @@
-div {
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0; /* Gris clair */
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Section */
+.header {
+  background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé orange-rouge */
+  color: white;
+  padding: 80px 0;
   text-align: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin: 30px auto;
 }
 
-div p {
-  font-size: 35px;
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
-.recherche {
-  display: inline-flex;
+.header h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-div input {
-  font-size: 20pt;
+.header .lead {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
 }
 
-div button {
-  font-size: 20pt;
+/* Form Styles */
+form {
+  background: linear-gradient(to bottom, rgba(255, 99, 71, 0.8) 0%, rgba(255, 69, 0, 0.7) 100%); /* Dégradé chaud */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  margin: 40px auto;
 }
 
-div label div{
-  font-size: 20px;
-  margin: 1px;
-  padding: 1px;
+h2 {
+  text-align: center;
+  color: #fff;
 }
 
-.switch{
-  display: inline;
+p {
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
 }
 
+label {
+  display: block;
+  margin-top: 10px;
+  color: #fff;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd; /* Gris clair pour les bordures */
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+}
+
+select {
+  font-family: 'Arial', sans-serif;
+  color: #333; /* Gris foncé pour le texte */
+}
+
+/* Switch (toggle) styles */
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.switch div {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch .slider {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: #ddd; /* Gris pour l'état inactif */
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.switch .slider:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+/* Switch Active State */
+.switch input:checked + .slider {
+  background: #32CD32; /* Vert Lime pour l'état actif */
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Submit Button */
+.btnSubmit {
+  width: 100%;
+  padding: 10px;
+  background: #FF4500; /* Orange */
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+
+.btnSubmit:hover {
+  background: #FF6347; /* Rouge clair au survol */
+}
+
+/* Navigation */
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #333; /* Noir pour la barre de navigation */
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 li {
@@ -46,18 +160,90 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 20px;
   text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 li a:hover {
-  background-color: #111;
+  background-color: #555; /* Gris foncé au survol */
+  color: #FF6347; /* Rouge clair sur survol */
 }
 
-table, th, td {
-  border:1px solid black;
-  align-items: center;
+/* Footer Section */
+.footer {
+  background-color: #222; /* Couleur sombre pour le pied de page */
+  color: white;
   text-align: center;
-  font-size: 20pt;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 20px;
+}
+
+/* Table Styles with Modern Look */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Suppression des espacements entre les cellules */
+  margin: 20px 0;
+  background: #fff; /* Fond blanc pour le tableau */
+  border-radius: 8px; /* Coins arrondis pour un effet moderne */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+th {
+  background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé orange-rouge */
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase; /* Texte en majuscule pour un look plus net */
+}
+
+td {
+  background-color: #fff; /* Fond blanc pour les cellules */
+  color: #333; /* Texte gris foncé */
+  border: 1px solid #ddd; /* Bordure fine et subtile */
+}
+
+tr:nth-child(even) td {
+  background-color: #f9f9f9; /* Légère alternance des couleurs des lignes */
+}
+
+tr:hover td {
+  background-color: #FF6347; /* Rouge clair au survol des lignes */
+  color: white; /* Texte en blanc au survol */
+}
+
+/* Suppression de bordure pointillée et lignes */
+td, th {
+  border: none; /* Suppression de la bordure pointillée */
+}
+
+/* Option de ligne horizontale sous l'entête */
+th {
+  border-bottom: 2px solid #FF6347; /* Ligne sous l'entête pour la séparation */
+}
+
+/* Suppression des bordures inutiles et des cellules trop larges */
+td {
+  border-bottom: 1px solid #eee; /* Bordure discrète entre les cellules */
+}
+
+/* Responsive Table Styles */
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+    font-size: 0.9rem; /* Réduction de la taille des textes sur petits écrans */
+  }
+
+  th, td {
+    padding: 10px; /* Réduction du padding sur petits écrans */
+  }
+
+  td {
+    word-wrap: break-word; /* Empêche le texte de dépasser des cellules */
+  }
 }

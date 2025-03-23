@@ -16,7 +16,7 @@ public class Tendance {
     private String prix;
     @Column(name="date")
     private Timestamp date;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "numS",referencedColumnName = "numS")
     private Site site ;
     public Tendance(String prix,Timestamp date,Site site){
@@ -25,6 +25,13 @@ public class Tendance {
         this.site=site;
     }
     public  Tendance(){}
+
+    public Tendance(Integer numT, String prix, Timestamp date) {
+        this.prix=prix;
+        this.date=date;
+        this.numT=numT;
+    }
+
     public Integer getNumT() {
         return numT;
     }

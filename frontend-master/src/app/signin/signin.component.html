@@ -1,23 +1,42 @@
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="username">Nom d'utilisateur</label>
-    <input type="text" id="username" [(ngModel)]="user.username" name="username" required />
-  </div>
+<div class="login">
+  <div class="login-screen">
+    <div class="app-title">
+      <h1>Créez votre compte</h1>
+    </div>
 
-  <div>
-    <label for="firstname">Prénom</label>
-    <input type="text" id="firstname" [(ngModel)]="user.firstname" name="firstname" required />
-  </div>
+    <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="control-group">
+        <input type="text" class="login-field" value="" placeholder="Nom d'utilisateur" id="login-name"
+               formControlName="username">
+        <label class="login-field-icon fui-user" for="login-name"></label>
+      </div>
 
-  <div>
-    <label for="email">Email</label>
-    <input type="email" id="email" [(ngModel)]="user.email" name="email" required />
-  </div>
+      <div class="control-group">
+        <input type="text" class="login-field" value="" placeholder="Prénom" id="login-prenom"
+               formControlName="firstname">
+        <label class="login-field-icon fui-user" for="login-prenom"></label>
+      </div>
 
-  <div>
-    <label for="password">Mot de passe</label>
-    <input type="password" id="password" [(ngModel)]="user.password" name="password" required />
-  </div>
+      <div class="control-group">
+        <input type="text" class="login-field" value="" placeholder="Email" id="login-email"
+               formControlName="email">
+        <label class="login-field-icon fui-user" for="login-email"></label>
+      </div>
 
-  <button type="submit">S'inscrire</button>
-</form>
+      <div class="control-group">
+        <input type="password" class="login-field" value="" placeholder="Mot de passe" id="login-pass"
+               formControlName="password">
+        <label class="login-field-icon fui-lock" for="login-pass"></label>
+      </div>
+
+      <div class="control-group">
+        <input type="password" class="login-field" value="" placeholder="Confirmer mot de passe" id="login-passconf"
+               formControlName="mdpconf">
+        <label class="login-field-icon fui-lock" for="login-passconf"></label>
+      </div>
+
+      <button class="btn btn-primary btn-large btn-block" type="submit">Créer le compte</button>
+      <a class="signin-link" href="/login">Vous avez déjà un compte?</a>
+    </form>
+  </div>
+</div>

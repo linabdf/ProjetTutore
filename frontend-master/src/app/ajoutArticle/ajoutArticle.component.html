@@ -1,3 +1,9 @@
+<ul>
+  <li><a href="AjoutArticle" >Rechercher</a></li>
+  <li><a href="main">Liste d'articles suivis</a></li>
+  <li><a href="profil">Profil</a></li>
+  <li><button class="btn btn-success" (click)="deconnexion()">Déconnexion</button></li>
+</ul>
 <h2>Ajouter un article</h2>
 <form (ngSubmit)="onSubmit()">
   <p>Recherche d'articles :</p>
@@ -31,17 +37,37 @@
     </label>
 
     <label class="switch">
-      <div>Darty</div>
-      <input type="checkbox" [(ngModel)]="article.selectedSites.darty" name="darty" />
+      <div>ldlc</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.ldlc" name="darty" />
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <div>boulanger</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.boulanger" name="darty" />
       <span class="slider round"></span>
     </label>
 
     <label class="switch">
-      <div>LeBonCoin</div>
-      <input type="checkbox" [(ngModel)]="article.selectedSites.leboncoin" name="leboncoin" />
+      <div>rueducommerce</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.rueducommerce" name="leboncoin" />
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <div>leclerc</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.leclerc" name="leboncoin" />
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <div>alternate</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.alternate" name="leboncoin" />
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <div>ebay</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.ebay" name="leboncoin" />
       <span class="slider round"></span>
     </label>
   </div>
 
-  <button type="submit">Valider</button>
+  <button  class="btnSubmit"type="submit">Valider</button>
 </form>

@@ -1,0 +1,141 @@
+<header>
+  <ul>
+    <li><a href="main">Liste d'articles suivis</a></li>
+    <li><a href="profil">Profil</a></li>
+  </ul>
+</header>
+
+<body>
+<h1>Détails de {{ article.nom }}</h1>
+<div class="container">
+  <div class="divImgA">
+    <h2>Image de l'article : {{ article.urlimage }}</h2>
+    <img *ngIf="article.urlimage; else noImage" [src]="article.urlimage" alt="Image art">
+    <ng-template #noImage>
+      <p>Image non disponible</p>
+    </ng-template>
+  </div>
+
+  <div class="divDescA">
+    <h2>Description de l'article :</h2>
+    <p>{{ article.description }}</p>
+  </div>
+
+  <div class="divSeuilA">
+    <h2>Seuil de l'article :</h2>
+    <input type="number" [(ngModel)]="article.seuil" class="form-control" /> 
+      <button  class="btnModifSeuil" type="button">
+        📝
+      </button> <br>
+  
+  
+  </div>
+
+  <div class="divFreqA">
+    <h2>Fréquence des données récupérées :</h2>
+    <input type="number" [(ngModel)]="article.frequence" class="form-control" />
+      <button  class="btnTendancePrix" type="button">
+        📝
+      </button>
+   
+  </div>
+  <div class="divFreqA">
+    <h2>Notification</h2>
+    <select class="form-select" [(ngModel)]="article.notif">
+      <option value="email">Email</option>
+      <option value="push">Push</option>
+    </select>
+    <button  class="btnTendancePrix" type="button">
+      📝
+    </button>
+    <button class="btn btn-primary mt-3" (click)="modifierArticle(article)">Enregistrer les modifications</button>
+  </div>
+ 
+  <div class="divSitesA" >
+    <h2>Sites disponibles :</h2>
+    <ul *ngIf="article && article.sites && article.sites.length">
+      <li *ngFor="let s of article.sites; trackBy: trackById">
+        {{ s.nomSite }}   
+        <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
+          📈
+        </button>
+      
+  
+  <div class="divGraphS">
+           <canvasjs-chart
+                    [options]="{
+                    animationEnabled: true,
+                    zoomEnabled : true,
+                    data: [{
+                      type: 'line',
+                      dataPoints: s.graph.dataPoints,
+                      xValueType : 'DateTime'
+                    }],
+                    axisX : {
+                      title : 'Temps',
+                      valueFormatString: 'YYYY-MM-DD HH:mm',
+                      labelAngle : 0,
+                      minimum : s.graph.dataPoints[0].x,
+                      interval : article.frequence,
+                      intervalType : 'minute',
+                    },
+                    axisY : {
+                      title : 'Prix',
+                      suffix : ' €',
+                      stripLines:[{
+				                startValue: article.seuil,
+				                endValue: article.seuil - 1,
+				                color:'#d8d8d8'
+                        }]
+                    }
+                  }"></canvasjs-chart>
+        </div>
+          </li>
+
+    </ul>
+
+  </div>
+
+
+ 
+    <div class="divBestA">
+      <h2>Meilleur prix :</h2>
+      <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
+        📈
+      </button>
+      <div class="divGraphS">
+        <canvasjs-chart  *ngIf="article.graph && article.graph.dataPoints && article.graph.dataPoints.length > 0" [options]="{
+            animationEnabled: true,
+            zoomEnabled : true,
+            data: [{
+                type:'line',
+                dataPoints: article.graph.dataPoints,
+                xValueType : 'DateTime',
+                yValueType : 'number',
+            }],
+            axisX : {
+                title : 'Temps',
+                valueFormatString: 'YYYY-MM-DD HH:mm',
+                labelAngle : 0,
+                minimum : article.graph.dataPoints[0].x,
+                interval : article.frequence,
+                intervalType : 'minute',
+            },
+            axisY : {
+                title : 'Prix',
+                suffix : ' €',
+                stripLines:[{
+                          startValue: article.seuil,
+                          endValue: article.seuil - 1,
+                          color:'#d8d8d8'
+                          }]
+            }
+        }"></canvasjs-chart>
+      </div>
+  
+
+  </div>
+  
+</div>
+
+</body>

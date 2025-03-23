@@ -3,6 +3,8 @@ package projet.scrapping;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "site")
 public class Site {
@@ -23,7 +25,8 @@ public class Site {
     @ManyToOne
     @JoinColumn(name = "numA", referencedColumnName = "numA")  // La clé étrangère vers l'article
     private Article article;
-
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tendance> tendances;
     // Constructeur par défaut
     public Site() {
     }

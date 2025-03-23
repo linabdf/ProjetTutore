@@ -1,90 +1,106 @@
-/* styles.css */
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0; /* Gris clair */
     margin: 0;
-}
-
-form {
-    background: white;
+    padding: 0;
+  }
+  
+  /* Header Section */
+  .header {
+    background: linear-gradient(45deg, #FF6347, #FF4500); /* Nouveau dégradé orange-rouge */
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .header .lead {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+  
+  /* Form Styles */
+  form {
+    background: linear-gradient(to bottom, rgba(255, 99, 71, 0.8) 0%, rgba(255, 69, 0, 0.7) 100%); /* Dégradé chaud */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-}
-
-h2 {
+    width: 100%;
+    max-width: 450px;
+    margin: 40px auto;
+  }
+  
+  h2 {
     text-align: center;
-    color: #333;
-}
-
-.recherche {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-input[type="text"] {
+    color: #fff;
+  }
+  
+  p {
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+    color: #fff;
+  }
+  
+  input[type="text"],
+  select {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd; /* Gris clair pour les bordures */
     border-radius: 5px;
-}
-
-label {
-    font-weight: bold;
-    margin-top: 10px;
-    display: block;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    background: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-/* Switch Toggle */
-.switch {
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  select {
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Gris foncé pour le texte */
+  }
+  
+  /* Switch (toggle) styles */
+  .switch {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #f9f9f9;
-    cursor: pointer;
-}
-
-.switch input {
+    padding: 10px 0;
+  }
+  
+  .switch div {
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .switch input {
     display: none;
-}
-
-.slider {
+  }
+  
+  .switch .slider {
     position: relative;
     width: 40px;
     height: 20px;
-    background: #ccc;
-    border-radius: 10px;
+    background: #ddd; /* Gris pour l'état inactif */
+    border-radius: 50px;
     transition: 0.3s;
-}
-
-.slider:before {
+  }
+  
+  .switch .slider:before {
     content: "";
     position: absolute;
     width: 16px;
@@ -94,12 +110,91 @@ button:hover {
     top: 2px;
     left: 2px;
     transition: 0.3s;
-}
-
-input:checked + .slider {
-    background: #007BFF;
-}
-
-input:checked + .slider:before {
+  }
+  
+  /* Switch Active State */
+  .switch input:checked + .slider {
+    background: #32CD32; /* Vert Lime pour l'état actif */
+  }
+  
+  .switch input:checked + .slider:before {
     transform: translateX(20px);
-}
+  }
+  
+  /* Submit Button */
+  .btnSubmit {
+    width: 100%;
+    padding: 10px;
+    background: #FF4500; /* Orange */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-top: 15px;
+  }
+  
+  .btnSubmit:hover {
+    background: #FF6347; /* Rouge clair au survol */
+  }
+  
+  /* Navigation */
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333; /* Noir pour la barre de navigation */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  li a:hover {
+    background-color: #555; /* Gris foncé au survol */
+    color: #FF6347; /* Rouge clair sur survol */
+  }
+  
+  /* Footer Section */
+  .footer {
+    background-color: #222; /* Couleur sombre pour le pied de page */
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    .header h1 {
+      font-size: 2.5rem;
+    }
+    .header h2 {
+      font-size: 1.8rem;
+    }
+  
+    form {
+      padding: 15px;
+      width: 90%;
+    }
+  
+    .btnSubmit {
+      font-size: 1rem;
+    }
+  }
+  

@@ -1,0 +1,201 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  background: linear-gradient(45deg, #FFA500, #FF7F50); /* Dégradé d'orange */
+  padding: 15px;
+  color: white;
+  text-align: center;
+}
+
+header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+header ul li {
+  display: inline;
+  margin: 0 20px;
+}
+
+header ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Main content container */
+.container {
+  margin: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Divs for sections */
+.divImgA, .divDescA, .divSeuilA, .divFreqA, .divSitesA, .divBestA {
+  margin-bottom: 20px;
+}
+
+.divImgA img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Input fields */
+input.form-control {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: none;
+  font-size: 1rem;
+  margin-left: 10px;
+  border-radius: 4px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.btnModifSeuil, .btnTendancePrix {
+  background: linear-gradient(45deg, #FF8C00, #FFA500); /* Dégradé orange */
+  color: #fff;
+}
+
+.btnModifSeuil:hover, .btnTendancePrix:hover {
+  background: linear-gradient(45deg, #FF7F50, #FF6347); /* Dégradé plus foncé */
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé rouge-orange */
+  color: white;
+  border-radius: 4px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #FF4500, #FF0000); /* Dégradé plus foncé */
+}
+
+/* Notification Select */
+.select.form-select {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+/* Sites List and Graph Section */
+.divSitesA ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.divSitesA li {
+  background-color: #fff3e0; /* Orange très clair */
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ffcc80; /* Bordure orange clair */
+}
+
+.divSitesA li button {
+  background: linear-gradient(45deg, #FF8C00, #FFA500); /* Dégradé orange */
+  color: white;
+  border-radius: 4px;
+}
+
+.divSitesA li button:hover {
+  background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé plus foncé */
+}
+
+/* Graph Section */
+.divGraphS {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff3e0; /* Orange très clair */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.divGraphS canvas {
+  width: 100%;
+  height: 400px;
+}
+
+/* Best Price Section */
+.divBestA {
+  background-color: #fff3e0; /* Orange très clair */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.divBestA h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  header ul {
+    display: block;
+    text-align: center;
+  }
+
+  header ul li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .divImgA img {
+    max-width: 100%;
+  }
+  
+  .divFreqA input.form-control {
+    width: 100%;
+  }
+
+  .divSitesA li {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,91 @@
+/* Global Styles */
+*:focus {
+    outline: none;
+}
+
+body {
+    font-family: "Open sans", Arial, serif;
+    background-color: #f7f7f7; /* Fond clair */
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    margin: 20px auto;
+    width: 300px;
+}
+
+/* Login Screen with Orange Gradient */
+.login-screen {
+    background: linear-gradient(to bottom, #FF7F50, #FF4500); /* Dégradé orange-rouge */
+    padding: 20px;
+    border-radius: 10px;
+    justify-self: center;
+}
+
+/* App Title */
+.app-title {
+    text-align: center;
+    font-family: "Open sans", Arial, serif;
+    color: white; /* Text color for the title */
+}
+
+/* Login Form */
+.login-form {
+    text-align: center;
+}
+
+.control-group {
+    margin-bottom: 10px;
+}
+
+/* Input Fields */
+input {
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    transition: border 0.5s;
+}
+
+input:focus {
+    border: 2px solid #FF6347; /* Orange clair */
+    box-shadow: 0 0 8px rgba(255, 99, 71, 0.8); /* Lueur orange */
+}
+
+/* Button Style */
+.btn {
+    border: 2px solid;
+    background: linear-gradient(45deg, #FF7F50, #FF4500); /* Dégradé orange-rouge */
+    color: white;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    text-decoration: none;
+    text-shadow: none;
+    border-radius: 10px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé orange-rouge au survol */
+}
+
+/* Sign In Text */
+.signin {
+    font-size: 15px;
+    color: #444;
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+}

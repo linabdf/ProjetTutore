@@ -4,6 +4,7 @@
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../frontend-master" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../frontend-master/FrontEndScrapping" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../scrapping" vcs="Git" />
   </component>
 </project>
