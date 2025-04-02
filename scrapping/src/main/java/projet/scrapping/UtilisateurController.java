@@ -14,10 +14,15 @@ public class UtilisateurController {
     private final UtilisateurService utilisateurService;
     private  final JwtUtil JwtUtil;
     @Autowired
-    public UtilisateurController(UtilisateurService utilisateurService,JwtUtil JwtUtil) {
+    private UtilisateurController(UtilisateurService utilisateurService, JwtUtil JwtUtil) {
         this.utilisateurService = utilisateurService;
         this.JwtUtil= JwtUtil;
     }
+
+    public static UtilisateurController createUtilisateurController(UtilisateurService utilisateurService, JwtUtil JwtUtil) {
+        return new UtilisateurController(utilisateurService, JwtUtil);
+    }
+
     @PostMapping
     public ResponseEntity<Map<String, String>> inscrireUtilisateur(@RequestBody Utilisateur utilisateurDTO) {
         Map<String, String> response = new HashMap<>();
@@ -74,6 +79,26 @@ public class UtilisateurController {
             }
         } catch (Exception e) {
             response.put("message", "Erreur lors de la connexion de l'utilisateur");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, String>> logout(@RequestHeader("Authorization") String token) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            System.out.println("token a supprimer"+token);
+            // Vérifier que le token est valide
+            if (token != null && !token.isEmpty()) {
+                // Ajouter le token à la blacklist
+                JwtUtil.addToBlacklist(token);
+                response.put("message", "Déconnexion réussie.");
+                return ResponseEntity.ok(response);
+            } else {
+                response.put("message", "Token manquant ou invalide.");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
+        } catch (Exception e) {
+            response.put("message", "Erreur lors de la déconnexion.");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }

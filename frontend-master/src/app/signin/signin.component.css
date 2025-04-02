@@ -1,91 +1,108 @@
-/* Global Styles */
-*:focus {
-    outline: none;
-}
-
-body {
-    font-family: "Open sans", Arial, serif;
-    background-color: #f7f7f7; /* Fond clair */
-    padding: 50px;
+/* Login Page */
+.login {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    background: #fafafa; /* Fond clair */
 }
 
-.login {
-    margin: 20px auto;
-    width: 300px;
-}
-
-/* Login Screen with Orange Gradient */
+/* Login Screen */
 .login-screen {
-    background: linear-gradient(to bottom, #FF7F50, #FF4500); /* Dégradé orange-rouge */
-    padding: 20px;
+    background: #ffffff;
+    padding: 30px;
     border-radius: 10px;
-    justify-self: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
 }
 
 /* App Title */
-.app-title {
+.app-title h1 {
     text-align: center;
-    font-family: "Open sans", Arial, serif;
-    color: white; /* Text color for the title */
+    font-size: 2rem;
+    color: #232f3e;
+    margin-bottom: 30px;
 }
 
-/* Login Form */
+/* Form Styles */
 .login-form {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .control-group {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    position: relative;
 }
 
-/* Input Fields */
-input {
-    text-align: center;
-    background-color: #ECF0F1;
-    border: 2px solid transparent;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 200;
-    padding: 10px 0;
-    width: 250px;
-    transition: border 0.5s;
+input.login-field {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
 }
 
-input:focus {
-    border: 2px solid #FF6347; /* Orange clair */
-    box-shadow: 0 0 8px rgba(255, 99, 71, 0.8); /* Lueur orange */
+input.login-field:focus {
+    border-color: #007185;
+    outline: none;
 }
 
-/* Button Style */
-.btn {
-    border: 2px solid;
-    background: linear-gradient(45deg, #FF7F50, #FF4500); /* Dégradé orange-rouge */
+label.login-field-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ccc;
+}
+
+/* Button Styles */
+button.btn-primary {
+    background-color: #007185; /* Bleu Amazon */
     color: white;
-    font-size: 16px;
-    line-height: 25px;
-    padding: 10px 0;
-    text-decoration: none;
-    text-shadow: none;
-    border-radius: 10px;
-    box-shadow: none;
-    transition: 0.25s;
-    display: block;
-    width: 250px;
-    margin: 0 auto;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
 }
 
-.btn:hover {
-    background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé orange-rouge au survol */
+button.btn-primary:hover {
+    background-color: #005f73; /* Darker Blue */
+    transform: scale(1.05);
 }
 
-/* Sign In Text */
-.signin {
-    font-size: 15px;
-    color: #444;
-    display: block;
-    margin-top: 12px;
+/* Sign-In Link */
+.signin-link {
     text-align: center;
+    display: block;
+    margin-top: 20px;
+    color: #007185;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signin-link:hover {
+    color: #005f73;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-screen {
+        padding: 20px;
+    }
+
+    .app-title h1 {
+        font-size: 1.5rem;
+    }
+
+    button.btn-primary {
+        font-size: 1rem;
+        padding: 10px;
+    }
 }

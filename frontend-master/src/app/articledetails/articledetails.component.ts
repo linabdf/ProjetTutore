@@ -24,6 +24,7 @@ import {UserService} from '../signin/user/user.service';
 export class ArticleDetailsComponent implements OnInit {
   article: Article = new Article(); //mettre constructeur vide quand acces a la base
   id: number = 0;
+  afficherGraphique: boolean = false;
   filtre : number = 1000; // en min pour l'instant
   articles: any[] = [];
   isDropdownVisible: boolean = true;
@@ -47,6 +48,7 @@ export class ArticleDetailsComponent implements OnInit {
       this.article.notif=data.notif;
       this.article.urlimage=data.urlimage;
       this.article.graph = new Graphique();
+      
       console.log("this.articles.sites", this.article.sites);
       console.log("this.articles.urlimage", this.article.urlimage);
       // Initialisation de s.graph pour chaque site
@@ -122,6 +124,7 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   afficherTendancePrix() {
+    this.afficherGraphique = true;
     const btn = document.querySelectorAll(".btnTendancePrix") as NodeListOf<HTMLElement>;
 
 
@@ -266,5 +269,9 @@ modifierArticle(article: any) {
     }
   );
 }
-
+deconnexion() {
+  this. UserService.logout();
+  
+  return "ajout test";
+}
 }

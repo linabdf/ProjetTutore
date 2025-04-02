@@ -1,23 +1,21 @@
-
 <!-- Header -->
 <header class="header">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-lg-push-2 text-center">
+    <div class="row text-center">
+      <div class="col-lg-8 col-lg-push-2">
         <h1>Comparateur de prix</h1>
-        <h2>Bienvenue</h2>
+        <h2>Bienvenue sur notre plateforme</h2>
         <p class="lead">
-          Ce site web vous permettra de comparer les prix d'articles choisis
-          sur différents sites disponibles.
+          Comparez les prix d'articles sur plusieurs sites en un seul endroit !
         </p>
 
-        <p>Le site est encore en développement<br>
-            Vous devez vous connecter pour accéder au services du site</p>
+        <p>Notre site est encore en développement. Connectez-vous pour accéder à toutes les fonctionnalités !</p>
         <br>
-
+      
+        <img src="../../assets/image1.png" alt="Illustration site de vente" width="702" height="492">
         <form class="form-inline" role="form">
-          <button id="loginBtn" routerLink="login" routerLinkActive="active" class="btn btn-success">Connexion</button>
-          <button id="signinBtn" routerLink="signin" routerLinkActive="active" class="btn btn-success">Créer un compte</button>
+          <button id="loginBtn" routerLink="login" routerLinkActive="active" class="btn btn-primary">Connexion</button>
+          <button id="signinBtn" routerLink="signin" routerLinkActive="active" class="btn btn-secondary">Créer un compte</button>
         </form>
 
       </div>
@@ -25,13 +23,14 @@
     <div class="row">
       <div class="col-lg-12">
         <div id="illustration">
-          <img ngSrc="/ceval.jpg" height=492 width= 1024 alt="" priority>
+          <img ngSrc="/ceval.jpg" height="492" width="1024" alt="Illustration comparateur de prix" priority>
         </div>
       </div>
     </div>
   </div>
 </header>
 <!-- /Header -->
+
 <!-- Content -->
 <main class="content">
 
@@ -39,9 +38,9 @@
   <section class="container space-before space-after">
     <div class="row">
       <div class="col-sm-10 col-sm-push-1">
-        <h1 class="text-center">Comparer les prix de vos articles préférés</h1>
+        <h1 class="text-center">Suivez les prix de vos articles préférés</h1>
         <p class="lead text-center">
-          Recherchez vos articles préférés pour suivre leurs prix
+          Recherchez vos produits et suivez l'évolution des prix à travers différents sites.
         </p>
       </div>
     </div>
@@ -52,36 +51,43 @@
   <section class="container space-before">
 
     <div class="row featurelist space-after">
-      <div class="col-md-5 col-sm-6 col-md-push-1 ">
-        <img class="img-feature img-responsive" ngSrc="/ceval.jpg" alt="image de la liste de souhait" height="492" width="1024">
+      <div class="col-md-5 col-sm-6 col-md-push-1">
+        <img class="img-feature img-responsive" ngSrc="/ceval.jpg" alt="Liste d'articles" height="492" width="1024">
       </div>
       <div class="col-md-5 col-md-push-1 col-sm-6">
-        <h2 class="space-before">Liste de souhaits </h2>
-        <p>Enregistrez facilement les articles qui vous intéressent dans votre liste de souhaits pour les retrouver rapidement </p>
+        <h2 class="space-before">Liste de souhaits</h2>
+        <p>Enregistrez facilement vos articles préférés pour les retrouver rapidement et comparer leurs prix sur différents sites.</p>
       </div>
     </div>
 
     <div class="row featurelist space-after">
       <div class="col-md-5 col-sm-6 col-sm-push-6">
-        <img class="img-feature img-responsive" ngSrc="/ceval.jpg" alt="image des graphiques" height="492" width="1024">
+        <img class="img-feature img-responsive" ngSrc="/ceval.jpg" alt="Graphiques des prix" height="492" width="1024">
       </div>
       <div class="col-md-5 col-sm-6 col-md-pull-4 col-sm-pull-6">
         <h2 class="space-before">Graphiques des prix</h2>
-        <p>Vous pouvez voir l'évolution des prix de vos articles selon les sites où ils sont disponibles... </p>
-        <p>... et même voir le graphique global des prix pour savoir quel site a le prix le plus avantageux pour vous</p>
+        <p>Suivez l'évolution des prix de vos articles et comparez les offres des différents sites pour faire le meilleur choix.</p>
       </div>
     </div>
 
     <div class="row featurelist space-after">
       <div class="col-md-5 col-sm-6 col-md-push-1 col-sm-6">
-        <img class="img-feature img-responsive" src="/ceval.jpg" alt="image d'une notif">
+        <img class="img-feature img-responsive" src="/ceval.jpg" alt="Notifications de prix">
       </div>
       <div class="col-md-5 col-md-push-1 col-sm-6">
-        <h2 class="space-before">Notifications et seuils</h2>
-        <p>Vous pouvez donner un seuil pour un article et vous serez notifié (par email ou notification push selon votre choix) lorsque le prix de l'article sera sous ce seuil</p>
+        <h2 class="space-before">Notifications personnalisées</h2>
+        <p>Définissez un seuil de prix pour vos articles et recevez une notification (par email ou push) lorsque le prix descend sous ce seuil.</p>
       </div>
     </div>
   </section>
   <!-- /Features -->
 
 </main>
+<!-- /Content -->
+
+<!-- Footer -->
+<footer class="footer text-center space-before">
+  <p>&copy; 2025 Comparateur de Prix. Tous droits réservés.</p>
+  <p><a href="terms">Conditions d'utilisation</a> | <a href="privacy">Politique de confidentialité</a></p>
+</footer>
+<!-- /Footer -->

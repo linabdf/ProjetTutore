@@ -1,249 +1,179 @@
-/* Global Styles */
+*:focus {
+  outline: none;
+}
+
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f0f0f0; /* Gris clair */
-  margin: 0;
-  padding: 0;
+  font-family: "Open Sans", Arial, sans-serif;
+  background: linear-gradient(to bottom, #f5f5f5, #dcdcdc); /* Fond gris clair */
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-/* Header Section */
-.header {
-  background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé orange-rouge */
-  color: white;
-  padding: 80px 0;
-  text-align: center;
-}
-
-.header h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-
-.header h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.header .lead {
-  font-size: 1.25rem;
-  margin-bottom: 30px;
-}
-
-/* Form Styles */
-form {
-  background: linear-gradient(to bottom, rgba(255, 99, 71, 0.8) 0%, rgba(255, 69, 0, 0.7) 100%); /* Dégradé chaud */
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: auto;
+  background: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 450px;
-  margin: 40px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
   text-align: center;
-  color: #fff;
+  color: #333;
+  font-family: "Open Sans", Arial, sans-serif;
 }
-
-p {
-  font-weight: bold;
-  color: #fff;
+/* Survol du titre de l'article (nom) */
+h1 {
+  font-size: 2rem;
+  color: #232f3e;
   text-align: center;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-label {
-  display: block;
-  margin-top: 10px;
-  color: #fff;
+/* Effet de survol sur le titre de l'article */
+h1:hover {
+  color: #ff9900; /* Changer la couleur du texte */
+  transform: scale(1.05); /* Légèrement zoomer le texte */
+}
+/* Survol du nom de l'article dans la table */
+.article-name {
+  font-size: 1.2rem;
+  color: #232f3e;
+  cursor: pointer; /* Pour indiquer que c'est interactif */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-input[type="text"],
-select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ddd; /* Gris clair pour les bordures */
-  border-radius: 5px;
-  text-align: center;
-  font-size: 1rem;
-  font-family: 'Arial', sans-serif;
+/* Effet de survol */
+.article-name:hover {
+  color: #ff9900; /* Changer la couleur du texte */
+  transform: scale(1.05); /* Légèrement zoomer le texte */
 }
-
-select {
-  font-family: 'Arial', sans-serif;
-  color: #333; /* Gris foncé pour le texte */
-}
-
-/* Switch (toggle) styles */
-.switch {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0;
-}
-
-.switch div {
-  color: #fff;
-  font-size: 1rem;
-}
-
-.switch input {
-  display: none;
-}
-
-.switch .slider {
-  position: relative;
-  width: 40px;
-  height: 20px;
-  background: #ddd; /* Gris pour l'état inactif */
-  border-radius: 50px;
-  transition: 0.3s;
-}
-
-.switch .slider:before {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 50%;
-  top: 2px;
-  left: 2px;
-  transition: 0.3s;
-}
-
-/* Switch Active State */
-.switch input:checked + .slider {
-  background: #32CD32; /* Vert Lime pour l'état actif */
-}
-
-.switch input:checked + .slider:before {
-  transform: translateX(20px);
-}
-
-/* Submit Button */
-.btnSubmit {
-  width: 100%;
-  padding: 10px;
-  background: #FF4500; /* Orange */
-  color: white;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  margin-top: 15px;
-}
-
-.btnSubmit:hover {
-  background: #FF6347; /* Rouge clair au survol */
-}
-
-/* Navigation */
+/* Navigation Menu */
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333; /* Noir pour la barre de navigation */
+  list-style: none;
+  padding: 10px;
+  margin: 0 auto 20px auto;
   display: flex;
   justify-content: center;
-  width: 100%;
+  background: #232f3e; /* Couleur Amazon - gris foncé */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-li {
-  float: left;
+ul li {
+  margin: 0 15px;
 }
 
-li a {
-  display: block;
+ul li a {
   color: white;
-  text-align: center;
-  padding: 14px 20px;
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, transform 0.2s;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: inline-block;
 }
 
-li a:hover {
-  background-color: #555; /* Gris foncé au survol */
-  color: #FF6347; /* Rouge clair sur survol */
+ul li a:hover {
+  background-color: #febd69; /* Jaune Amazon */
+  color: black;
+  transform: scale(1.05);
 }
 
-/* Footer Section */
-.footer {
-  background-color: #222; /* Couleur sombre pour le pied de page */
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-/* Table Styles with Modern Look */
-table {
+/* Table Styles */
+.table {
   width: 100%;
-  border-collapse: collapse; /* Suppression des espacements entre les cellules */
-  margin: 20px 0;
-  background: #fff; /* Fond blanc pour le tableau */
-  border-radius: 8px; /* Coins arrondis pour un effet moderne */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-th, td {
-  padding: 15px;
+.table th, .table td {
+  padding: 12px;
   text-align: center;
-  font-size: 1rem;
+  border-bottom: 1px solid #ddd;
 }
 
-th {
-  background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé orange-rouge */
+.table th {
+  background-color: #37475a; /* Couleur Fnac-Darty */
   color: white;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f0f0f0;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s;
+  border: none;
+  width: 120px;
   font-weight: bold;
-  text-transform: uppercase; /* Texte en majuscule pour un look plus net */
 }
 
-td {
-  background-color: #fff; /* Fond blanc pour les cellules */
-  color: #333; /* Texte gris foncé */
-  border: 1px solid #ddd; /* Bordure fine et subtile */
+button:hover {
+  transform: scale(1.05);
 }
 
-tr:nth-child(even) td {
-  background-color: #f9f9f9; /* Légère alternance des couleurs des lignes */
+.btn-warning {
+  background: linear-gradient(45deg, #febd69, #ffa41c); /* Jaune Amazon */
+  color: black;
 }
 
-tr:hover td {
-  background-color: #FF6347; /* Rouge clair au survol des lignes */
-  color: white; /* Texte en blanc au survol */
+.btn-info {
+  background: linear-gradient(45deg, #007185, #005f73); /* Bleu Amazon */
+  color: white;
 }
 
-/* Suppression de bordure pointillée et lignes */
-td, th {
-  border: none; /* Suppression de la bordure pointillée */
+.btn-danger {
+  background: linear-gradient(45deg, #d62828, #a4161a); /* Rouge Fnac */
+  color: white;
 }
 
-/* Option de ligne horizontale sous l'entête */
-th {
-  border-bottom: 2px solid #FF6347; /* Ligne sous l'entête pour la séparation */
+.btn-success {
+  background: linear-gradient(45deg, #009e60, #007d4f); /* Vert Amazon */
+  color: white;
 }
 
-/* Suppression des bordures inutiles et des cellules trop larges */
-td {
-  border-bottom: 1px solid #eee; /* Bordure discrète entre les cellules */
+/* Checkbox List */
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Responsive Table Styles */
+/* Centered Actions */
+.text-center {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-  table {
-    width: 100%;
-    font-size: 0.9rem; /* Réduction de la taille des textes sur petits écrans */
+  .container {
+      padding: 15px;
   }
-
-  th, td {
-    padding: 10px; /* Réduction du padding sur petits écrans */
+  
+  .table th, .table td {
+      font-size: 0.9rem;
   }
-
-  td {
-    word-wrap: break-word; /* Empêche le texte de dépasser des cellules */
+  
+  ul {
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  ul li {
+      margin: 5px 0;
   }
 }
