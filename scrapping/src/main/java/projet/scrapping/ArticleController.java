@@ -389,7 +389,6 @@ public class ArticleController {
                 articleResponse.put("seuil", article.getSeuil()); // Seuil
                 articleResponse.put("frequence", article.getFrequence()); // Fréquence
                 articleResponse.put("notif", article.getNotif()); // Notification
-                articleResponse.put("urlimage", article.getUrlImage()); // Notification
 
                 // Récupérer les sites associés à cet articleS
                 List<Site> sites = SiteRepository.findByArticle(article);

@@ -1,272 +1,200 @@
 /* Global Styles */
-*:focus {
-  outline: none;
-}
-
 body {
-  font-family: "Open Sans", Arial, sans-serif;
-  background: linear-gradient(to bottom, #fafafa, #e0e0e0);
-  padding: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-}
-ul {
-  list-style: none;
-  padding: 10px;
-  margin: 0 auto 20px auto;
-  display: flex;
-  justify-content: center;
-  background: #131921;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-ul li {
-  margin: 0 15px;
-}
-
-ul li a, ul li button {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background 0.3s ease, transform 0.2s;
-  padding: 10px 15px;
-  border-radius: 5px;
-  display: inline-block;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-ul li a:hover, ul li button:hover {
-  background-color: #febd69;
-  color: black;
-  transform: scale(1.05);
-}
-
-ul li button {
- 
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-ul li button:hover {
-  background-color: #218838;
-}
-
-.container {
-  width: 80%;
-  max-width: 1200px;
-  margin: auto;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  text-align: center;
-  color: #333;
-  font-family: "Open Sans", Arial, sans-serif;
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-/* Form Styles */
-form {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: auto;
-}
-
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-  color: #333;
-  font-size: 1.1rem;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  margin-top: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  background-color: #fafafa;
-  transition: border-color 0.3s ease;
-}
-
-input:focus, select:focus {
-  border-color: #febd69;
-  background-color: #fff;
-}
-
-input::placeholder, select::placeholder {
-  color: #999;
-  font-style: italic;
-}
-
-/* Specific Site Names */
-.switch-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.switch-label {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #333;
-  margin-left: 10px;
-  width: 120px;
-  text-align: left;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 25px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #bbb;
-  transition: 0.4s;
-  border-radius: 25px;
-}
-
-.slider::before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 3.5px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-input:checked + .slider {
-  background-color: #009e60;
-}
-
-input:checked + .slider::before {
-  transform: translateX(24px);
-}
-
-/* Buttons */
-button {
-  cursor: pointer;
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease-in-out;
-  border: none;
-  font-weight: bold;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Custom Buttons */
-.btnSubmit {
-  flex: 1;
-  max-width: 200px;
-  padding: 12px;
-  font-size: 1rem;
-  text-align: center;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-/* Validate Button */
-.btnSubmit.valider {
-  background: #ffa41c;
-  color: white;
-}
-
-.btnSubmit.valider:hover {
-  background: #e68a00;
-}
-
-/* Cancel Button */
-.btnSubmit.annuler {
-  background: #d62828;
-  color: white;
-}
-
-.btnSubmit.annuler:hover {
-  background: #a4161a;
-}
-
-/* Button Container */
-.btn-container {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-
-/* Responsive for Mobile */
-@media (max-width: 600px) {
-  .btn-container {
-    flex-direction: column;
-    gap: 10px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0; /* Gris clair */
+    margin: 0;
+    padding: 0;
   }
-
-  .btnSubmit {
-    max-width: 100%;
+  
+  /* Header Section */
+  .header {
+    background: linear-gradient(45deg, #FF6347, #FF4500); /* Nouveau dégradé orange-rouge */
+    color: white;
+    padding: 80px 0;
+    text-align: center;
   }
-
-  ul {
-    flex-direction: column;
-    align-items: center;
+  
+  .header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
   }
-
-  ul li {
-    margin: 5px 0;
+  
+  .header h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
   }
-
-  /* Adjust form inputs for small screens */
+  
+  .header .lead {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+  }
+  
+  /* Form Styles */
   form {
+    background: linear-gradient(to bottom, rgba(255, 99, 71, 0.8) 0%, rgba(255, 69, 0, 0.7) 100%); /* Dégradé chaud */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    margin: 40px auto;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #fff;
+  }
+  
+  p {
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+    color: #fff;
+  }
+  
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd; /* Gris clair pour les bordures */
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  select {
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Gris foncé pour le texte */
+  }
+  
+  /* Switch (toggle) styles */
+  .switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  
+  .switch div {
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .switch .slider {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background: #ddd; /* Gris pour l'état inactif */
+    border-radius: 50px;
+    transition: 0.3s;
+  }
+  
+  .switch .slider:before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+  }
+  
+  /* Switch Active State */
+  .switch input:checked + .slider {
+    background: #32CD32; /* Vert Lime pour l'état actif */
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+  
+  /* Submit Button */
+  .btnSubmit {
+    width: 100%;
+    padding: 10px;
+    background: #FF4500; /* Orange */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    margin-top: 15px;
+  }
+  
+  .btnSubmit:hover {
+    background: #FF6347; /* Rouge clair au survol */
+  }
+  
+  /* Navigation */
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333; /* Noir pour la barre de navigation */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  li a:hover {
+    background-color: #555; /* Gris foncé au survol */
+    color: #FF6347; /* Rouge clair sur survol */
+  }
+  
+  /* Footer Section */
+  .footer {
+    background-color: #222; /* Couleur sombre pour le pied de page */
+    color: white;
+    text-align: center;
     padding: 20px;
   }
-
-  input, select {
-    padding: 10px;
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    .header h1 {
+      font-size: 2.5rem;
+    }
+    .header h2 {
+      font-size: 1.8rem;
+    }
+  
+    form {
+      padding: 15px;
+      width: 90%;
+    }
+  
+    .btnSubmit {
+      font-size: 1rem;
+    }
   }
   
-  
-}

@@ -2,7 +2,6 @@
   <ul>
     <li><a href="main">Liste d'articles suivis</a></li>
     <li><a href="profil">Profil</a></li>
-    <li><a (click)="deconnexion()">Déconnexion</a></li>
   </ul>
 </header>
 
@@ -10,7 +9,7 @@
 <h1>Détails de {{ article.nom }}</h1>
 <div class="container">
   <div class="divImgA">
-  
+    <h2>Image de l'article : {{ article.urlimage }}</h2>
     <img *ngIf="article.urlimage; else noImage" [src]="article.urlimage" alt="Image art">
     <ng-template #noImage>
       <p>Image non disponible</p>
@@ -18,14 +17,14 @@
   </div>
 
   <div class="divDescA">
-    <h2>Description</h2>
+    <h2>Description de l'article :</h2>
     <p>{{ article.description }}</p>
   </div>
 
   <div class="divSeuilA">
-    <h2>Seuil </h2>
+    <h2>Seuil de l'article :</h2>
     <input type="number" [(ngModel)]="article.seuil" class="form-control" /> 
-      <button  class="btnModifSeuil" (click)="modifierArticle(article)"type="button">
+      <button  class="btnModifSeuil" type="button">
         📝
       </button> <br>
   
@@ -33,9 +32,9 @@
   </div>
 
   <div class="divFreqA">
-    <h2>Fréquence</h2>
+    <h2>Fréquence des données récupérées :</h2>
     <input type="number" [(ngModel)]="article.frequence" class="form-control" />
-      <button  class="btnTendancePrix" (click)="modifierArticle(article)" type="button">
+      <button  class="btnTendancePrix" type="button">
         📝
       </button>
    
@@ -46,54 +45,60 @@
       <option value="email">Email</option>
       <option value="push">Push</option>
     </select>
-    <button  class="btnTendancePrix"(click)="modifierArticle(article)" type="button">
+    <button  class="btnTendancePrix" type="button">
       📝
     </button>
-    <!--<button class="btn btn-primary mt-3" (click)="modifierArticle(article)">Enregistrer les modifications</button>
-  --> </div>
+    <button class="btn btn-primary mt-3" (click)="modifierArticle(article)">Enregistrer les modifications</button>
+  </div>
  
   <div class="divSitesA" >
     <h2>Sites disponibles :</h2>
     <ul *ngIf="article && article.sites && article.sites.length">
       <li *ngFor="let s of article.sites; trackBy: trackById">
+        {{ s.nomSite }}   
         <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
-          <h4>{{ s.nomSite }} </h4>  📈
+          📈
         </button>
-        <div class="divGraphS" >
-          <canvasjs-chart
-            [options]="{
-              animationEnabled: true,
-              zoomEnabled : true,
-              data: [{
-                type: 'line',
-                dataPoints: s.graph.dataPoints,
-                xValueType : 'DateTime'
-              }],
-              axisX : {
-                title : 'Temps',
-                
-                labelAngle : 0,
-                
-                minimum : s.graph.dataPoints[0].x,
-                interval : article.frequence,
-                intervalType : 'minute',
-                
-              },
-              axisY : {
-                title : 'Prix',
-                suffix : ' €',
-                stripLines:[{
-                  startValue: article.seuil,
-                  endValue: article.seuil - 1,
-                  color:'#d8d8d8'
-                }]
-              }
-            }"></canvasjs-chart>
+      
+  
+  <div class="divGraphS">
+           <canvasjs-chart
+                    [options]="{
+                    animationEnabled: true,
+                    zoomEnabled : true,
+                    data: [{
+                      type: 'line',
+                      dataPoints: s.graph.dataPoints,
+                      xValueType : 'DateTime'
+                    }],
+                    axisX : {
+                      title : 'Temps',
+                      valueFormatString: 'YYYY-MM-DD HH:mm',
+                      labelAngle : 0,
+                      minimum : s.graph.dataPoints[0].x,
+                      interval : article.frequence,
+                      intervalType : 'minute',
+                    },
+                    axisY : {
+                      title : 'Prix',
+                      suffix : ' €',
+                      stripLines:[{
+				                startValue: article.seuil,
+				                endValue: article.seuil - 1,
+				                color:'#d8d8d8'
+                        }]
+                    }
+                  }"></canvasjs-chart>
         </div>
-      </li>
-      </ul>
-    </div>
- <div class="divBestA">
+          </li>
+
+    </ul>
+
+  </div>
+
+
+ 
+    <div class="divBestA">
       <h2>Meilleur prix :</h2>
       <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
         📈
@@ -132,8 +137,5 @@
   </div>
   
 </div>
-<footer class="footer text-center space-before">
-  <p>&copy; 2025 Comparateur de Prix. Tous droits réservés.</p>
-  <p><a href="terms">Conditions d'utilisation</a> | <a href="privacy">Politique de confidentialité</a></p>
-</footer>
+
 </body>

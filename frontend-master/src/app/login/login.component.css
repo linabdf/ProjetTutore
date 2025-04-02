@@ -1,119 +1,97 @@
-/* Form Container */
+/* Global Styles */
+*:focus {
+    outline: none;
+}
+
+body {
+    font-family: "Open Sans", Arial, serif;
+    background-color: #f7f7f7; /* Fond clair pour une ambiance douce */
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Utilise toute la hauteur de la fenêtre */
+    margin: 0;
+}
+
 .container {
+    max-width: 600px;
     width: 100%;
-    max-width: 500px;
-    margin: auto;
-    padding: 20px;
 }
 
-/* Title */
-h2.text-center {
-    color: #232f3e;
+h2 {
     font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-/* Form Styles */
-form {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Label Styles */
-.form-label {
-    font-weight: bold;
     color: #333;
-    font-size: 1rem;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Input Styles */
-input.form-control {
-    width: 100%;
+/* Form Container with Orange Gradient */
+form {
+    background: linear-gradient(to bottom, #FF7F50, #FF4500); /* Dégradé orange-rouge */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Ombre douce pour plus de profondeur */
+}
+
+.form-label {
+    font-size: 1rem;
+    color: #fff;
+}
+
+/* Input Fields Style */
+input[type="email"], input[type="password"] {
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 200;
     padding: 12px;
-    margin-top: 8px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+    width: 100%;
+    margin: 10px auto;
+    transition: border 0.3s ease;
 }
 
-/* Button Styles */
-button.btn {
-    background: #007185; /* Blue Amazon */
+input[type="email"]:focus, input[type="password"]:focus {
+    border: 2px solid #FF6347; /* Orange clair */
+    box-shadow: 0 0 8px rgba(255, 99, 71, 0.8); /* Lueur orange lors du focus */
+}
+
+/* Custom Button Style */
+button[type="submit"] {
+    background: linear-gradient(45deg, #FF7F50, #FF4500); /* Dégradé orange */
     color: white;
     font-weight: bold;
-    padding: 15px;
-    border-radius: 8px;
-    border: none;
-    transition: background 0.3s ease, transform 0.2s;
-    font-size: 1.1rem;
-}
-
-button.btn:hover {
-    background: #005f73; /* Darker Blue Amazon */
-    transform: scale(1.05);
-}
-
-/* Full-width Button */
-.w-100 {
+    border-radius: 30px;
+    padding: 12px 30px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease-in-out;
     width: 100%;
+    margin-top: 20px;
 }
 
-/* Margin and Padding */
-.mb-3 {
-    margin-bottom: 15px;
+button[type="submit"]:hover {
+    background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé orange-rouge au survol */
 }
 
-/* Shadow and Rounded Corner */
-.shadow-sm {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* Centered Text */
+.text-center {
+    text-align: center;
 }
 
-.rounded {
-    border-radius: 10px;
-}
-/* Style pour le lien "Créer un compte ?" */
-.signin-link {
-    color: #3498db; /* Bleu clair personnalisé */
-    text-decoration: none; /* Supprimer la ligne sous le texte */
-    font-weight: bold; /* Police en gras */
-    font-size: 16px; /* Taille de la police */
-    transition: color 0.3s ease, text-decoration 0.3s ease; /* Transition de couleur et décoration au survol */
-  }
-  
-  .signin-link:hover {
-    color: #2980b9; /* Bleu foncé au survol */
-    text-decoration: underline; /* Ajouter une ligne sous le texte au survol */
-  }
-  
-  /* Style pour le lien "Accueil" */
-  .home-link {
-    color: #2ecc71; /* Vert clair personnalisé */
-    font-size: 18px; /* Taille de la police */
-    font-weight: 500; /* Légèrement moins gras */
-    text-decoration: none; /* Supprimer la ligne sous le texte */
-    transition: color 0.3s ease, text-decoration 0.3s ease; /* Transition de couleur et décoration au survol */
-  }
-  
-  .home-link:hover {
-    color: #27ae60; /* Vert foncé au survol */
-    text-decoration: underline; /* Ajouter une ligne sous le texte au survol */
-  }
-/* Responsive Design */
+/* Media Queries for responsiveness */
 @media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    
-    h2.text-center {
-        font-size: 1.5rem;
+    form {
+        padding: 25px;
     }
 
-    button.btn {
-        font-size: 1rem;
-        padding: 12px;
+    input[type="email"], input[type="password"] {
+        width: 90%;
+        max-width: 100%;
+    }
+
+    button[type="submit"] {
+        width: 90%;
     }
 }

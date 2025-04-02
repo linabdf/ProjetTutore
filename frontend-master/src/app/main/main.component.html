@@ -1,9 +1,8 @@
 <!-- articles-suivi.component.html -->
 <ul>
-
+  <li><a href="AjoutArticle" >Rechercher</a></li>
   <li><a href="main">Liste d'articles suivis</a></li>
   <li><a href="profil">Profil</a></li>
-  <li><a (click)="deconnexion()">Déconnexion</a></li>
 </ul>
 <div class="container mt-4">
   <h2 class="mb-3 text-center">Liste des Articles Suivis</h2>
@@ -15,14 +14,14 @@
         <th>Fréquence</th>
         <th>Seuil</th>
         <th>Type de Notification</th>-->
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>Sites</th>
+        <th>Action</th>
+        <th>Options</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let article of articles">
-        <td class="article-name">{{ article.nom }}</td>
+        <td>{{ article.nom }}</td>
        <!-- <td>{{article.Description}}
         <td><input type="number" [(ngModel)]="article.frequence" class="form-control" /></td>
         <td><input type="number" [(ngModel)]="article.seuil" class="form-control" /></td>
@@ -51,12 +50,11 @@
                 [id]="site" />
               <label class="form-check-label" for="{{site}}">{{ site }}</label>
             </div>
-            <button class="btn btn-info" (click)="modifierArticle(article)">valider</button>
           </div>   
         </td>
-       
+        
         <td>
-          
+          <button class="btn btn-info" (click)="modifierArticle(article)">Modifier</button>
           <button class="btn btn-danger" (click)="SupprimeArticle(article)">Supprimer</button>
         
         </td>
@@ -64,7 +62,7 @@
     </tbody>
   </table>
   <div class="text-center">
-    <button class="btn btn-success me-2" (click)="ajouterArticle()">➕ Ajouter article </button>
-    
+    <button class="btn btn-success me-2" (click)="ajouterArticle()">➕ Ajouter</button>
+    <button class="btn btn-warning" (click)="deconnexion()">Déconnexion</button>
   </div>
 </div>

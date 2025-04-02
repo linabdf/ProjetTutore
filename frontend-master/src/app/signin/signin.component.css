@@ -1,108 +1,91 @@
-/* Login Page */
-.login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #fafafa; /* Fond clair */
-}
-
-/* Login Screen */
-.login-screen {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-/* App Title */
-.app-title h1 {
-    text-align: center;
-    font-size: 2rem;
-    color: #232f3e;
-    margin-bottom: 30px;
-}
-
-/* Form Styles */
-.login-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.control-group {
-    margin-bottom: 20px;
-    position: relative;
-}
-
-input.login-field {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-    margin-top: 5px;
-}
-
-input.login-field:focus {
-    border-color: #007185;
+/* Global Styles */
+*:focus {
     outline: none;
 }
 
-label.login-field-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ccc;
+body {
+    font-family: "Open sans", Arial, serif;
+    background-color: #f7f7f7; /* Fond clair */
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Button Styles */
-button.btn-primary {
-    background-color: #007185; /* Bleu Amazon */
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s;
+.login {
+    margin: 20px auto;
+    width: 300px;
 }
 
-button.btn-primary:hover {
-    background-color: #005f73; /* Darker Blue */
-    transform: scale(1.05);
+/* Login Screen with Orange Gradient */
+.login-screen {
+    background: linear-gradient(to bottom, #FF7F50, #FF4500); /* Dégradé orange-rouge */
+    padding: 20px;
+    border-radius: 10px;
+    justify-self: center;
 }
 
-/* Sign-In Link */
-.signin-link {
+/* App Title */
+.app-title {
     text-align: center;
-    display: block;
-    margin-top: 20px;
-    color: #007185;
+    font-family: "Open sans", Arial, serif;
+    color: white; /* Text color for the title */
+}
+
+/* Login Form */
+.login-form {
+    text-align: center;
+}
+
+.control-group {
+    margin-bottom: 10px;
+}
+
+/* Input Fields */
+input {
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    transition: border 0.5s;
+}
+
+input:focus {
+    border: 2px solid #FF6347; /* Orange clair */
+    box-shadow: 0 0 8px rgba(255, 99, 71, 0.8); /* Lueur orange */
+}
+
+/* Button Style */
+.btn {
+    border: 2px solid;
+    background: linear-gradient(45deg, #FF7F50, #FF4500); /* Dégradé orange-rouge */
+    color: white;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
     text-decoration: none;
-    font-weight: bold;
+    text-shadow: none;
+    border-radius: 10px;
+    box-shadow: none;
+    transition: 0.25s;
+    display: block;
+    width: 250px;
+    margin: 0 auto;
 }
 
-.signin-link:hover {
-    color: #005f73;
+.btn:hover {
+    background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé orange-rouge au survol */
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .login-screen {
-        padding: 20px;
-    }
-
-    .app-title h1 {
-        font-size: 1.5rem;
-    }
-
-    button.btn-primary {
-        font-size: 1rem;
-        padding: 10px;
-    }
+/* Sign In Text */
+.signin {
+    font-size: 15px;
+    color: #444;
+    display: block;
+    margin-top: 12px;
+    text-align: center;
 }

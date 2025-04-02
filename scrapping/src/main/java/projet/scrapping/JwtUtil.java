@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class JwtUtil {
@@ -68,16 +66,5 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody()
                 .getExpiration();
-    }
-    private static Set<String> blacklistedTokens = new HashSet<>();
-
-    // Méthode pour ajouter un token à la blacklist
-    public static void addToBlacklist(String token) {
-        blacklistedTokens.add(token);
-    }
-
-    // Méthode pour vérifier si un token est dans la blacklist
-    public static boolean isBlacklisted(String token) {
-        return blacklistedTokens.contains(token);
     }
 }

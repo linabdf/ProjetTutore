@@ -73,8 +73,8 @@ export class AjoutArticle {
       
     }
     deconnexion() {
-      this.userService.logout();
-      
+      this.userService.logout;
+      this.router.navigateByUrl('');
       return "ajout test";
     }
   }

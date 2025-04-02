@@ -1,99 +1,73 @@
 <ul>
- 
+  <li><a href="AjoutArticle" >Rechercher</a></li>
   <li><a href="main">Liste d'articles suivis</a></li>
-   <li><a href="profil">Profil</a></li>
-   <li><a (click)="deconnexion()">Déconnexion</a></li>
- </ul>
- <div class="container">
- 
-   <form (ngSubmit)="onSubmit()">
-     <label for="nom">Nom de l'Article</label>
-     <input type="text" id="nom" name="nom" [(ngModel)]="article.nom" required />
- 
-     <label for="seuil">Seuil</label>
-     <input type="text" id="seuil" name="seuil" [(ngModel)]="article.seuil" required />
- 
-     <label for="frequence">Fréquence</label>
-     <input type="text" id="frequence" name="frequence" [(ngModel)]="article.frequence" required />
- 
-     <label for="notif">Type de notification</label>
-     <select id="notif" name="notif" [(ngModel)]="article.notif" required>
-       <option value="email">Email</option>
-       <option value="push">Push Notification</option>
-     </select>
- 
-     <h3>Sites associés :</h3>
- 
-     <div class="switch-container">
-       <span class="switch-label">Amazon</span>
-       <label class="switch">
-         <input type="checkbox" [(ngModel)]="article.selectedSites.amazon" name="amazon" />
-         <span class="slider round"></span>
-       </label>
-     </div>
- 
-     <div class="switch-container">
-       <span class="switch-label">FNAC</span>
-       <label class="switch">
-         <input type="checkbox" [(ngModel)]="article.selectedSites.fnac" name="fnac" />
-         <span class="slider round"></span>
-       </label>
-     </div>
- 
-     <div class="switch-container">
-       <span class="switch-label">LDLC</span>
-       <label class="switch">
-         <input type="checkbox" [(ngModel)]="article.selectedSites.ldlc" name="ldlc" />
-         <span class="slider round"></span>
-       </label>
-     </div>
- 
-     <div class="switch-container">
-       <span class="switch-label">Boulanger</span>
-       <label class="switch">
-         <input type="checkbox" [(ngModel)]="article.selectedSites.boulanger" name="boulanger" />
-         <span class="slider round"></span>
-       </label>
-     </div>
- 
-     <div class="switch-container">
-       <span class="switch-label">Rue du Commerce</span>
-       <label class="switch">
-         <input type="checkbox" [(ngModel)]="article.selectedSites.rueducommerce" name="rueducommerce" />
-         <span class="slider round"></span>
-       </label>
-     </div>
- 
-     <div class="switch-container">
-       <span class="switch-label">Leclerc</span>
-       <label class="switch">
-         <input type="checkbox" [(ngModel)]="article.selectedSites.leclerc" name="leclerc" />
-         <span class="slider round"></span>
-       </label>
-     </div>
- 
-     <div class="switch-container">
-       <span class="switch-label">Alternate</span>
-       <label class="switch">
-         <input type="checkbox" [(ngModel)]="article.selectedSites.alternate" name="alternate" />
-         <span class="slider round"></span>
-       </label>
-     </div>
- 
-     <div class="switch-container">
-       <span class="switch-label">eBay</span>
-       <label class="switch">
-         <input type="checkbox" [(ngModel)]="article.selectedSites.ebay" name="ebay" />
-         <span class="slider round"></span>
-       </label>
-     </div>
-     <div class="btn-container">
-       <button class="btnSubmit valider" type="submit">Valider</button>
-   
-       <a href="main">
-         <button class="btnSubmit annuler" type="button">Annuler</button>
-       </a>
-     </div>
-   </form>
- </div>
- 
+  <li><a href="profil">Profil</a></li>
+  <li><button class="btn btn-success" (click)="deconnexion()">Déconnexion</button></li>
+</ul>
+<h2>Ajouter un article</h2>
+<form (ngSubmit)="onSubmit()">
+  <p>Recherche d'articles :</p>
+  <div>
+    <label for="nom">Nom de l'Article</label>
+    <input type="text" id="nom" name="nom" [(ngModel)]="article.nom" required />
+
+    <label for="seuil">Seuil</label>
+    <input type="text" id="seuil" name="seuil" [(ngModel)]="article.seuil" required />
+
+    <label for="frequence">Fréquence</label>
+    <input type="text" id="frequence" name="frequence" [(ngModel)]="article.frequence" required />
+
+    <label for="notif">Type de notification</label>
+    <select id="notif" name="notif" [(ngModel)]="article.notif" required>
+      <option value="email">Email</option>
+      <option value="push">Push Notification</option>
+    </select>
+
+    <p>Sites associés :</p>
+    <label class="switch">
+      <div>Amazon</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.amazon" name="amazon" />
+      <span class="slider round"></span>
+    </label>
+
+    <label class="switch">
+      <div>FNAC</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.fnac" name="fnac" />
+      <span class="slider round"></span>
+    </label>
+
+    <label class="switch">
+      <div>ldlc</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.ldlc" name="darty" />
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <div>boulanger</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.boulanger" name="darty" />
+      <span class="slider round"></span>
+    </label>
+
+    <label class="switch">
+      <div>rueducommerce</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.rueducommerce" name="leboncoin" />
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <div>leclerc</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.leclerc" name="leboncoin" />
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <div>alternate</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.alternate" name="leboncoin" />
+      <span class="slider round"></span>
+    </label>
+    <label class="switch">
+      <div>ebay</div>
+      <input type="checkbox" [(ngModel)]="article.selectedSites.ebay" name="leboncoin" />
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <button  class="btnSubmit"type="submit">Valider</button>
+</form>

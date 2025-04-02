@@ -32,21 +32,17 @@ onSubmit() {
   }
   loginUser() {
     const userPayload = this.toPayload();
-  
+
     // Appel au service pour se connecter
     this.userService.loginUser(userPayload).subscribe(
       data => {
         console.log("Connexion réussie :", data);
-  
-        
-        const token = data.token; 
-        localStorage.setItem('auth_token', token);  
-  
-        // Rediriger vers la page principale
         this.router.navigateByUrl('/main');
+       
+
       },
       error => {
-        console.error("Erreur d'email ou de mot de passe, merci de vérifier vos coordonnées :", error);
+        console.error("errur d'email ou de mots de passe merci de verifier vos cordonnées :", error);
       }
     );
   }

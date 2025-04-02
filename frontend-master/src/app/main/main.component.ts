@@ -25,9 +25,8 @@ export class MainComponent implements OnInit {
     return "ajout test";
   }
   deconnexion() {
-    console.log("casse toi")
-    this.UserService.logout();
-     
+    this.UserService.logout
+    this.router.navigateByUrl('');
     return "ajout test";
   }
   ngOnInit() {

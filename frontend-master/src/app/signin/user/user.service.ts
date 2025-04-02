@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user';
 import{Article} from'../../classes/article';
-import { Router, RouterModule } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private router: Router) {}
+
   private baseUrl: string = 'http://localhost:8080/auth'; 
   private articlebaseUrl: string = 'http://localhost:8080/article'; 
   public createUser(user: User): Observable<User> {
@@ -62,7 +61,35 @@ export class UserService {
         observer.error(error);
       });
     });
-  }
+  }/*
+  createArticle(article: any): Observable<any> {
+    console.log('article a envoyer',article);
+    const token = this.getToken();
+    console.log('token',token);
+    return new Observable((observer)=>{
+      fetch(`${this.articlebaseUrl}/addArticle`,{
+        method:'POST',
+        headers:{'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`},
+      body:JSON.stringify(article),
+      }).then((response)=>{
+        if(response.ok){
+          return response.json();
+        }else{
+          throw new Error('erreur lors de l\'envoie de l\'article');
+        }
+      })
+      .then((data) => {
+        console.log('Réponse de l\'API :', data); // Afficher la réponse de l'API
+        observer.next(data); // Passer la réponse à l'observateur
+        observer.complete(); // Terminer l'observateur
+      })
+      .catch((error) => {
+        console.error('Erreur :', error); // Afficher l'erreur dans la console
+        observer.error(error); // Passer l'erreur à l'observateur
+      });
+  });
+}*/
 public addArticleWithSites(requestBody: any): Observable<any> {
   return new Observable((observer) => {
     const token = localStorage.getItem('token'); // Récupérer le token d'authentification
@@ -107,42 +134,8 @@ public addArticleWithSites(requestBody: any): Observable<any> {
   
 }
  // ✅ Déconnexion (supprime le token)
-public logout(): void {
-  console.log("Déconnexion lancée...");
-  const token = localStorage.getItem('token'); // Récupérer le token depuis le localStorage
-  console.log("token",token)
-  if (token) {
-    // URL de l'API pour déconnecter l'utilisateur
-    const url = `${this. baseUrl}/logout`;
-
-    // Configuration des options pour la requête fetch
-    const options: RequestInit = {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`, // En-tête d'authentification avec le token
-        'Content-Type': 'application/json'
-      }
-    };
-
-    // Effectuer la requête avec fetch pour déconnecter l'utilisateur
-    fetch(url, options)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erreur lors de la déconnexion');
-        }
-        // Supprimer le token du localStorage après une réponse réussie
-        localStorage.removeItem('token');
-        // Rediriger vers la page de connexion
-        this.router.navigateByUrl('/login');
-      })
-      .catch(error => {
-        console.error('Erreur lors de la déconnexion:', error);
-      });
-  } else {
-    console.log("Aucun token trouvé, redirection vers la page de connexion...");
-    // Si aucun token n'est trouvé, on redirige quand même
-    this.router.navigateByUrl('/login');
-  }
+ public logout(): void {
+  localStorage.removeItem('token');
 }
   // ✅ Récupérer le token
   public getToken(): string | null {
@@ -227,7 +220,7 @@ public updateArticle( updatedArticle: any): Observable<any> {
       })
       .then((data) => {
         console.log('Article modifié avec succès:', data);
-      window.location.reload();
+     // window.location.reload();
         observer.next(data); // Envoie la réponse aux abonnés
         observer.complete();   // Terminer l'observable
       })

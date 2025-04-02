@@ -1,203 +1,157 @@
 /* Global Styles */
 body {
-  font-family: "Open Sans", Arial, sans-serif;
-  background: #f9f9f9;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
   margin: 0;
-  color: #333;
+  padding: 0;
 }
 
 /* Header */
 header {
-  background-color: #232f3e;
+  background: linear-gradient(45deg, #FFA500, #FF7F50); /* Dégradé d'orange */
+  padding: 15px;
   color: white;
-  padding: 20px 0;
   text-align: center;
-  margin-bottom: 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 header ul {
   list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 
-header li {
+header ul li {
   display: inline;
-  margin: 0 15px;
+  margin: 0 20px;
 }
 
-header a {
+header ul li a {
   color: white;
-  font-size: 1.1rem;
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s ease;
 }
 
-header a:hover {
-  color: #ff9900;
+header ul li a:hover {
+  text-decoration: underline;
 }
 
-/* Container for Article Details */
+/* Main content container */
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
+  margin: 20px;
+  background-color: white;
   padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Image and Description Section */
-.divImgA {
-  text-align: center;
-  margin-bottom: 30px;
+/* Divs for sections */
+.divImgA, .divDescA, .divSeuilA, .divFreqA, .divSitesA, .divBestA {
+  margin-bottom: 20px;
 }
 
 .divImgA img {
   max-width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
-/* Image hover effect */
-.divImgA:hover img {
-  transform: scale(1.1); /* Zoom in effect */
-  opacity: 0.95; /* Slight transparency effect */
+h1, h2 {
+  color: #333;
 }
 
-.divDescA {
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.divDescA h2 {
-  font-size: 1.6rem;
-  color: #232f3e;
-  margin-bottom: 10px;
-}
-
-.divDescA p {
-  font-size: 1.1rem;
-  color: #666;
-  line-height: 1.6;
-}
-
-/* Description hover effect */
-.divDescA:hover h2,
-.divDescA:hover p {
-  color: #ff9900; /* Change text color on hover */
-}
-
-/* Seuil Input Section */
-.divSeuilA,
-.divFreqA {
-  margin-bottom: 20px;
-}
-
-.divSeuilA h2,
-.divFreqA h2 {
+h2 {
   font-size: 1.5rem;
-  color: #232f3e;
   margin-bottom: 10px;
 }
 
-.divSeuilA .form-control,
-.divFreqA .form-control {
+/* Input fields */
+input.form-control {
   width: 100%;
-  max-width: 250px;
-  margin-top: 10px;
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
 }
 
-.divSeuilA .btnModifSeuil,
-.divFreqA .btnTendancePrix {
-  margin-top: 10px;
-  background-color: #ff9900;
-  border: none;
-  color: white;
-  padding: 12px 25px;
-  font-size: 1.2rem;
-  border-radius: 5px;
+button {
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-  text-transform: uppercase;
+  padding: 8px 16px;
+  border: none;
+  font-size: 1rem;
+  margin-left: 10px;
+  border-radius: 4px;
 }
 
-.divSeuilA .btnModifSeuil:hover,
-.divFreqA .btnTendancePrix:hover {
-  background-color: #e68a00;
-  transform: scale(1.05);
+button:hover {
+  opacity: 0.8;
 }
 
-/* Notification Section */
-.divFreqA select.form-select {
+.btnModifSeuil, .btnTendancePrix {
+  background: linear-gradient(45deg, #FF8C00, #FFA500); /* Dégradé orange */
+  color: #fff;
+}
+
+.btnModifSeuil:hover, .btnTendancePrix:hover {
+  background: linear-gradient(45deg, #FF7F50, #FF6347); /* Dégradé plus foncé */
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé rouge-orange */
+  color: white;
+  border-radius: 4px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #FF4500, #FF0000); /* Dégradé plus foncé */
+}
+
+/* Notification Select */
+.select.form-select {
   width: 100%;
-  max-width: 250px;
-  margin-top: 10px;
-}
-
-/* Sites Section */
-.divSitesA {
-  margin-bottom: 20px;
-}
-
-.divSitesA h2 {
-  font-size: 1.6rem;
-  color: #232f3e;
+  padding: 8px;
+  font-size: 1rem;
   margin-bottom: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
 }
 
+/* Sites List and Graph Section */
 .divSitesA ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .divSitesA li {
+  background-color: #fff3e0; /* Orange très clair */
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
   align-items: center;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, background 0.3s ease;
+  border: 1px solid #ffcc80; /* Bordure orange clair */
 }
 
-.divSitesA li:hover {
-  background-color: #f7f7f7;
-  transform: translateY(-3px);
-}
-
-.divSitesA .btnTendancePrix {
-  background-color: #ff9900;
-  border: none;
+.divSitesA li button {
+  background: linear-gradient(45deg, #FF8C00, #FFA500); /* Dégradé orange */
   color: white;
-  padding: 12px 22px;
-  font-size: 1.3rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 4px;
 }
 
-.divSitesA .btnTendancePrix:hover {
-  background-color: #e68a00;
-  transform: scale(1.1);
+.divSitesA li button:hover {
+  background: linear-gradient(45deg, #FF6347, #FF4500); /* Dégradé plus foncé */
 }
 
 /* Graph Section */
 .divGraphS {
   margin-top: 20px;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  background-color: #fff3e0; /* Orange très clair */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .divGraphS canvas {
@@ -207,93 +161,41 @@ header a:hover {
 
 /* Best Price Section */
 .divBestA {
-  margin-top: 40px;
+  background-color: #fff3e0; /* Orange très clair */
+  padding: 15px;
+  border-radius: 8px;
 }
 
 .divBestA h2 {
-  font-size: 1.6rem;
-  color: #232f3e;
+  font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-.divBestA .btnTendancePrix {
-  background-color: #ff9900;
-  border: none;
-  color: white;
-  padding: 12px 25px;
-  font-size: 1.3rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.divBestA .btnTendancePrix:hover {
-  background-color: #e68a00;
-  transform: scale(1.05);
-}
-.divGraphS {
-  width: 100%;
-  max-width: 800px; /* Ajuste selon ton design */
-  overflow-x: auto;
-  text-align: center;
-}
-
-.divGraphS canvas {
-  width: 100% !important;
-  height: auto !important;
-  max-width: 800px;
-}
-/* Button Save */
-button.btn.btn-primary.mt-3 {
-  background-color: #232f3e;
-  border: none;
-  padding: 12px 30px;
-  font-size: 1.2rem;
-  color: white;
-  border-radius: 5px;
-  transition: background 0.3s ease;
-}
-
-button.btn.btn-primary.mt-3:hover {
-  background-color: #ff9900;
-}
-
-/* Responsive Design */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .container {
-    padding: 20px;
+    padding: 15px;
+  }
+
+  header ul {
+    display: block;
+    text-align: center;
+  }
+
+  header ul li {
+    display: block;
+    margin: 10px 0;
   }
 
   .divImgA img {
-    max-width: 80%;
-  }
-
-  .divSeuilA .form-control,
-  .divFreqA .form-control,
-  .divSitesA .form-select {
     max-width: 100%;
+  }
+  
+  .divFreqA input.form-control {
+    width: 100%;
   }
 
   .divSitesA li {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .divGraphS {
-    margin-top: 20px;
-  }
-
-  .divSitesA .btnTendancePrix {
-    font-size: 1.5rem;
-  }
-
-  .divBestA .btnTendancePrix {
-    font-size: 1.5rem;
-  }
-
-  button.btn.btn-primary.mt-3 {
-    width: 100%;
-    font-size: 1.2rem;
   }
 }
