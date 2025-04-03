@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ba57530-8d6f-4278-a555-678e6aedca87" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend-master" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/article-details/article-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/article-details/article-details.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/classes/article.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/classes/article.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.ts" afterDir="false" />
+    <list default="true" id="9ba57530-8d6f-4278-a555-678e6aedca87" name="Changes" comment="Fusion du front">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/profil/profil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/profil/profil.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/profil/profil.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/profil/profil.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/signin/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/signin/user/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapping/src/main/java/projet/scrapping/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/scrapping/src/main/java/projet/scrapping/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapping/src/main/java/projet/scrapping/UtilisateurController.java" beforeDir="false" afterPath="$PROJECT_DIR$/scrapping/src/main/java/projet/scrapping/UtilisateurController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scrapping/src/main/java/projet/scrapping/UtilisateurService.java" beforeDir="false" afterPath="$PROJECT_DIR$/scrapping/src/main/java/projet/scrapping/UtilisateurService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +23,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Kazutoya"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/linabdf/ProjetTutore",
+    "accountId": "76132ae3-b43e-46bf-93fc-bba2478ac6d2"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2u2kJjiF3dXt7z8yTjkSwk05XP0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,10 +46,45 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/hug0z/Documents/Cours de la Faculté de Pau/S8/Projet tutoré/ProjetTutore/frontend-master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.5632184",
+    "ts.external.directory.path": "C:\\Users\\hug0z\\Documents\\Cours de la Faculté de Pau\\S8\\Projet tutoré\\ProjetTutore\\frontend-master\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager" selected="Spring Boot.ScrappingApplication">
+    <configuration name="ScrappingApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="scrapping" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="projet.scrapping.ScrappingApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScrappingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="scrapping (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="projet.scrapping.ScrappingApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -48,7 +93,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1741453986237</updated>
+      <workItem from="1743666278366" duration="2000" />
+      <workItem from="1743666656719" duration="687000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

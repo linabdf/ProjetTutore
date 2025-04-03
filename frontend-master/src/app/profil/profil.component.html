@@ -1,5 +1,32 @@
 <ul>
-  <li><a href="main">Rechercher</a></li>
-  <li><a href="listeSuivi">Liste d'articles suivis</a></li>
+  <li><a href="AjoutArticle" >Rechercher</a></li>
+  <li><a href="main">Liste d'articles suivis</a></li>
   <li><a href="profil">Profil</a></li>
+  <li><button class="btn btn-success" (click)="deconnexion()">Déconnexion</button></li>
 </ul>
+
+
+
+<p> Voici votre profil </p>
+
+<div class="container">
+  <div class="form-group">
+    <label for="nom"> Nom :</label>
+    <input [(ngModel)]="currentUser.username" type="text" id="nom" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="prenom"> Prénom :</label>
+    <input [(ngModel)]="currentUser.firstname" type="text" id="prenom" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="email"> Email :</label>
+    <input [(ngModel)]="currentUser.email" type="email" id="email" readonly>
+  </div>
+
+  <div class="form-group">
+    <label for="password"> Mot de passe :</label>
+    <input [(ngModel)]="currentUser.password" type="password" id="password" readonly>
+  </div>
+</div>

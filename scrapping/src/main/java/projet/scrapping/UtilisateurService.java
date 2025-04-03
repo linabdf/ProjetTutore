@@ -3,7 +3,6 @@ package projet.scrapping;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import  projet.scrapping.JwtUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +22,11 @@ public class UtilisateurService {
         this.utilisateurRepository = utilisateurRepository;
         this.jwtUtil = jwtUtil;
     }
+
+    public Optional<Utilisateur> trouverUtilisateurParEmail(String email) {
+        return Optional.ofNullable(utilisateurRepository.findByEmail(email));
+    }
+
 /*
     // Générer le prochain ID utilisateur
     public String generateNextArticle() {

@@ -1,9 +1,9 @@
 package projet.scrapping;
 
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -79,5 +79,14 @@ public class JwtUtil {
     // Méthode pour vérifier si un token est dans la blacklist
     public static boolean isBlacklisted(String token) {
         return blacklistedTokens.contains(token);
+    }
+
+
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 }

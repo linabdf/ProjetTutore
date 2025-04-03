@@ -1,18 +1,22 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
 import { User } from './user';
-import{Article} from'../../classes/article';
-import { Router, RouterModule } from '@angular/router';
+import { Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private router: Router) {}
-  private baseUrl: string = 'http://localhost:8080/auth'; 
-  private articlebaseUrl: string = 'http://localhost:8080/article'; 
+  http = inject(HttpClient);
+  router = inject(Router);
+
+  private baseUrl: string = 'http://localhost:8080/auth';
+  private articlebaseUrl: string = 'http://localhost:8080/article';
+  private userUrl: string = 'http://localhost:8080/auth/me';
   public createUser(user: User): Observable<User> {
     console.log('User data being sent:', user);  // Ajoute cette ligne pour voir l'objet avant envoi
-  
+
     return new Observable((observer) => {
       fetch(this.baseUrl, {
         method: 'POST',
@@ -35,20 +39,20 @@ export class UserService {
     });
   }
   public loginUser(user: { email: string, password: string }): Observable<any> {
-    console.log('Login data being sent:', user);  
+    console.log('Login data being sent:', user);
     return new Observable((observer) => {
-      fetch(`${this.baseUrl}/login`, {  
+      fetch(`${this.baseUrl}/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(user),  
+        body: JSON.stringify(user),
       })
-      .then(response => response.json())  
+      .then(response => response.json())
       .then(data => {
-        console.log('Response from API:', data);  
+        console.log('Response from API:', data);
         if (data.token) {
-          localStorage.setItem('token', data.token); 
+          localStorage.setItem('token', data.token);
           alert('Connexion réussie!');
         } else {
           alert('Connexion échoué ,verifiez votre email et  votre mot de passe');
@@ -66,7 +70,7 @@ export class UserService {
 public addArticleWithSites(requestBody: any): Observable<any> {
   return new Observable((observer) => {
     const token = localStorage.getItem('token'); // Récupérer le token d'authentification
-    
+
     if (!token) {
       observer.error('Aucun token trouvé. Veuillez vous connecter.');
       return;
@@ -104,7 +108,7 @@ public addArticleWithSites(requestBody: any): Observable<any> {
         observer.error(error); // Envoie l'erreur aux abonnés
       });
   });
-  
+
 }
  // ✅ Déconnexion (supprime le token)
 public logout(): void {
@@ -147,7 +151,7 @@ public logout(): void {
   // ✅ Récupérer le token
   public getToken(): string | null {
     return localStorage.getItem('token');
-    
+
   }
 
   isAuthenticated(): boolean {
@@ -155,12 +159,12 @@ public logout(): void {
     return token !== null;
   }
 
- 
+
   public getMyArticles(): Observable<any> {
     return new Observable((observer) => {
       const token = localStorage.getItem('token');
       console.log(token); // Récupérer le token
-      
+
       if (!token) {
         observer.error('Aucun token trouvé. Veuillez vous connecter.');
         return;
@@ -189,13 +193,13 @@ public logout(): void {
           observer.error(error);
         });
     });
-    
+
   }
-  
+
 public updateArticle( updatedArticle: any): Observable<any> {
   return new Observable((observer) => {
     const token = localStorage.getItem('token'); // Récupérer le token d'authentification
-    
+
     if (!token) {
       observer.error('Aucun token trouvé. Veuillez vous connecter.');
       return;
@@ -217,8 +221,8 @@ public updateArticle( updatedArticle: any): Observable<any> {
     // Effectuer la requête avec `fetch`
     fetch(url, options)
       .then(async (response) => {
-      
-  
+
+
         if (!response.ok) {
           const errorText = await response.text();
           throw new Error(`Erreur ${response.status}: ${errorText}`);
@@ -280,6 +284,30 @@ public supprimerArticle(article: any): Observable<any> {
       });
   });
 }
+
+  getUser(): Observable<any> {
+    const token = localStorage.getItem('token');
+    console.log(token);
+
+    if (!token) {
+      return throwError(() => 'Aucun token trouvé. Veuillez vous connecter.');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<any>(this.userUrl, { headers }).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: any) {
+    console.error('Erreur lors de la récupération de l\'utilisateur :', error);
+    return throwError(() => 'Erreur lors de la récupération de l\'utilisateur.');
+  }
+
 
 }
 
