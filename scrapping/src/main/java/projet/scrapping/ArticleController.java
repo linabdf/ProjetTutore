@@ -12,6 +12,8 @@ import java.util.*;
 @RequestMapping("/article")
 public class ArticleController {
 
+@Autowired
+    private EmailService emailService;
 
     private final ArticleService ArticleService;
     private final JwtUtil JwtUtil;
@@ -128,11 +130,14 @@ public class ArticleController {
   @GetMapping("/myArticles")
   public ResponseEntity<?> getMyArticles(@RequestHeader("Authorization") String token) {
       try {
+
           System.out.println("TOKEN OFF"+token);
           // Extraire le token
           String tokenStr = token.replace("Bearer ", "");
           String email = JwtUtil.extractEmail(tokenStr);
           System.out.println(" je suis la email"+email);
+          // Exemple d'envoi d'email
+
           if (email != null) {
               // Trouver l'utilisateur
               Utilisateur utilisateur = UtilisateurRepository.findByEmail(email);
@@ -171,6 +176,8 @@ public class ArticleController {
                       selectedSites.put("leclerc", false);
                       selectedSites.put("alternate", false);
                       selectedSites.put("ebay", false);
+                      selectedSites.put("cdiscount", false);
+                      selectedSites.put("lego", false);
 
                       if (sites != null && !sites.isEmpty()) {
                           System.out.println("Sites associés trouvés: " + sites.size());
@@ -244,7 +251,6 @@ public class ArticleController {
                 response.put("message", "Fréquence invalide.");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
-
             // Chercher l'article à modifier pour cet utilisateur
             Article article = ArticleRepository.findByUtilisateurAndNomA(utilisateur, nomA);
             if (article == null) {
@@ -259,24 +265,19 @@ public class ArticleController {
                 // Sauvegarder l'article mis à jour
                 ArticleRepository.save(article);
             }
-
             // Récupérer les sites existants associés à cet article
             List<Site> existingSites = SiteRepository.findByArticle(article);
-
             // Supprimer les sites qui ne sont plus sélectionnés
             Map<String, Boolean> selectedSites = (Map<String, Boolean>) updatedArticle.get("selectedSites");
-
             for (Site site : existingSites) {
                 String siteName = site.getNomSite();
                 Boolean isSelected = selectedSites.get(siteName);
                 // Log pour vérifier les valeurs récupérées
                 System.out.println("Vérification du site : " + siteName);
                 System.out.println("IsSelected: " + isSelected);
-
                 // Si le site est désélectionné, le supprimer
                 if (isSelected == null || !isSelected) {
                     System.out.println("Le site " + siteName + " est désélectionné. Suppression en cours...");
-
                     // Supprimer les tendances associées à ce site
                     List<Tendance> tendances = TendanceRepository.findBySite(site);
                     for (Tendance tendance : tendances) {
@@ -290,13 +291,12 @@ public class ArticleController {
                     SiteRepository.delete(site);
                     System.out.println("Site supprimé : " + siteName);
                 }
-            }}
-
+            }
+            }
             // Ajouter les nouveaux sites sélectionnés
             for (Map.Entry<String, Boolean> entry : selectedSites.entrySet()) {
                 if (entry.getValue()) {
                     String siteName = entry.getKey();
-
                     // Vérifier si le site est déjà associé à cet article
                     Site existingSite = SiteRepository.findByArticleAndNomSite(article, siteName);
                     if (existingSite == null) {
@@ -310,23 +310,18 @@ public class ArticleController {
                     }
                 }
             }
-
             response.put("message", "Article et sites mis à jour avec succès.");
             return ResponseEntity.ok(response);
-
         } catch (Exception e) {
             response.put("message", "Erreur lors de la mise à jour de l'article.");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
-
-
-
     @DeleteMapping("/supprimerArticle/{nomA}")
     public ResponseEntity<Map<String, String>> supprimerArticle(@PathVariable String nomA,
                                                                 @RequestHeader("Authorization") String token) {
         Map<String, String> response = new HashMap<>();
-
+        //emailService.sendEmail("alexiaalexi233@gmail.com", "Test Email", "Bonjour, ceci est un test d'email avec SES.");
         try {
             // Extraire l'email du token (par exemple avec JWT)
             String tokenStr = token.replace("Bearer ", "");
@@ -373,6 +368,7 @@ public class ArticleController {
             response.put("message", "Erreur lors de la suppression de l'article.");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
+
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> getArticleById(@PathVariable int id) {

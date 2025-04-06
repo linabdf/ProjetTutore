@@ -10,8 +10,6 @@ import java.util.List;
 @Entity
 @Table(name="article")
 public class Article {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numA")
@@ -19,12 +17,9 @@ public class Article {
     @Column(name="nomA")
     @JsonProperty("nom")
     private String nomA;
-
-
     @Column(name="seuil")
     @JsonProperty("seuil")
     private double seuil;
-
     @ManyToOne
     @JoinColumn(name = "numU",referencedColumnName = "numU")
     private Utilisateur utilisateur;
@@ -38,16 +33,12 @@ public class Article {
     private String Description;
     @Column(name="urlImage")
     private  String urlImage;
-
     @Column(name="derniereupdate")
-
     private Timestamp derniereupdate;
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     @Column(name="selectedSites")
     private List<Site> sites;  // Liste des sites associés à cet article
-
     public Article( String nomA, double Seuil, Utilisateur utilisateur,String notif,Integer frequence,Timestamp currentTimestamp){
-
         this.nomA=nomA;
         this.seuil= Seuil;
         this.utilisateur=utilisateur;
@@ -56,9 +47,6 @@ public class Article {
         this.derniereupdate=currentTimestamp;
 
     }
-
-
-
     public Integer getNumA(){
         return numA;
     }
@@ -83,6 +71,10 @@ public class Article {
     }
     public String getDescription(){
         return Description ;
+    }
+
+    public Utilisateur  getUtilisateur(){
+        return utilisateur ;
     }
 
 

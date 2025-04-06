@@ -21,9 +21,7 @@ public class Utilisateur {
     @Column(name="motdepasse")
     @JsonProperty("password")
     private String motdepasse;
-
     public Utilisateur(String lina, String boudefoua, String dndkkdkdk,String motdepasse) {
-
         this.nomU=lina;
         this.prenomU=boudefoua;
         this.emailU=dndkkdkdk;
