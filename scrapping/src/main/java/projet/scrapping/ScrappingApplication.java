@@ -9,11 +9,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration;
 import org.springframework.boot.autoconfigure.r2dbc.R2dbcTransactionManagerAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication(exclude = {
 		R2dbcAutoConfiguration.class,
 		R2dbcTransactionManagerAutoConfiguration.class
 })
+@EnableScheduling
 @ComponentScan(basePackages = "projet.scrapping")
 public class ScrappingApplication/* implements CommandLineRunner {
 */
