@@ -4,9 +4,11 @@ import { User } from './user';
 import { Router} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class UserService {
   http = inject(HttpClient);
   router = inject(Router);

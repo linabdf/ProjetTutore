@@ -297,3 +297,11 @@ button.btn.btn-primary.mt-3:hover {
     font-size: 1.2rem;
   }
 }
+
+.divGraphSFiltre button{
+  justify-content: center;
+  justify-self: center;
+  padding: 5px;
+  margin : 5px;
+  font-size : 1rem;
+}

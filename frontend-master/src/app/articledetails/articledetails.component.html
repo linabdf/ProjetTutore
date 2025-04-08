@@ -10,7 +10,7 @@
 <h1>Détails de {{ article.nom }}</h1>
 <div class="container">
   <div class="divImgA">
-  
+
     <img *ngIf="article.urlimage; else noImage" [src]="article.urlimage" alt="Image art">
     <ng-template #noImage>
       <p>Image non disponible</p>
@@ -24,12 +24,12 @@
 
   <div class="divSeuilA">
     <h2>Seuil </h2>
-    <input type="number" [(ngModel)]="article.seuil" class="form-control" /> 
-      <button  class="btnModifSeuil" (click)="modifierArticle(article)"type="button">
+    <input type="number" [(ngModel)]="article.seuil" class="form-control" />
+      <button  class="btnModifSeuil" (click)="modifierArticle(article) "type="button">
         📝
       </button> <br>
-  
-  
+
+
   </div>
 
   <div class="divFreqA">
@@ -38,7 +38,7 @@
       <button  class="btnTendancePrix" (click)="modifierArticle(article)" type="button">
         📝
       </button>
-   
+
   </div>
   <div class="divFreqA">
     <h2>Notification</h2>
@@ -51,44 +51,25 @@
     </button>
     <!--<button class="btn btn-primary mt-3" (click)="modifierArticle(article)">Enregistrer les modifications</button>
   --> </div>
- 
+
   <div class="divSitesA" >
     <h2>Sites disponibles :</h2>
     <ul *ngIf="article && article.sites && article.sites.length">
       <li *ngFor="let s of article.sites; trackBy: trackById">
         <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
-          <h4>{{ s.nomSite }} </h4>  📈
+          <h4> {{ s.nomSite }} </h4>  📈
         </button>
         <div class="divGraphS" >
-          <canvasjs-chart
-            [options]="{
-              animationEnabled: true,
-              zoomEnabled : true,
-              data: [{
-                type: 'line',
-                dataPoints: s.graph.dataPoints,
-                xValueType : 'DateTime'
-              }],
-              axisX : {
-                title : 'Temps',
-                
-                labelAngle : 0,
-                
-                minimum : s.graph.dataPoints[0].x,
-                interval : article.frequence,
-                intervalType : 'minute',
-                
-              },
-              axisY : {
-                title : 'Prix',
-                suffix : ' €',
-                stripLines:[{
-                  startValue: article.seuil,
-                  endValue: article.seuil - 1,
-                  color:'#d8d8d8'
-                }]
-              }
-            }"></canvasjs-chart>
+          <div class="divGraphSFiltre">
+            <button (click)="changerFiltre('heure', s.graph)" >Dernière Heure</button>
+            <button (click)="changerFiltre('jour', s.graph)">Dernier Jour</button>
+            <button (click)="changerFiltre('semaine', s.graph)">Dernière Semaine</button>
+            <button (click)="changerFiltre('mois', s.graph)">Dernier Mois</button>
+            <button (click)="changerFiltre('semestre', s.graph)">Dernier Semestre</button>
+            <button (click)="changerFiltre('annee', s.graph)">Dernière Année</button>
+            <button (click)="changerFiltre('tout', s.graph)">Tout</button>
+          </div>
+          <canvasjs-chart [options]="s.graph.options"> </canvasjs-chart>
         </div>
       </li>
       </ul>
@@ -99,38 +80,20 @@
         📈
       </button>
       <div class="divGraphS">
-        <canvasjs-chart  *ngIf="article.graph && article.graph.dataPoints && article.graph.dataPoints.length > 0" [options]="{
-            animationEnabled: true,
-            zoomEnabled : true,
-            data: [{
-                type:'line',
-                dataPoints: article.graph.dataPoints,
-                xValueType : 'DateTime',
-                yValueType : 'number',
-            }],
-            axisX : {
-                title : 'Temps',
-                valueFormatString: 'YYYY-MM-DD HH:mm',
-                labelAngle : 0,
-                minimum : article.graph.dataPoints[0].x,
-                interval : article.frequence,
-                intervalType : 'minute',
-            },
-            axisY : {
-                title : 'Prix',
-                suffix : ' €',
-                stripLines:[{
-                          startValue: article.seuil,
-                          endValue: article.seuil - 1,
-                          color:'#d8d8d8'
-                          }]
-            }
-        }"></canvasjs-chart>
+        <div class="divGraphSFiltre">
+          <button (click)="changerFiltre('heure', article.graph)" >Dernière Heure</button>
+          <button (click)="changerFiltre('jour', article.graph)">Dernier Jour</button>
+          <button (click)="changerFiltre('semaine', article.graph)">Dernière Semaine</button>
+          <button (click)="changerFiltre('mois', article.graph)">Dernier Mois</button>
+          <button (click)="changerFiltre('semestre', article.graph)">Dernier Semestre</button>
+          <button (click)="changerFiltre('annee', article.graph)">Dernière Année</button>
+          <button (click)="changerFiltre('tout', article.graph)">Tout</button>
+        </div>
+        <canvasjs-chart  *ngIf="article.graph && article.graph.dataPoints && article.graph.dataPoints.length > 0"
+                         [options]="article.graph.options"></canvasjs-chart>
       </div>
-  
-
   </div>
-  
+
 </div>
 <footer class="footer text-center space-before">
   <p>&copy; 2025 Comparateur de Prix. Tous droits réservés.</p>
