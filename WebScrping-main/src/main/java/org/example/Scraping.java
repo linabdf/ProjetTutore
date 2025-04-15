@@ -19,6 +19,7 @@ public class Scraping {
         this.prix = prix;
     }
 
+
     public Scraping(String urlarticle,String prix, String image, String description){
         this.urlarticle = urlarticle;
         this.prix = prix;
@@ -27,12 +28,12 @@ public class Scraping {
 
     }
 
-    public Scraping(int numA, String nomsite, String urlarticle, Timestamp min,int numS){
+    public Scraping(int numA, String nomsite, String urlarticle, Timestamp min){
         this.numA = numA;
         this.nomsite = nomsite;
         this.urlarticle = urlarticle;
         this.min = min;
-        this.numS = numS;
+
     }
 
     public String getUrlarticle() {

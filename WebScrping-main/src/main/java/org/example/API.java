@@ -208,6 +208,21 @@ public class API {
         }
     }
 
+    public String getDescription(int numA){
+        String description = "";
+        try{
+            PreparedStatement preparedStatement = Main.INSTANCE.dm.getConnexion().prepareStatement("SELECT description FROM article WHERE numa = ?");
+            preparedStatement.setInt(1,numA);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs != null && rs.next()) {
+                description = rs.getString("description");
+            }
+        }catch (SQLException e){
+            System.out.println("[Base de donnée] Erreur dans la fonction getdescription() (" + e.getMessage() + ")");
+        }
+        return description;
+    }
+
     //Permet d'inserer l'url d'une image pour un article
     public void setImage(int numA, String image){
         try{
@@ -255,8 +270,7 @@ public class API {
     public List<Integer> getNewArticle(){
         List<Integer> newarticle = new ArrayList<>();
         try{
-            PreparedStatement preparedStatement = Main.INSTANCE.dm.getConnexion().prepareStatement("SELECT numa FROM article a WHERE a.numa NOT IN (SELECT numa FROM site WHERE urlarticle = ?)");
-            preparedStatement.setString(1,null);
+            PreparedStatement preparedStatement = Main.INSTANCE.dm.getConnexion().prepareStatement("SELECT numa FROM article a WHERE a.numa IN (SELECT numa FROM site WHERE urlarticle is null)");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs != null && rs.next()) {
                 newarticle.add(rs.getInt("numa"));

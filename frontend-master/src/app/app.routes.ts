@@ -15,5 +15,6 @@ export const routes: Routes = [
   { path: '', component: AccueilComponent },  // Accueil n'a pas de guard (public)
   { path: 'signin', component: SigninComponent },  // Page de sign-in n'a pas de guard
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },  // Protéger le profil utilisateur
-  { path: 'article/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard] }  // Protéger les détails d'articles
+  { path: 'article/:id', component: ArticleDetailsComponent, canActivate: [AuthGuard] } ,
+   // Protéger les détails d'articles
 ];

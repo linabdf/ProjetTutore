@@ -31,7 +31,6 @@ public class JwtFilter extends OncePerRequestFilter {
             chain.doFilter(request, response);
             return;
         }
-
         String token = authHeader.substring(7);
         String email = jwtUtil.extractEmail(token);
 
@@ -41,7 +40,6 @@ public class JwtFilter extends OncePerRequestFilter {
             );
 
         }
-
         chain.doFilter(request, response);
     }
 }

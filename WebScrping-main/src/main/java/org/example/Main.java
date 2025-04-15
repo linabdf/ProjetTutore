@@ -75,12 +75,12 @@ public class Main {
                         numA = listarticle;
                         nomsite = listsite.getNomsite();
                         urlarticle = listsite.getUrlarticle();
-                        numS = listsite.getNumS();
+
                     }
                 }
             }
 
-            scraping = new Scraping(numA, nomsite, urlarticle, min, numS);
+            scraping = new Scraping(numA, nomsite, urlarticle, min);
 
         } catch (Exception e) {
             System.out.println("[Main] Erreur dans la fonction run() (" + e.getMessage() + ")");
@@ -95,20 +95,23 @@ public class Main {
         try {
             if (!newarticle) { //Si l'article est deja present dans la base
 
-                InfoSite is = api.getInfoSite(scraping.getNomsite());
-                String selecteurprix = is.getPrix2();
-                String s = api.getSiteUrl(scraping.getNumA(),scraping.getNomsite());
 
-
-                //WebScapping
-                Scraping result = ws.PremierScraping(false,"",s,"", selecteurprix,"", "", "","","");
-
-
+                ArrayList<Site> site = api.getSite(scraping.getNumA());
                 //Temp actuel
                 Timestamp currentTime2 = Timestamp.valueOf(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
 
-                //Mise à jour de la tendance du prix dans la BD
-                api.setTendance(result.getPrix(), scraping.getNumS(), currentTime2);
+                for (Site listsite : site) {
+                    InfoSite is = api.getInfoSite(listsite.getNomsite());
+                    String selecteurprix = is.getPrix2();
+                    String s = api.getSiteUrl(scraping.getNumA(),listsite.getNomsite());
+
+                    //WebScapping
+                    Scraping result = ws.PremierScraping(false,"",s,"", selecteurprix,"", "", "","","");
+
+                    //Mise à jour de la tendance du prix dans la BD
+                    api.setTendance(result.getPrix(), listsite.getNumS(), currentTime2);
+                }
+
 
 
             } else { //Nouvel article
@@ -118,6 +121,9 @@ public class Main {
                     System.out.println("L'article " + article + " vient d'etre ajouté");
 
                     ArrayList<Site> s = api.getSite(article); // Liste des site pour un article
+
+                    //Temp actuel
+                    Timestamp currentTime2 = Timestamp.valueOf(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
 
                     for (Site site : s) {
                         Article a = api.getArticle(article);
@@ -142,20 +148,32 @@ public class Main {
                         //WebScapping
                         Scraping result = ws.PremierScraping(true,finalurl,"", lienproduit, selecteurprix, selecteurTitre, selecteurArticle, finalinput,image,description);
 
-                        //Mise à jour de la description dans la BD
-                        api.setDescription(article,result.getDescription());
+                        if(result == null){
+                            //Mise à jour de la description dans la BD
+                            String description2 = api.getDescription(article);
+                            if(description2 == null || description2.isEmpty()){
+                                api.setDescription(article,"Aucun article trouvé");
+                            }
+                        }else{
+                            //Mise à jour de la description dans la BD
+                            String description2 = api.getDescription(article);
+                            if(description2 == null || description2.isEmpty()){
+                                api.setDescription(article,result.getDescription());
+                            }
 
-                        //Mise à jour de l'image dans la BD
-                        api.setImage(article,result.getImage());
 
-                        //Mise à jour de l'url de l'article dans la BD
-                        api.setSiteUrl(result.getUrlarticle(), article,site.getNomsite());
+                            //Mise à jour de l'image dans la BD
+                            api.setImage(article,result.getImage());
 
-                        //Temp actuel
-                        Timestamp currentTime2 = Timestamp.valueOf(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+                            //Mise à jour de l'url de l'article dans la BD
+                            api.setSiteUrl(result.getUrlarticle(), article,site.getNomsite());
 
-                        // Mise à jour de la tendance du prix dans la BD
-                        api.setTendance(result.getPrix(), site.getNumS(), currentTime2);
+
+
+                            // Mise à jour de la tendance du prix dans la BD
+                            api.setTendance(result.getPrix(), site.getNumS(), currentTime2);
+                        }
+
                     }
                 }
             }

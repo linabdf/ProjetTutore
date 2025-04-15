@@ -25,7 +25,9 @@ export class AjoutArticle {
       boulanger:false,
       leclerc:false,
       alternate:false,
-      ebay:false
+      ebay:false,
+      cdiscount:false,
+      lego:false
     },
   };
 

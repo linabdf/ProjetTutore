@@ -2,6 +2,7 @@ package org.example;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,7 +17,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 
+
 public class WebScrapping {
+
 
     //Fabriquer l'url de recherche
     public  String makeUrl(String url, String input){
@@ -26,9 +29,8 @@ public class WebScrapping {
         if(url.contains(" ")){
             result2 = url.replaceAll("\\s",result);
         }else{
-            result2 = url + URLEncoder.encode(result, StandardCharsets.UTF_8);
+            result2 = url+result;
         }
-        System.out.println("URL générée : " + result2);
         System.out.println(result2);
         return result2;
     }
@@ -40,6 +42,7 @@ public class WebScrapping {
         System.out.println(finalinput);
         return finalinput;
     }
+
     public boolean isValidUrl(String url) {
         try {
             new java.net.URL(url).toURI();
@@ -57,68 +60,76 @@ public class WebScrapping {
         String prix = "";
         System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
 
+
         // Configurer Firefox en mode headless
         FirefoxOptions options = new FirefoxOptions();
-
         options.addArguments("--headless"); // Active le mode headless
-        options.addArguments("--no-headless");
-        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3");
 
         // Crée une instance du navigateur
         WebDriver driver = new FirefoxDriver(options);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
         if (newarticle) {
             String url7 = "";
             String image = "";
             String description2="";
             Scraping site = null;
+            Boolean trouve = false;
 
             try {
-                if (!isValidUrl(urlRecherche)) {
-                    System.out.println("URL invalide : " + urlRecherche);
-                    driver.quit();
-                    return null; // ou gérez l'erreur de manière appropriée
-                }
-                System.out.println("URL à charger : " + urlRecherche);
                 // Ouvrir l'URL
                 driver.get(urlRecherche);
                 String url4 = driver.getCurrentUrl();
                 System.out.println("Title: " + url4);
 
-              //
-                // wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
 
+
+                Thread.sleep(5000);
                 // Récupérer la liste des articles affichés
                 List<WebElement> produitstitre = driver.findElements(By.cssSelector(cssSelector));
                 System.out.println("Nombre d'articles trouvés : " + produitstitre.size());
 
                 for (WebElement produit : produitstitre) {
 
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelectortitre)));
+                    Thread.sleep(5000);
 
                     String titre2 = produit.findElement(By.cssSelector(cssSelectortitre)).getText();
-                    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(url2)));
-                    url7 = produit.findElement(By.cssSelector(url2)).getAttribute("href");
-
-
-                    System.out.println("urlProduit: " + url7);
                     System.out.println("Titre: " + titre2);
 
+
+                    url7 = produit.findElement(By.cssSelector(url2)).getAttribute("href");
+                    System.out.println("urlProduit: " + url7);
+                    if(url7 == null || url7.isEmpty()) {
+
+                        String quary3 = "return document.querySelector('" + url2 + "')?.href;";
+                        JavascriptExecutor js3 = (JavascriptExecutor) driver;
+                        url7 = (String) js3.executeScript(quary3);
+                        System.out.println("urlProduit: " + url7);
+
+                    }
 
                     // Vérifier si le titre contient la recherche"
                     if (Pattern.compile(finalinput, Pattern.CASE_INSENSITIVE).matcher(titre2).matches()) {
                         System.out.println("Produit trouvé: " + titre2);
+                        trouve = true;
                         break;
                     }
+
+
+                }
+
+                if(!trouve){
+                    return null;
                 }
 
                 driver.get(url7);
 
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelectorprix)));
 
+                Thread.sleep(5000);
                 prix = driver.findElement(By.cssSelector(cssSelectorprix)).getText().replace("\n", ",");
                 prix = prix.replace(",", "€");
+                prix = prix.replace(".", "€");
+                prix = prix.replace("€€€€", "€");
                 prix = prix.split(",")[0].trim().split(" ")[0];
                 if (prix.endsWith("€") || prix.endsWith("*")) { // Vérifie si le dernier caractère est "!"
                     prix = prix.substring(0, prix.length() - 1);
@@ -126,25 +137,17 @@ public class WebScrapping {
                 }
                 System.out.println("Prix: " + prix);
 
-                //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(descriptionS)));
 
-                List<WebElement> listItems = driver.findElements(By.cssSelector(descriptionS));
-                StringBuilder description = new StringBuilder();
+                Thread.sleep(5000);
 
-                // Afficher le texte de chaque élément <li>
-                for (WebElement item : listItems) {
-                    description.append(item.getText()).append(" ");
-                }
+                String quary = "return document.querySelector('"+ descriptionS + "')?.innerText.trim();";
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                description2 = (String) js.executeScript(quary);
 
-                description2 = description.toString();
-
-                if (description2.isEmpty()) {
-                    description2 = "Aucune descrition trouvé pour cette article";
-                }
 
                 System.out.println("description: " + description2);
 
-                //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(imageS)));
+
                 image = driver.findElement(By.cssSelector(imageS)).getAttribute("src");
 
                 if (image.isEmpty()) {
@@ -166,10 +169,16 @@ public class WebScrapping {
             try {
                 driver.get(urlArticle);
 
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelectorprix)));
+                System.out.println(driver.getCurrentUrl());
+
+
+
+                Thread.sleep(5000);
 
                 prix = driver.findElement(By.cssSelector(cssSelectorprix)).getText().replace("\n", ",");
                 prix = prix.replace(",", "€");
+                prix = prix.replace(".", "€");
+                prix = prix.replace("€€€€", "€");
                 prix = prix.split(",")[0].trim().split(" ")[0];
                 if (prix.endsWith("€") || prix.endsWith("*")) { // Vérifie si le dernier caractère est "!"
                     prix = prix.substring(0, prix.length() - 1);

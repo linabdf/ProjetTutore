@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    
+
     // Vérifier si le token est présent dans le localStorage (ou sessionStorage)
     const isAuthenticated = localStorage.getItem('token') !== null;
 
@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
       return true;
     } else {
       // Si l'utilisateur n'est pas authentifié, rediriger vers la page de connexion
-      this.router.navigate(['/login']);
+      this.router.navigateByUrl('/login');
       return false;
     }
   }

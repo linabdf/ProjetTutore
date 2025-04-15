@@ -4,17 +4,24 @@
   <li><a href="main">Liste d'articles suivis</a></li>
   <li><a href="profil">Profil</a></li>
   <li><a (click)="deconnexion()">Déconnexion</a></li>
+  <li><a (click)="toggleNotifications()">Notifications 📩</a></li>
+  <li><a (click)="showNotifications()">Notifications 📩</a></li> 
 </ul>
+<div class="notifications">
+  <h3>🔔 Notifications reçues :</h3>
+  <ul>
+    <li *ngFor="let notif of notifications">{{ notif }}</li>
+  </ul>
+</div>
+
+
 <div class="container mt-4">
   <h2 class="mb-3 text-center">Liste des Articles Suivis</h2>
   <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
         <th>Nom</th>
-        <!--<th>description</th>
-        <th>Fréquence</th>
-        <th>Seuil</th>
-        <th>Type de Notification</th>-->
+      
         <th></th>
         <th></th>
         <th></th>
@@ -36,13 +43,12 @@
           <button class="btn btn-warning" (click)="voirArticle(article.numA)">➕ </button>
         </td>
         <td>
-          <!-- Bouton pour afficher/masquer les sites de cet article -->
           <button class="btn btn-warning btn-sm mt-2" (click)="toggleArticleSitesVisibility(article)">
-            {{ article.isSitesVisible ? 'Masquer les sites' : 'Afficher les sites' }}
+            {{ article.isEditing ? 'Masquer le formulaire' : 'Modifier les sites' }}
           </button>
 
           <!-- Affichage des sites horizontalement, conditionnellement basé sur isSitesVisible -->
-          <div *ngIf="article.isSitesVisible" class="mt-2">
+          <div *ngIf="article.isSitesVisible" class="mt-2 p-3 border rounded">
             <div *ngFor="let site of siteNames(article.selectedSites)" class="form-check mb-2">
               <input 
                 type="checkbox" 
@@ -51,7 +57,7 @@
                 [id]="site" />
               <label class="form-check-label" for="{{site}}">{{ site }}</label>
             </div>
-            <button class="btn btn-info" (click)="modifierArticle(article)">valider</button>
+            <button class="btn btn-info mt-2" (click)="modifierArticle(article)">valider</button>
           </div>   
         </td>
        
@@ -67,4 +73,7 @@
     <button class="btn btn-success me-2" (click)="ajouterArticle()">➕ Ajouter article </button>
     
   </div>
-</div>
+
+  
+ 
+  

@@ -26,12 +26,13 @@ public class Run {
 
     public static void main(String[] args) {
         Main mainInstance = new Main();
-        Run runInstance = new Run(mainInstance);
-        runInstance.start(20,20);
+        Run runInstance
+                = new Run(mainInstance);
+        runInstance.start(10,10);
     }
 
     public void start(int delay,int delay2) {
-      scheduleTask(delay , false); //Tache principale pour le scraping
+        scheduleTask(delay , false); //Tache principale pour le scraping
         checkUpdate(delay2); //Tache secondaire qui verifie si des mise a jour sont effectué
     }
 
@@ -77,7 +78,7 @@ public class Run {
     public void checkUpdate(int interval) {
         try {
             scheduler.scheduleAtFixedRate(() -> {
-                System.out.println("je suis la ");
+
                 boolean updated = main.update();
                 if (updated) {
                     main.scraping(true);
@@ -101,4 +102,3 @@ public class Run {
         }
     }
 }
-

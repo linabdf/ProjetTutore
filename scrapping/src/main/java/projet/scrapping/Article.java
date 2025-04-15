@@ -38,6 +38,11 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL,fetch = FetchType.EAGER )
     @Column(name="selectedSites")
     private List<Site> sites;  // Liste des sites associés à cet article
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "notification_id")
+    private NotificationEnvoyee latestNotification;
+
     public Article( String nomA, double Seuil, Utilisateur utilisateur,String notif,Integer frequence,Timestamp currentTimestamp){
         this.nomA=nomA;
         this.seuil= Seuil;
@@ -122,4 +127,11 @@ public class Article {
     }
 
 
+    public void setDerniereNotification(NotificationEnvoyee notif) {
+        this.latestNotification=notif;
+    }
+
+    public NotificationEnvoyee getDerniereNotification() {
+        return latestNotification;
+    }
 }

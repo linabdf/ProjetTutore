@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {UserService} from '../signin/user/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../notification/notification.service';
 
 @Component({
   selector: 'app-main',
@@ -15,9 +16,13 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './main.component.css'
 })
 export class MainComponent implements OnInit {
-  constructor(private router: Router,private UserService:UserService) {}
+  constructor(private router: Router,private UserService:UserService,  private notificationService: NotificationService
+    ) {}
+  message: string = '';
   articles: any[] = [];
   isDropdownVisible: boolean = true;
+  notificationsVisible: boolean = false; // Par défaut, les notifications ne sont pas visibles
+  notifications: any[] = []
  
   ajouterArticle() {
     this.router.navigateByUrl('/AjouterArticle');
@@ -43,8 +48,25 @@ export class MainComponent implements OnInit {
       }
     );
   }
+    console.log('Component initialisé');
+    this.notificationService.startSseConnection();
+    console.log('fin ');
+    this.notificationService.notifications$.subscribe(
+      (message) => {
+        this.notifications.push(message);
+        if (this.notifications.length > 4) {
+          this.notifications.shift();
+        }
+      }
+    );
+  
 }
- // Cette méthode est utilisée dans le template pour vérifier l'état des sites
+subscribeToNotifications():void {
+  this.notificationService.notifications$.subscribe((message: string) => {
+    this.notifications.unshift(message); // ajoute au début de la liste
+  });
+}
+// Cette méthode est utilisée dans le template pour vérifier l'état des sites
  siteNames(selectedSites: { [key: string]: boolean }): string[] {
   return Object.keys(selectedSites);  // Récupère toutes les clés (noms des sites) de l'objet selectedSites
 }  
@@ -62,7 +84,8 @@ modifierArticle(article: any) {
     notif: article.notif,
       // Type de notification
     selectedSites: article.selectedSites  // Sites sélectionnés
-  };
+    // 
+    };
   console.log('Données envoyées au backend:', updatedArticle);
   // Appel du service pour mettre à jour l'article dans le backend
   this.UserService.updateArticle(updatedArticle).subscribe(
@@ -100,4 +123,31 @@ voirArticle(id:string) {
  
 }
 
+toggleNotifications(): void {
+  this.notificationsVisible = !this.notificationsVisible; // Toggle pour afficher/masquer les notifications
 }
+
+
+
+showNotifications(): void {
+  console.log("Affichage des notifications :");
+  this.notifications.forEach(notification => {
+    console.log(notification);
+  });
+}
+ // Fonction pour récupérer le message depuis l'API
+ getMessageFromAPI(): void {
+  const apiUrl = 'http://localhost:8080/notifications/message';  // URL de l'API backend
+
+  fetch(apiUrl)
+    .then((response) => response.text())  // On récupère la réponse comme texte
+    .then((data) => {
+      this.message = data;  // Stocker le message reçu
+      console.log('Message reçu du backend :', this.message);  // Afficher dans la console
+    })
+    .catch((error) => {
+      console.error('Erreur lors de la récupération du message', error);
+    });
+ 
+    
+}}
