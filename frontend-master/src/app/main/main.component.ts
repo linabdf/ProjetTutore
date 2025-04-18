@@ -20,10 +20,12 @@ export class MainComponent implements OnInit {
     ) {}
   message: string = '';
   articles: any[] = [];
+ // Liste des notifications
+  isNotificationsVisible: boolean = false;
   isDropdownVisible: boolean = true;
   notificationsVisible: boolean = false; // Par défaut, les notifications ne sont pas visibles
   notifications: any[] = []
- 
+  apiNotifications: string[] = [];
   ajouterArticle() {
     this.router.navigateByUrl('/AjouterArticle');
     
@@ -129,12 +131,7 @@ toggleNotifications(): void {
 
 
 
-showNotifications(): void {
-  console.log("Affichage des notifications :");
-  this.notifications.forEach(notification => {
-    console.log(notification);
-  });
-}
+
  // Fonction pour récupérer le message depuis l'API
  getMessageFromAPI(): void {
   const apiUrl = 'http://localhost:8080/notifications/message';  // URL de l'API backend
@@ -142,7 +139,7 @@ showNotifications(): void {
   fetch(apiUrl)
     .then((response) => response.text())  // On récupère la réponse comme texte
     .then((data) => {
-      this.message = data;  // Stocker le message reçu
+      this.message = data; 
       console.log('Message reçu du backend :', this.message);  // Afficher dans la console
     })
     .catch((error) => {
@@ -150,4 +147,50 @@ showNotifications(): void {
     });
  
     
-}}
+}
+removeNotification(notification: string): void {
+  this.supprimerNotification(notification)
+    .then(msg => {
+      console.log('✅ Réponse du backend:', msg);
+      this.notifications = this.notifications.filter((notif) => notif !== notification);
+    })
+    .catch(err => console.error('❌ Erreur:', err));
+}
+supprimerNotification(message: string): Promise<string> {
+  return fetch(`http://localhost:8080/notifications/supprimer`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({message: message })
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Erreur lors de la suppression');
+    }
+    return response.text(); // ou .json() selon la réponse du backend
+  });
+}
+showNotifications() {
+  // Ici tu peux récupérer les notifications depuis l'API
+  this.getMyPushNotifications().subscribe((data) => {
+    console.log('Données reçues depuis l\'API :', data);
+    this.apiNotifications = data;
+    console.log('Notifications récupérées :', this.notifications);
+     // Remplir la liste des notifications
+  });
+
+  // Affiche les notifications
+  this.isNotificationsVisible = true;
+}
+
+// Méthode pour fermer les notifications
+closeNotifications() {
+  this.isNotificationsVisible = false;
+}
+
+// Exemple de méthode pour récupérer les notifications
+getMyPushNotifications() {
+  // Logique pour récupérer les notifications depuis l'API (similaire à ce que tu fais)
+  return this.UserService.getMyPushNotifications();
+}
+}

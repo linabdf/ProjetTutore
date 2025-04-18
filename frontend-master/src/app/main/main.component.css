@@ -1,95 +1,11 @@
-*:focus {
-  outline: none;
-}
-
+/* Style Global */
 body {
   font-family: "Open Sans", Arial, sans-serif;
-  background: linear-gradient(to bottom, #f5f5f5, #dcdcdc); /* Fond gris clair */
-  padding: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.container {
-  width: 80%;
-  max-width: 1200px;
-  margin: auto;
-  background: #ffffff;
+  background: linear-gradient(to bottom, #f5f5f5, #dcdcdc);
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-/* Style du conteneur des sites */
-.sites-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px; /* Espacement entre les cases */
-  padding: 10px;
-  border-radius: 8px;
-  background: #f8f9fa; /* Fond légèrement gris */
+  margin: 0;
 }
 
-/* Style des cases à cocher */
-.sites-container .form-check {
-  display: flex;
-  align-items: center;
-}
-
-/* Espacement entre checkbox et label */
-.sites-container .form-check-input {
-  margin-right: 8px;
-}
-
-/* Style du bouton valider */
-.btn-info {
-  background-color: #17a2b8;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-.btn-info:hover {
-  background-color: #138496;
-}
-
-/* Effet sur le bouton modifier */
-.btn-warning {
-  font-weight: bold;
-}
-h2 {
-  text-align: center;
-  color: #333;
-  font-family: "Open Sans", Arial, sans-serif;
-}
-/* Survol du titre de l'article (nom) */
-h1 {
-  font-size: 2rem;
-  color: #232f3e;
-  text-align: center;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-/* Effet de survol sur le titre de l'article */
-h1:hover {
-  color: #ff9900; /* Changer la couleur du texte */
-  transform: scale(1.05); /* Légèrement zoomer le texte */
-}
-/* Survol du nom de l'article dans la table */
-.article-name {
-  font-size: 1.2rem;
-  color: #232f3e;
-  cursor: pointer; /* Pour indiquer que c'est interactif */
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-/* Effet de survol */
-.article-name:hover {
-  color: #ff9900; /* Changer la couleur du texte */
-  transform: scale(1.05); /* Légèrement zoomer le texte */
-}
 /* Navigation Menu */
 ul {
   list-style: none;
@@ -97,7 +13,7 @@ ul {
   margin: 0 auto 20px auto;
   display: flex;
   justify-content: center;
-  background: #232f3e; /* Couleur Amazon - gris foncé */
+  background: #232f3e;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -117,12 +33,66 @@ ul li a {
 }
 
 ul li a:hover {
-  background-color: #febd69; /* Jaune Amazon */
+  background-color: #febd69;
   color: black;
   transform: scale(1.05);
 }
 
-/* Table Styles */
+/* Notifications Section */
+.notifications {
+  background: #1d1d1d;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 1rem auto;
+  color: #f3f3f3;
+}
+
+.notifications h3 {
+  color: #4caf50;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.notifications ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notifications li {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #333333;
+  border-left: 4px solid #4caf50;
+  border-radius: 6px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.notifications li:hover {
+  background: #444444;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+/* Table Section */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -138,12 +108,25 @@ ul li a:hover {
 }
 
 .table th {
-  background-color: #37475a; /* Couleur Fnac-Darty */
+  background-color: #37475a;
   color: white;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #f0f0f0;
+}
+
+/* Article Name Style */
+.article-name {
+  font-size: 1.2rem;
+  color: #232f3e;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.article-name:hover {
+  color: #ff9900;
+  transform: scale(1.05);
 }
 
 /* Buttons */
@@ -163,112 +146,104 @@ button:hover {
 }
 
 .btn-warning {
-  background: linear-gradient(45deg, #febd69, #ffa41c); /* Jaune Amazon */
+  background: linear-gradient(45deg, #febd69, #ffa41c);
   color: black;
 }
 
 .btn-info {
-  background: linear-gradient(45deg, #007185, #005f73); /* Bleu Amazon */
+  background: linear-gradient(45deg, #007185, #005f73);
   color: white;
 }
 
 .btn-danger {
-  background: linear-gradient(45deg, #d62828, #a4161a); /* Rouge Fnac */
+  background: linear-gradient(45deg, #d62828, #a4161a);
   color: white;
 }
 
 .btn-success {
-  background: linear-gradient(45deg, #009e60, #007d4f); /* Vert Amazon */
+  background: linear-gradient(45deg, #009e60, #007d4f);
   color: white;
-}
-
-/* Checkbox List */
-.form-check {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Centered Actions */
-.text-center {
-  text-align: center;
-  margin-top: 20px;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
-      padding: 15px;
+    padding: 15px;
   }
-  
+
   .table th, .table td {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
-  
+
   ul {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   ul li {
-      margin: 5px 0;
+    margin: 5px 0;
   }
-  /* Style général de la section de notifications */
-.notification-container {
-  background-color: #f4f4f9; /* Un fond léger */
-  border-radius: 8px; /* Coins arrondis */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre subtile */
-  padding: 20px;
-  max-width: 400px; /* Largeur maximale de la boîte */
-  margin: 20px auto; /* Centrer le conteneur */
 }
 
-h2 {
+.notifications {
+  background: #ffeeba; /* Fond jaune clair pour attirer l'attention */
+  border: 1px solid #ffc107; /* Bordure dorée */
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+.notifications h3 {
   font-size: 1.5rem;
-  color: #333; /* Couleur foncée pour le titre */
+  color: #333;
   text-align: center;
   margin-bottom: 15px;
 }
 
-ul {
-  list-style-type: none; /* Supprime les puces */
-  padding: 0;
-  margin: 0;
-}
-.notifications {
-  background: #b11818; /* fond sombre */
-  padding: 1.5rem;
-  border-radius: 12px;
-  max-width: 600px;
-  margin: 1rem auto;
-
- 
-}
-
-.notifications h3 {
-  color: #4caf50;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.notifications ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.notifications li {
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 1rem;
- 
-  border-left: 4px solid #4caf50;
-  border-radius: 6px;
+.notification-item {
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease;
 }
 
-.notifications li:hover {
- 
+.notification-item:hover {
+  background: #f1f1f1; /* Fond légèrement gris au survol */
+}
+
+.btn-close {
+  background: #d9534f; /* Rouge pour le bouton de fermeture */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-close:hover {
+  background: #c9302c; /* Rouge plus foncé au survol */
+}
+.btn-close {
+  background: #d9534f; /* Rouge pour attirer l'attention */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-close:hover {
+  background: #c9302c; /* Rouge plus foncé au survol */
 }
 
 
-}
+

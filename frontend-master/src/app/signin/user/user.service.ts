@@ -280,6 +280,40 @@ public supprimerArticle(article: any): Observable<any> {
       });
   });
 }
+public getMyPushNotifications(): Observable<any> {
+  return new Observable((observer) => {
+    const token = localStorage.getItem('token');
+    console.log('🔐 Token utilisé :', token);
+
+    if (!token) {
+      observer.error('Aucun token trouvé. Veuillez vous connecter.');
+      return;
+    }
+
+    fetch(`http://localhost:8080/article/utilisateur/push`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des notifications.');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('🔔 data:', data);
+        observer.next(data);
+        observer.complete();
+      })
+      .catch((error) => {
+        console.error('❌ Erreur de récupération :', error);
+        observer.error(error);
+      });
+  });
+}
 
 }
 

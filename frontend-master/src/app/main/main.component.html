@@ -7,12 +7,33 @@
   <li><a (click)="toggleNotifications()">Notifications 📩</a></li>
   <li><a (click)="showNotifications()">Notifications 📩</a></li> 
 </ul>
-<div class="notifications">
+<div *ngIf="notifications && notifications.length > 0" class="notifications">
   <h3>🔔 Notifications reçues :</h3>
   <ul>
-    <li *ngFor="let notif of notifications">{{ notif }}</li>
+    <li *ngFor="let notif of notifications" class="notification-item">
+      {{ notif }}
+      <button class="btn-close" (click)="removeNotification(notif)">✖</button>
+    </li>
   </ul>
 </div>
+<div *ngIf="isNotificationsVisible">
+  <h3>🔔 Notifications :</h3>
+
+  <ul *ngIf="apiNotifications && apiNotifications.length > 0">
+    <li *ngFor="let notification of apiNotifications" class="notification-item">
+      <p [innerText]="notification"></p> <!-- Pour gérer les \n correctement -->
+      <button class="btn-close" (click)="removeNotification(notification)">✖</button>
+    </li>
+  </ul>
+
+  <div *ngIf="apiNotifications.length === 0">
+    <p>Aucune notification à afficher.</p>
+  </div>
+
+  <button (click)="closeNotifications()">Fermer</button>
+</div>
+
+
 
 
 <div class="container mt-4">

@@ -1,44 +1,81 @@
 package projet.scrapping;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 public class NotificationEnvoyee {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Integer id;
+    private String typeNotif; // email, push, etc.
 
-        private String typeNotif; // email, push, etc.
-        private double prix;
+    private double prix;
 
-        private LocalDateTime dateEnvoi;
+    private LocalDateTime dateEnvoi;
 
-    @OneToOne
+    private String message;
+    private boolean lue = false;
+    @ManyToOne
+    @JoinColumn(name = "numAnotif")
     private Article article;
-    public void setMessage(String message) {
-        this.dateEnvoi=dateEnvoi;
+
+    // --- Getters et Setters ---
+    public Integer getId() {
+        return id;
+    }
+    public boolean getlue() {
+        return lue;
+    }
+    public  void setLue(Boolean lue){
+        this.lue=lue;
+    }
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setDateEnvoi(LocalDateTime now) {
-        this.dateEnvoi=dateEnvoi;
+    public String getTypeNotif() {
+        return typeNotif;
     }
 
-    public void setArticle(Article article) {
-        this.article=article;
-    }
-    public void setPrix(double prix) {
-        this.prix=prix;
+    public void setTypeNotif(String typeNotif) {
+        this.typeNotif = typeNotif;
     }
 
     public double getPrix() {
-        return  prix;
-    }
-    // Getters, setters, constructeur
+        return prix;
     }
 
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
+    public LocalDateTime getDateEnvoi() {
+        return dateEnvoi;
+    }
+
+    public void setDateEnvoi(LocalDateTime dateEnvoi) {
+        this.dateEnvoi = dateEnvoi;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
+}

@@ -455,4 +455,51 @@ public class ArticleController {
                     return ArticleRepository.save(newArticle);
                 });
     }
+    @GetMapping("/utilisateur/push")
+    public ResponseEntity<List<String>> getPushNotificationsUtilisateur(@RequestHeader("Authorization") String token) {
+        try {
+            System.out.println("🛡️ TOKEN reçu : " + token);
+            String tokenStr = token.replace("Bearer ", "");
+            String email = JwtUtil.extractEmail(tokenStr);
+            System.out.println("📧 Email extrait du token : " + email);
+
+            if (email != null) {
+                Utilisateur utilisateur = UtilisateurRepository.findByEmail(email);
+                if (utilisateur != null) {
+                    List<Article> articles = ArticleService.getArticlesByUtilisateur(utilisateur);
+                    System.out.println("article"+articles.size());
+                    List<String> pushNotifications = new ArrayList<>();
+
+                    for (Article article : articles) {
+                        List<NotificationEnvoyee> notifs = article.getDerniereNotification();
+                        System.out.println("notifarticle"+notifs.size()+ "article"+article.getNomA());
+                        for (NotificationEnvoyee notife : notifs) {
+                            // Affichage des informations sur chaque notification
+// Vérifie le nombre de notifications pour cet article
+                            System.out.println("Total de notifications pour cet article : " + notifs.size());
+
+                            System.out.println("Message : " + notife.getMessage());  // Afficher le message de la notification
+
+                            System.out.println("-----");}
+                        for (NotificationEnvoyee notif :notifs ) {
+                            if ("push".equalsIgnoreCase(notif.getTypeNotif())) {
+                                pushNotifications.add(notif.getMessage());
+                                System.out.println("   ✅ Ajoutée (type push) : " + notif.getMessage());
+                            }
+                        }
+                    }
+
+                   
+                
+
+                    return ResponseEntity.ok(pushNotifications);
+                }
+            }
+
+            return ResponseEntity.status(401).build(); // Non autorisé
+        } catch (Exception e) {
+            System.out.println("❌ Erreur lors de la récupération des notifications push : " + e.getMessage());
+            return ResponseEntity.status(500).build(); // Erreur serveur
+        }
+    }
 }

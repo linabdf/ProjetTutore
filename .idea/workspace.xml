@@ -5,16 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ba57530-8d6f-4278-a555-678e6aedca87" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend-master" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/accueil/accueil.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/accueil/accueil.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/accueil/accueil.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/accueil/accueil.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/ajoutArticle/ajoutArticle.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/app.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/article-details/article-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/article-details/article-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/article-details/article-details.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/article-details/article-details.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/article-details/article-details.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/article-details/article-details.component.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/classes/article.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/classes/article.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/classes/graph.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/classes/graph.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/classes/site.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/classes/site.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/liste-suivi/liste-suivi.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/liste-suivi/liste-suivi.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/liste-suivi/liste-suivi.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/liste-suivi/liste-suivi.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/login/login.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/login/login.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/main/main.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/services/article.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/services/article.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/signin/signin.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/signin/signin.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/signin/signin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/signin/signin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-master/src/app/signin/signin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/signin/signin.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend-master/src/app/signin/user/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-master/src/app/signin/user/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,21 +48,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2u2kJjiF3dXt7z8yTjkSwk05XP0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
