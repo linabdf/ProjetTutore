@@ -10,6 +10,8 @@ export class Article {
   private _seuil: number = 0; // seuil de l'article (que l'utilisateur choisi)
   private _frequence: number = 0; // fréquence du scrapping (que l'utilisateur choisi)
   private _urlimage:string = "";
+  private _updateNow : number = 0;
+  private _derniereUpdate : Date = new Date();
   private _sites: Site[] = []; // liste des sites sur lesquels l'article est disponible
   private _graph: Graphique = new Graphique(); // graphique du meilleur prix global
 
@@ -28,7 +30,7 @@ export class Article {
   get notif():String{
     return this._notif;
   }
- 
+
   set notif(value: string) {
     this._notif = value;
   }
@@ -69,6 +71,14 @@ export class Article {
     this._frequence = value;
   }
 
+  get updateNow(): number {
+    return this._updateNow;
+  }
+
+  set updateNow(value: number) {
+    this._updateNow = value;
+  }
+
   get sites(): Site[] {
     return this._sites;
   }
@@ -83,6 +93,14 @@ export class Article {
 
   set graph(value: Graphique) {
     this._graph = value;
+  }
+
+  get derniereUpdate(): Date {
+    return this._derniereUpdate;
+  }
+
+  set derniereUpdate(value: Date) {
+    this._derniereUpdate = value;
   }
 
 }

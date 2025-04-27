@@ -24,9 +24,9 @@ public class ArticleService
     }
 
 @Transactional
-public Article insererArticle(String nomA, double seuil, Utilisateur utilisateur, String notif, Integer frequence, Timestamp currentTimestamp) {
+public Article insererArticle(String nomA, double seuil, Utilisateur utilisateur, String notif, Integer frequence, Timestamp currentTimestamp,Integer updateNow) {
     // Création de l'objet Article
-    Article article = new Article(nomA, seuil, utilisateur, notif, frequence,currentTimestamp);
+    Article article = new Article(nomA, seuil, utilisateur, notif, frequence,currentTimestamp,updateNow);
 
     System.out.println("Article à insérer : " + article);
 

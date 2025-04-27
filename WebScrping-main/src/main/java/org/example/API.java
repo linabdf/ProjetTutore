@@ -259,6 +259,7 @@ public class API {
             while (rs != null && rs.next()) {
                 urlarticle = rs.getString("urlarticle");
             }
+            setDerniereUpdateNow();
         }catch (SQLException e){
             System.out.println("[Base de donnée] Erreur dans la fonction getSiteUrl() (" + e.getMessage() + ")");
         }
@@ -279,5 +280,30 @@ public class API {
             System.out.println("[Base de donnée] Erreur dans la fonction getNewArticle() (" + e.getMessage() + ")");
         }
         return newarticle;
+    }
+    public List<Integer> getUpdateNow(){
+        List<Integer> numa = new ArrayList<>();
+        try{
+            PreparedStatement preparedStatement = Main.INSTANCE.dm.getConnexion().prepareStatement("SELECT numa FROM article WHERE update_now = 1");
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs != null && rs.next()) {
+                numa.add(rs.getInt("numa"));
+            }
+        }catch (SQLException e){
+            System.out.println("[Base de donnée] Erreur dans la fonction getUpdateNow (" + e.getMessage() + ")");
+        }
+        return numa;
+    }
+
+
+    //Permet de mettre à jour l'attribut eupdatenow
+    public void setDerniereUpdateNow(){
+        try{
+            PreparedStatement preparedStatement = Main.INSTANCE.dm.getConnexion().prepareStatement("UPDATE article SET update_now = 0");
+            preparedStatement.executeUpdate();
+
+        }catch (SQLException e){
+            System.out.println("[Base de donnée] Erreur dans la fonction setDerniereUpdate() (" + e.getMessage() + ")");
+        }
     }
 }

@@ -52,11 +52,19 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<NotificationEnvoyee> latestNotification = new ArrayList<>();
-
+    @Column(name="updateNow")
+    @JsonProperty("updateNow")
+    private Integer updateNow;
     // --- Constructeurs ---
     public Article() {}
+    public Integer getUpdateNow() {
+        return updateNow;
+    }
 
-    public Article(String nomA, double seuil, Utilisateur utilisateur, String notif, Integer frequence, Timestamp currentTimestamp) {
+    public void setUpdateNow(Integer updateNow) {
+        this.updateNow = updateNow;
+    }
+    public Article(String nomA, double seuil, Utilisateur utilisateur, String notif, Integer frequence, Timestamp currentTimestamp,Integer updateNow) {
         this.nomA = nomA;
         this.seuil = seuil;
         this.utilisateur = utilisateur;
@@ -64,6 +72,7 @@ public class Article {
         this.frequence = frequence;
         this.derniereupdate = currentTimestamp;
         this.latestNotification = new ArrayList<>();
+        this.updateNow=updateNow;
     }
 
     // --- Getters et Setters ---
@@ -102,6 +111,9 @@ public class Article {
     public void setDerniereupdate(Timestamp currentTimestamp) {
         this.derniereupdate = currentTimestamp;
     }
+    public Timestamp getDerniereupdate() {
+        return this.derniereupdate;
+    }
 
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
@@ -110,7 +122,9 @@ public class Article {
     public void setTitre(String titre) {
         this.nomA = titre;
     }
-
+    public void setNomA(String NomA) {
+        this.nomA = nomA;
+    }
     public void setContenu(String contenu) {
         this.Description = contenu;
     }

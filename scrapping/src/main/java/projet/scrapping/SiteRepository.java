@@ -11,4 +11,6 @@ public interface SiteRepository extends JpaRepository<Site,Integer> {
 
 
     Site findByArticleAndNomSite(Article article, String siteName);
+
+    Site findByNomSite(String amazon);
 }

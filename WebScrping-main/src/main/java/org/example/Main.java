@@ -188,4 +188,8 @@ public class Main {
     public boolean update(){
         return api.getDerniereUpdate();
     }
+    //Verifie si il y a des mise à jour à faire immediatement
+    public List<Integer> updateNow(){
+        return api.getUpdateNow();
+    }
 }

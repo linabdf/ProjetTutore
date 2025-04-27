@@ -267,6 +267,37 @@ button:hover {
   input, select {
     padding: 10px;
   }
-  
+/* Footer */
+.footer {
+  background-color: #232f3e;
+  color: white;
+  padding: 30px 15px;
+  font-size: 1rem;
+  margin-top: 50px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+  margin: 8px 0;
+}
+
+.footer a {
+  color: #ff9900;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #e68a00;
+}
+
+.footer .credits {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  color: #cccccc;
+}
+
+
+
   
 }

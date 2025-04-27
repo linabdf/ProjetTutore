@@ -16,4 +16,5 @@ public interface ArticleRepository  extends JpaRepository<Article,Integer> {
    Article findByUtilisateurAndNomA(@Param("utilisateur") Utilisateur utilisateur, @Param("nomA") String nomA);
 
 
+   Article findByNomA(String tvSamsung);
 }

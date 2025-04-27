@@ -28,6 +28,10 @@ public class UtilisateurController {
         Map<String, String> response = new HashMap<>();
         System.out.println("utilisateur"+utilisateurDTO);
         try {
+            if (utilisateurService.verifierSiUtilisateurExiste(utilisateurDTO.getEmail())) {
+                response.put("message", "Un utilisateur avec cet email existe déjà.");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
             System.out.println("Nom reçu : " + utilisateurDTO.getNomU());
             System.out.println("Mot de passe reçu : " + utilisateurDTO.getMotDePasse());
             System.out.println("Email reçu : " + utilisateurDTO.getEmail());

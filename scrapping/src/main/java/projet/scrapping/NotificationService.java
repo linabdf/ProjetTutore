@@ -1,5 +1,6 @@
 package projet.scrapping;
 import io.jsonwebtoken.io.IOException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class NotificationService {
-
+        @Autowired
+         private static NotificationEnvoyeeRepository notificationEnvoyeeRepository = null;
         private Map<String, List<String>> notifications = new ConcurrentHashMap<>();
-
+        public NotificationService(NotificationEnvoyeeRepository notificationEnvoyeeRepository) {
+                this.notificationEnvoyeeRepository = notificationEnvoyeeRepository;
+        }
         public void ajouterNotificationPourUtilisateur(String email, String message) {
             notifications.computeIfAbsent(email, k -> new ArrayList<>()).add(message);
         }
@@ -27,7 +31,17 @@ public class NotificationService {
         public void clearNotifications(String email) {
             notifications.remove(email);
         }
+        @Transactional
+        public static int getUnreadNotification(){
+            List<NotificationEnvoyee> allNotifications=notificationEnvoyeeRepository.findAll();
+            int unreadCount = 0;
+            for (NotificationEnvoyee notif:allNotifications){
+                if(!notif.getlue()&&("push".equals(notif.getTypeNotif()))){unreadCount++;}
+            }
+            return unreadCount;
+        }
    }
+
 
 
 

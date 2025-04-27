@@ -3,6 +3,9 @@ package org.example;
 
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -28,12 +31,13 @@ public class Run {
         Main mainInstance = new Main();
         Run runInstance
                 = new Run(mainInstance);
-        runInstance.start(10,10);
+        runInstance.start(10,10,1);
     }
 
-    public void start(int delay,int delay2) {
+    public void start(int delay, int delay2, int delay3) {
         scheduleTask(delay , false); //Tache principale pour le scraping
         checkUpdate(delay2); //Tache secondaire qui verifie si des mise a jour sont effectué
+        checkUpdateNow(delay3); //Tache pour ferifier si un article doit etre mis a jour immediatement
     }
 
 
@@ -98,6 +102,43 @@ public class Run {
             }, 0, interval, TimeUnit.SECONDS);
         }catch (Exception e){
             System.out.println("[Run] Erreur dans la fonction checkUpdate() (" + e.getMessage() + ")");
+            main.dm.deconnexion();
+        }
+    }
+    public void checkUpdateNow(int interval) {
+        try {
+            scheduler.scheduleAtFixedRate(() -> {
+
+                List<Integer> updated = main.updateNow();
+
+                if (updated.isEmpty()) {
+                    System.out.println("Aucune mise à jour detecté!");
+                } else {
+                    System.out.println("Mise à jour detecté dans le checkUpdateNow!");
+                    for (Integer article : updated) {
+                        WebScrapping ws = new WebScrapping();
+                        API api = new API();
+                        List<Site> site = api.getSite(article);
+                        //Temp actuel
+                        Timestamp currentTime2 = Timestamp.valueOf(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+                        for (Site listsite : site) {
+                            InfoSite is = api.getInfoSite(listsite.getNomsite());
+                            String selecteurprix = is.getPrix2();
+                            String s = api.getSiteUrl(article, listsite.getNomsite());
+
+                            //WebScapping
+                            Scraping result = ws.PremierScraping(false, "", s, "", selecteurprix, "", "", "", "", "");
+
+                            //Mise à jour de la tendance du prix dans la BD
+                            api.setTendance(result.getPrix(), listsite.getNumS(), currentTime2);
+                        }
+                    }
+                }
+
+
+            }, 0, interval, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            System.out.println("[Run] Erreur dans la fonction checkUpdateNow() (" + e.getMessage() + ")");
             main.dm.deconnexion();
         }
     }

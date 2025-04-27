@@ -80,9 +80,10 @@ public class ArticleController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
             Timestamp currentTimestamp=new Timestamp(System.currentTimeMillis());
-
-            Article article =  ArticleService.insererArticle(nomA, seuil, utilisateur,notif,frequence,currentTimestamp);
+            Integer updateNow = 0;
+            Article article =  ArticleService.insererArticle(nomA, seuil, utilisateur,notif,frequence,currentTimestamp,updateNow);
             System.out.println("c'est bon ");
+
 
 
 
@@ -234,7 +235,7 @@ public class ArticleController {
             Integer frequenceStr = (Integer) updatedArticle.get("frequence");
             Integer seuilStr = (Integer) updatedArticle.get("seuil");
             String notif = (String) updatedArticle.get("notif");
-
+            Object updateNowObj = updatedArticle.get("updateNow");
             // Validation des données
             double seuil = 0;
             try {
@@ -251,6 +252,18 @@ public class ArticleController {
                 response.put("message", "Fréquence invalide.");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
             }
+            int updateNow = 1;
+            if (updateNowObj != null) {
+                try {
+                    if (updateNowObj instanceof Integer) {
+                        updateNow = (Integer) updateNowObj;
+                    } else if (updateNowObj instanceof String) {
+                        updateNow = Integer.parseInt((String) updateNowObj);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Warning: Invalid format for updateNow, defaulting to 0.");
+                }
+            }
             // Chercher l'article à modifier pour cet utilisateur
             Article article = ArticleRepository.findByUtilisateurAndNomA(utilisateur, nomA);
             if (article == null) {
@@ -262,6 +275,7 @@ public class ArticleController {
                 article.setSeuil(seuil);
                 article.setNotif(notif);
                 article.setDerniereupdate(new Timestamp(System.currentTimeMillis()));
+                article.setUpdateNow(updateNow);
                 // Sauvegarder l'article mis à jour
                 ArticleRepository.save(article);
             }
@@ -386,6 +400,7 @@ public class ArticleController {
                 articleResponse.put("frequence", article.getFrequence()); // Fréquence
                 articleResponse.put("notif", article.getNotif()); // Notification
                 articleResponse.put("urlimage", article.getUrlImage()); // Notification
+                articleResponse.put("derniereupdate", article.getDerniereupdate()); // Date de la dernière mise à jour
 
                 // Récupérer les sites associés à cet articleS
                 List<Site> sites = SiteRepository.findByArticle(article);
@@ -449,6 +464,8 @@ public class ArticleController {
                 .map(article -> {
                     article.setSeuil(newArticle.getSeuil());
                     article.setFrequence(newArticle.getFrequence());
+                    article.setUpdateNow(newArticle.getUpdateNow());
+                    article.setDerniereupdate(newArticle.getDerniereupdate());
                     return ArticleRepository.save(article);
                 })
                 .orElseGet(() -> {
@@ -456,7 +473,7 @@ public class ArticleController {
                 });
     }
     @GetMapping("/utilisateur/push")
-    public ResponseEntity<List<String>> getPushNotificationsUtilisateur(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<List<NotificationEnvoyee>> getPushNotificationsUtilisateur(@RequestHeader("Authorization") String token) {
         try {
             System.out.println("🛡️ TOKEN reçu : " + token);
             String tokenStr = token.replace("Bearer ", "");
@@ -468,32 +485,30 @@ public class ArticleController {
                 if (utilisateur != null) {
                     List<Article> articles = ArticleService.getArticlesByUtilisateur(utilisateur);
                     System.out.println("article"+articles.size());
-                    List<String> pushNotifications = new ArrayList<>();
+                    List<NotificationEnvoyee> notificationsDTO = new ArrayList<>();
 
                     for (Article article : articles) {
                         List<NotificationEnvoyee> notifs = article.getDerniereNotification();
                         System.out.println("notifarticle"+notifs.size()+ "article"+article.getNomA());
-                        for (NotificationEnvoyee notife : notifs) {
-                            // Affichage des informations sur chaque notification
-// Vérifie le nombre de notifications pour cet article
-                            System.out.println("Total de notifications pour cet article : " + notifs.size());
 
-                            System.out.println("Message : " + notife.getMessage());  // Afficher le message de la notification
 
-                            System.out.println("-----");}
-                        for (NotificationEnvoyee notif :notifs ) {
-                            if ("push".equalsIgnoreCase(notif.getTypeNotif())) {
-                                pushNotifications.add(notif.getMessage());
-                                System.out.println("   ✅ Ajoutée (type push) : " + notif.getMessage());
-                            }
-                        }
+
+                        for (NotificationEnvoyee notif : article.getDerniereNotification()) {
+                            if (notif.getTypeNotif().equalsIgnoreCase("push")) {
+                            notificationsDTO.add(new NotificationEnvoyee(notif.getMessage(), notif.getlue()));
+                        }}
+                        System.out.println("Message : " + notificationsDTO);
+
+
+
                     }
 
-                   
-                
 
-                    return ResponseEntity.ok(pushNotifications);
+
+
+                    return ResponseEntity.ok(notificationsDTO);
                 }
+
             }
 
             return ResponseEntity.status(401).build(); // Non autorisé

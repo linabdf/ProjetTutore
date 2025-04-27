@@ -1,11 +1,11 @@
 
-import {Component, OnInit} from '@angular/core';
+import {Component,OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../services/article.service';
 import {Article} from '../classes/article';
 import {CanvasJS, CanvasJSAngularChartsModule} from '@canvasjs/angular-charts';
 import {NgForOf, NgIf} from '@angular/common';
-import {findIndex, forkJoin} from 'rxjs';
+import {findIndex, Subscription,Subject,forkJoin,interval,  takeUntil} from 'rxjs';
 import {Graphique} from '../classes/graph';
 import {FormsModule} from '@angular/forms';
 import {Site} from '../classes/site';
@@ -24,12 +24,20 @@ import {UserService} from '../signin/user/user.service';
   styleUrl: './articledetails.component.css'
 })
 
-export class ArticleDetailsComponent implements OnInit {
+export class ArticleDetailsComponent implements OnInit{
+  demarrage: Date = new Date();
+  timerDemarre: boolean = false;
+  private intervalSubscription?: Subscription;
+  private destroy$ = new Subject<void>();
   article: Article = new Article(); //mettre constructeur vide quand acces a la base
   id: number = 0;
   afficherGraphique: boolean = false;
   filtre : string = 'tout' ; // en min pour l'instant
   articles: any[] = [];
+  tempsDepuisDernUp = 0;
+  tempsRestantEnSecondes: number | null = null;
+  tempsRestant: string = 'En attente du démarrage...';
+  timerSubscription?: Subscription;
   isDropdownVisible: boolean = true;
   constructor(private articleService: ArticleService,
               private route: ActivatedRoute,
@@ -48,7 +56,9 @@ export class ArticleDetailsComponent implements OnInit {
       this.article.notif=data.notif;
       this.article.urlimage=data.urlimage;
       this.article.graph = new Graphique();
-
+      this.article.updateNow = data.updateNow;
+      console.log("data.derniereUpdate", data.derniereupdate);
+      this.article.derniereUpdate = new Date(data.derniereupdate); // Assurez-vous que c'est une Date
       console.log("this.articles.sites", this.article.sites);
       console.log("this.articles.urlimage", this.article.urlimage);
       // Initialisation de s.graph pour chaque site
@@ -76,8 +86,15 @@ export class ArticleDetailsComponent implements OnInit {
                   console.warn("Date invalide détectée:", item.x);
                   return; // Si la date est invalide, on passe à l'élément suivant
                 }
+                let prixStr = item.y;
 
-                const prix = parseFloat(item.y
+                // Vérifie si le prix commence par un symbole euro
+                if (prixStr.startsWith('€')) {
+                  // Si le symbole euro est présent au début, on le retire
+                  prixStr = prixStr.replace('€', '');
+                }
+                const prix = parseFloat(prixStr
+                  
                   .replace(/[^\d€,-\s]/g, '')  // Enlever tout sauf les chiffres, €, -, , et l'espace insécable
                   .replace('€', ',')           // Remplacer le symbole euro par une virgule
                   .replace(/\s/g, '')          // Enlever tous les espaces (y compris les espaces insécables)
@@ -115,17 +132,17 @@ export class ArticleDetailsComponent implements OnInit {
 
         // Appel de construireGraphGlobal ici, après que les données sont disponibles
         this.article.sites.forEach(s => {
-          this.updateChartOptions(s.graph, this.article, s.graph.dataPoints);
+          this.updateChartOptions(s.graph, this.article, s.graph.dataPoints, s.graph.dataPoints[0].x);
         })
         console.log("article avant construiregraphgloaal: ", this.article);
         console.log("article.sites avant construiregraphgloaal: ", this.article.sites);
         this.construireGraphGlobal(this.article, this.article.sites);
-        this.updateChartOptions(this.article.graph, this.article, this.article.graph.dataPoints);
-
+        this.updateChartOptions(this.article.graph, this.article, this.article.graph.dataPoints, this.article.graph.dataPoints[0].x);
+        this.demarrage = this.article.derniereUpdate; // Initialiser la date de démarrage
+        this.demarrerCompteARebours();
       }, error => console.log("Erreur getTendanceBySiteId", error));
     }, error => console.log("Erreur getArticleByID", error));
   }
-
   afficherTendancePrix() {
     this.afficherGraphique = true;
     const btn = document.querySelectorAll(".btnTendancePrix") as NodeListOf<HTMLElement>;
@@ -224,6 +241,7 @@ export class ArticleDetailsComponent implements OnInit {
     return Object.values(bestPrices);
   }
 
+
   modifierArticle(article: any) {
     // Créer l'objet mis à jour avec les valeurs actuelles de l'article
     const updatedArticle = {
@@ -260,56 +278,56 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   changerFiltre(filtre: string, graph : Graphique) {
-      this.filtre = filtre;
-      const maintenant = new Date();
-      let debutPeriode: Date | undefined;
+    this.filtre = filtre;
+    const maintenant = new Date();
+    let debutPeriode: Date | undefined;
 
-      switch (filtre) {
-        case 'heure':
-          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate(), maintenant.getHours() - 1);
-          break;
-        case 'jour':
-          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate());
-          break;
-        case 'semaine':
-          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate() - 7);
-          break;
-        case 'mois':
-          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth() - 1, maintenant.getDate());
-          break;
-        case 'semestre':
-          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth() - 6, maintenant.getDate());
-          break;
-        case 'annee':
-          debutPeriode = new Date(maintenant.getFullYear() - 1, maintenant.getMonth(), maintenant.getDate());
-          break;
-        case 'tout':
-          debutPeriode = undefined; // Pas de filtre
-          break;
-        default:
-          debutPeriode = undefined;
-          break;
-      }
+    switch (filtre) {
+      case 'heure':
+        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate(), maintenant.getHours() - 1);
+        break;
+      case 'jour':
+        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate());
+        break;
+      case 'semaine':
+        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate() - 7);
+        break;
+      case 'mois':
+        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth() - 1, maintenant.getDate());
+        break;
+      case 'semestre':
+        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth() - 6, maintenant.getDate());
+        break;
+      case 'annee':
+        debutPeriode = new Date(maintenant.getFullYear() - 1, maintenant.getMonth(), maintenant.getDate());
+        break;
+      case 'tout':
+        debutPeriode = graph.dataPoints[0].x; // Pas de filtre
+        break;
+      default:
+        debutPeriode = graph.dataPoints[0].x;
+        break;
+    }
 
-        if (debutPeriode) {
-          console.log("dps avant filtrés", graph.dataPoints);
-          graph.filteredDps = graph.dataPoints.filter(dp => dp.x >= debutPeriode! && dp.x <= maintenant);
-          console.log("dps filtrés", graph.filteredDps);
-          if(graph.filteredDps[0].x == undefined) {
-            console.log("Données non trouvées pour le filtre demandé");
-            alert("données non trouvés pour le filtre demandé")
-            return;
-          } else {
-            this.updateChartOptions(graph, this.article, graph.filteredDps);
-            return;
-          }
+      if (debutPeriode) {
+        console.log("dps avant filtrés", graph.dataPoints);
+        graph.filteredDps = graph.dataPoints.filter(dp => dp.x >= debutPeriode! && dp.x <= maintenant);
+        console.log("dps filtrés", graph.filteredDps);
+        if(graph.filteredDps[0].x == undefined) {
+          console.log("Données non trouvées pour le filtre demandé");
+          alert("données non trouvés pour le filtre demandé")
+          return;
         } else {
-          this.updateChartOptions(graph, this.article, graph.dataPoints);
+          this.updateChartOptions(graph, this.article, graph.filteredDps, debutPeriode);
           return;
         }
-  }
+      } else {
+        this.updateChartOptions(graph, this.article, graph.dataPoints, debutPeriode);
+        return;
+      }
+}
 
-  updateChartOptions(graph : Graphique, article : Article, dps : { x: Date, y: number, toolTipContent?: string }[]): void {
+  updateChartOptions(graph : Graphique, article : Article, dps : { x: Date, y: number, toolTipContent?: string }[], debutPeriode : Date): void {
     graph.options = {
       animationEnabled: true,
         zoomEnabled : true,
@@ -321,8 +339,9 @@ export class ArticleDetailsComponent implements OnInit {
         axisX : {
         title : 'Temps',
           labelAngle : 0,
-          minimum : dps[0].x,
+          minimum : graph.dataPoints[0].x,
           interval : article.frequence,
+          minimumViewport : debutPeriode
       },
       axisY : {
         title : 'Prix',
@@ -335,5 +354,81 @@ export class ArticleDetailsComponent implements OnInit {
       }
     }
   }
+  forceUpdate(article : any) {
+    article.updateNow = 1;
+    this.demarrerCompteARebours();
+    this.modifierArticle(this.article);
+  }
+
+  demarrerCompteARebours(): void {
+    if (this.article.frequence > 0 && this.article.derniereUpdate) {
+      const maintenantEnMs = Date.now();
+      const derniereUpdateEnMs = this.article.derniereUpdate.getTime();
+      this.tempsDepuisDernUp = Math.floor((maintenantEnMs - derniereUpdateEnMs) / 1000); // Différence en secondes
+
+      this.tempsRestantEnSecondes = Math.max(0, Math.floor(this.article.frequence * 60 - this.tempsDepuisDernUp));
+      this.mettreAJourAffichageTempsRestant();
+      this.demarrerTimer();
+      this.timerDemarre = true;
+    } else {
+      console.error('La fréquence de l\'article n\'est pas valide ou la date de dernière mise à jour est manquante.');
+      this.tempsRestant = 'Erreur de démarrage du compte à rebours';
+    }
+  }
+
+  private tempsEcouleSubscription?: Subscription;
+
+  demarrerTimer(): void {
+    this.timerSubscription = interval(1000)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        if (this.tempsRestantEnSecondes !== null && this.tempsRestantEnSecondes > 0) {
+          this.tempsRestantEnSecondes--;
+          this.mettreAJourAffichageTempsRestant();
+          if (this.tempsRestantEnSecondes === 0) {
+            console.log('Compte à rebours terminé !');
+            // Ici, vous pouvez appeler la fonction pour forcer la mise à jour
+            this.forceUpdate(this.article);
+            this.arreterTimer(); // Arrêter le timer une fois terminé
+          }
+        } else if (this.tempsRestantEnSecondes === 0) {
+          // Empêcher la décrémentation en dessous de zéro (sécurité)
+          this.arreterTimer();
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    if (this.intervalSubscription) {
+      this.intervalSubscription.unsubscribe();
+    }
+    if (this.tempsEcouleSubscription) {
+      this.tempsEcouleSubscription.unsubscribe();
+    }
+  }
+
+  mettreAJourAffichageTempsRestant(): void {
+    if (this.tempsRestantEnSecondes !== null) {
+      const minutes = Math.floor(this.tempsRestantEnSecondes / 60);
+      const secondes = this.tempsRestantEnSecondes % 60;
+      this.tempsRestant = `${this.padZero(minutes)}:${this.padZero(secondes)}`;
+    } else {
+      this.tempsRestant = 'En attente du démarrage...';
+    }
+  }
+
+  arreterTimer(): void {
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe();
+      this.timerSubscription = undefined;
+    }
+  }
+
+  padZero(nombre: number): string {
+    return nombre < 10 ? '0' + nombre : '' + nombre;
+  }
 
 }
+

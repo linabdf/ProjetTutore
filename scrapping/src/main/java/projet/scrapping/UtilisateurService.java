@@ -127,7 +127,11 @@ public class UtilisateurService {
         }
     }
 */
-
+public boolean verifierSiUtilisateurExiste(String email) {
+    // Si findByEmail retourne un utilisateur non null, cela signifie que l'utilisateur existe déjà
+    Utilisateur utilisateur = utilisateurRepository.findByEmail(email);
+    return utilisateur != null;
+}
     @Transactional
     public void insererUtilisateur(String nomU, String prenom, String email, String motDePasse) {
         Utilisateur utilisateur = new Utilisateur(nomU, prenom, email, motDePasse);

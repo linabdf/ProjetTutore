@@ -21,6 +21,23 @@ public class NotificationController {
     private NotificationEnvoyeeRepository notificationRepository;
 
     @CrossOrigin(origins = "http://localhost:4200")
+
+    @GetMapping("/unreadCount")
+    public ResponseEntity<Integer> getUnreadCount() {
+        int unreadCount = NotificationService.getUnreadNotification();  // Compter les notifications non lues
+        return ResponseEntity.ok(unreadCount);
+    }
+    @PostMapping("/markAllAsRead")
+    public ResponseEntity<String> markAllAsRead() {
+        List<NotificationEnvoyee> notifications =notificationRepository.findAll();
+        for (NotificationEnvoyee notif : notifications) {
+            if (!notif.getlue()) {
+                notif.setLue(true);
+            }
+        }
+        notificationRepository.saveAll(notifications);
+        return ResponseEntity.ok("✅ Toutes les notifications marquées comme lues !");
+    }
     @GetMapping("/stream")
     public SseEmitter stream() {
         SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
@@ -34,19 +51,28 @@ public class NotificationController {
         System.out.println("📢 Envoi de notification : " + message);
         List<SseEmitter> deadEmitters = new ArrayList<>();
 
+        int unreadCount = NotificationService.getUnreadNotification(); // <-- On récupère ici
+
         for (SseEmitter emitter : emitters) {
             try {
-                emitter.send(SseEmitter.event().name("notif").data(message));
+                emitter.send(SseEmitter.event()
+                        .name("notif")
+                        .data(Map.of(
+                                "message", message,
+                                "unreadCount", unreadCount
+                        ))
+                );
                 System.out.println("✅ Notification envoyée à un client.");
             } catch (IOException e) {
                 System.out.println("⚠️ Erreur lors de l'envoi : " + e.getMessage());
-                emitter.complete(); // <-- ça ferme proprement
+                emitter.complete();
                 deadEmitters.add(emitter);
             }
         }
 
         emitters.removeAll(deadEmitters);
     }
+
 
     @DeleteMapping("/supprimer")
     public ResponseEntity<String> supprimerNotifParMessage(@RequestBody Map<String, String> body) {

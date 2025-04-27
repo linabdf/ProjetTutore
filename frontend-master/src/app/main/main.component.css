@@ -22,6 +22,7 @@ ul li {
   margin: 0 15px;
 }
 
+
 ul li a {
   color: white;
   text-decoration: none;
@@ -31,6 +32,44 @@ ul li a {
   border-radius: 5px;
   display: inline-block;
 }
+.notif-container {
+  position: relative;
+  display: inline-block;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.action-button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+
+.notif-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 5px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+  min-width: 20px;
+  text-align: center;
+}
 
 ul li a:hover {
   background-color: #febd69;
@@ -38,43 +77,7 @@ ul li a:hover {
   transform: scale(1.05);
 }
 
-/* Notifications Section */
-.notifications {
-  background: #1d1d1d;
-  padding: 1.5rem;
-  border-radius: 12px;
-  max-width: 600px;
-  margin: 1rem auto;
-  color: #f3f3f3;
-}
 
-.notifications h3 {
-  color: #4caf50;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.notifications ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.notifications li {
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 1rem;
-  background: #333333;
-  border-left: 4px solid #4caf50;
-  border-radius: 6px;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.notifications li:hover {
-  background: #444444;
-  transform: scale(1.02);
-  cursor: pointer;
-}
 
 /* Table Section */
 .container {
@@ -184,39 +187,62 @@ button:hover {
     margin: 5px 0;
   }
 }
-
-.notifications {
-  background: #ffeeba; /* Fond jaune clair pour attirer l'attention */
-  border: 1px solid #ffc107; /* Bordure dorée */
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 600px;
-  margin: 20px auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
-}
-
-.notifications h3 {
-  font-size: 1.5rem;
-  color: #333;
-  text-align: center;
-  margin-bottom: 15px;
+.notifications ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block; /* 👈 très important */
 }
 
 .notification-item {
-  background: #fff;
+  background-color: #f7f7f7;
   padding: 10px;
-  margin-bottom: 10px;
   border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  /* Bordure autour de la notification */
+  border: 2px solid #555; /* Ici tu peux choisir la couleur que tu veux */
+}
+
+.notification-read {
+  background-color: #f0f0f0; 
+  border-left: 5px solid #555;
+  color: #000;
+  border: 2px solid #555; /* Bordure foncée */
+}
+
+.notification-unread {
+  background-color: #fff8e1;
+  border-left: 5px solid #ff9800; 
+  font-weight: bold;
+  color: #000;
+  border: 2px solid #ff9800; /* Bordure dorée pour les notifications non lues */
+}
+.notification-item p {
+  margin: 0; /* enlève le margin par défaut de <p> */
+  flex: 1; /* pour que le texte prenne la place dispo */
+}
+
+.btn-close {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
   transition: background 0.3s ease;
 }
 
-.notification-item:hover {
-  background: #f1f1f1; /* Fond légèrement gris au survol */
+.btn-close:hover {
+  background: #c9302c;
 }
+
+
 
 .btn-close {
   background: #d9534f; /* Rouge pour le bouton de fermeture */

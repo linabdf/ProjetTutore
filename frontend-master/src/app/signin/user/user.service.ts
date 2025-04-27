@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user';
+import { Notification } from './notification'; // adapte le chemin si besoin
+
 import{Article} from'../../classes/article';
 import { Router, RouterModule } from '@angular/router';
 @Injectable({
@@ -280,7 +282,7 @@ public supprimerArticle(article: any): Observable<any> {
       });
   });
 }
-public getMyPushNotifications(): Observable<any> {
+public getMyPushNotifications(): Observable<Notification[]> {
   return new Observable((observer) => {
     const token = localStorage.getItem('token');
     console.log('🔐 Token utilisé :', token);
@@ -304,8 +306,9 @@ public getMyPushNotifications(): Observable<any> {
         return response.json();
       })
       .then((data) => {
-        console.log('🔔 data:', data);
-        observer.next(data);
+        const notifications = data.map((n: any) => new Notification(n.message, n.lue));
+        console.log('🔔 Notifications formatées :', notifications);
+        observer.next(notifications);
         observer.complete();
       })
       .catch((error) => {
@@ -314,6 +317,9 @@ public getMyPushNotifications(): Observable<any> {
       });
   });
 }
+
+
+
 
 }
 

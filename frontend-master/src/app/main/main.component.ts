@@ -3,6 +3,7 @@ import {NgOptimizedImage} from '@angular/common';
 import {Router} from '@angular/router';
 import {UserService} from '../signin/user/user.service';
 import { CommonModule } from '@angular/common';
+import { Notification } from '../signin/user/notification';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../notification/notification.service';
 
@@ -20,12 +21,14 @@ export class MainComponent implements OnInit {
     ) {}
   message: string = '';
   articles: any[] = [];
+  unreadCount: number = 0;
  // Liste des notifications
   isNotificationsVisible: boolean = false;
   isDropdownVisible: boolean = true;
   notificationsVisible: boolean = false; // Par défaut, les notifications ne sont pas visibles
   notifications: any[] = []
-  apiNotifications: string[] = [];
+  apiNotifications: String []=[];
+  notificationsmessage:Notification[] = [];
   ajouterArticle() {
     this.router.navigateByUrl('/AjouterArticle');
     
@@ -39,7 +42,7 @@ export class MainComponent implements OnInit {
   }
   ngOnInit() {
     console.log('ngOnInit appelé');
-     
+    this.notificationService.getUnreadCount();
     if (this.UserService.isAuthenticated()) {
     this.UserService.getMyArticles().subscribe(
       (data) => {
@@ -61,6 +64,12 @@ export class MainComponent implements OnInit {
         }
       }
     );
+    this.notificationService.notificationCount$.subscribe(
+      (count) => {
+        this.unreadCount = count;
+      }
+    );
+
   
 }
 subscribeToNotifications():void {
@@ -174,8 +183,8 @@ showNotifications() {
   // Ici tu peux récupérer les notifications depuis l'API
   this.getMyPushNotifications().subscribe((data) => {
     console.log('Données reçues depuis l\'API :', data);
-    this.apiNotifications = data;
-    console.log('Notifications récupérées :', this.notifications);
+    this.notificationsmessage= data;
+    console.log('Notifications récupérées :', this. notificationsmessage);
      // Remplir la liste des notifications
   });
 
@@ -193,4 +202,28 @@ getMyPushNotifications() {
   // Logique pour récupérer les notifications depuis l'API (similaire à ce que tu fais)
   return this.UserService.getMyPushNotifications();
 }
+markAllAsRead() {
+  // Appelle le backend pour marquer toutes les notifications comme lues
+  fetch('http://localhost:8080/notifications/markAllAsRead', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.UserService.getToken() // si tu utilises un token
+    }
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('✅ Notifications marquées comme lues');
+      this.notificationService.updateNotificationCount(0);
+      this.unreadCount = 0;
+
+    } else {
+      console.error('❌ Erreur lors du marquage comme lu');
+    }
+  })
+  .catch(error => {
+    console.error('Erreur réseau', error);
+  });
+}
+
 }

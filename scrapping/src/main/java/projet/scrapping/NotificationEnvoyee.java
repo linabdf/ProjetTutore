@@ -22,6 +22,12 @@ public class NotificationEnvoyee {
     @ManyToOne
     @JoinColumn(name = "numAnotif")
     private Article article;
+    public NotificationEnvoyee(){
+    }
+    public NotificationEnvoyee(String message, boolean getlue) {
+        this.message=message;
+        this.lue=getlue;
+    }
 
     // --- Getters et Setters ---
     public Integer getId() {

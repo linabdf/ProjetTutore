@@ -5,6 +5,7 @@
     <li><a (click)="deconnexion()">Déconnexion</a></li>
     <li class="notification-item">
       📩 <span class="notif-label">Notification</span>
+       
     </li>
   </ul>
 </header>
@@ -48,11 +49,16 @@
     <select class="form-select" [(ngModel)]="article.notif">
       <option value="email">Email</option>
       <option value="push">Push</option>
+      <option value="deux">push-Email</option>
     </select>
     <button  class="btnTendancePrix"(click)="modifierArticle(article)" type="button">
       📝
     </button>
-    
+    <div class="divForceUpdate">
+      <button (click)="forceUpdate(article)"> Forcer la récupération du prix </button>
+      <p *ngIf="timerDemarre">Temps écoulé depuis le dernier scan des données: {{ tempsRestant }}</p>
+      <p> Dernière mise à jour : {{article.derniereUpdate}}</p>
+    </div>
     <!--<button class="btn btn-primary mt-3" (click)="modifierArticle(article)">Enregistrer les modifications</button>
   --> </div>
 
@@ -99,8 +105,9 @@
   </div>
 
 </div>
+
+</body>
 <footer class="footer text-center space-before">
   <p>&copy; 2025 Comparateur de Prix. Tous droits réservés.</p>
   <p><a href="terms">Conditions d'utilisation</a> | <a href="privacy">Politique de confidentialité</a></p>
 </footer>
-</body>

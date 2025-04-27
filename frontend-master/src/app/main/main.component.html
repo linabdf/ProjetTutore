@@ -4,34 +4,46 @@
   <li><a href="main">Liste d'articles suivis</a></li>
   <li><a href="profil">Profil</a></li>
   <li><a (click)="deconnexion()">Déconnexion</a></li>
-  <li><a (click)="toggleNotifications()">Notifications 📩</a></li>
-  <li><a (click)="showNotifications()">Notifications 📩</a></li> 
+ 
+  <li  class="notif-container"> <a (click)="showNotifications()">Notifications</a>
+    <span *ngIf="unreadCount>0" class="notif-badge">
+     +{{ unreadCount }}
+    </span>
+  <!-- <span *ngIf="notificationCount > 0" class="notif-badge">{{ notificationCount }}</span>-->
+  </li> 
 </ul>
 <div *ngIf="notifications && notifications.length > 0" class="notifications">
-  <h3>🔔 Notifications reçues :</h3>
+  <h3>Alerte</h3>
   <ul>
     <li *ngFor="let notif of notifications" class="notification-item">
-      {{ notif }}
+      {{ notif}}
       <button class="btn-close" (click)="removeNotification(notif)">✖</button>
     </li>
   </ul>
 </div>
-<div *ngIf="isNotificationsVisible">
-  <h3>🔔 Notifications :</h3>
-
-  <ul *ngIf="apiNotifications && apiNotifications.length > 0">
-    <li *ngFor="let notification of apiNotifications" class="notification-item">
-      <p [innerText]="notification"></p> <!-- Pour gérer les \n correctement -->
-      <button class="btn-close" (click)="removeNotification(notification)">✖</button>
+<div class="notifications" *ngIf="isNotificationsVisible">
+  <h3>🔔 </h3>
+  <ul *ngIf="notificationsmessage && notificationsmessage.length > 0">
+    <li
+      *ngFor="let notification of notificationsmessage"
+      class="notification-item"
+      [ngClass]="{ 'notification-unread': !notification.lue, 'notification-read': notification.lue }"
+    >
+      <p [innerText]="notification.message"></p><br />
+      <button *ngIf="!notification.lue" class="btn-close" (click)="removeNotification(notification.message)">
+        ✖
+      </button>
     </li>
   </ul>
-
-  <div *ngIf="apiNotifications.length === 0">
+  <div *ngIf="notificationsmessage.length === 0">
     <p>Aucune notification à afficher.</p>
   </div>
-
-  <button (click)="closeNotifications()">Fermer</button>
+  <div class="button-container">
+    <button class="action-button" (click)="markAllAsRead()">Tout marquer comme lu</button>
+    <button class="action-button" (click)="closeNotifications()">Fermer</button>
+  </div>
 </div>
+
 
 
 
