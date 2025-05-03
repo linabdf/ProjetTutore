@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import projet.scrapping.SiteRepository;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,6 +71,21 @@ public class TendanceService
     }
 
      */
+    @Transactional
+    public Tendance ajouterTendanceAuSite(Site site, String prix, Timestamp date) {
+        // Attacher l'entité Site au contexte de persistance
+        Site attachedSite = siteRepository.findById(site.getNumS())
+                .orElseThrow(() -> new IllegalArgumentException("Site non trouvé avec l'ID : " + site.getNumA()));
+
+        // Création de la tendance
+        Tendance tendance = new Tendance();
+        tendance.setPrix(prix);
+        tendance.setDate(date);
+        tendance.setNumS(attachedSite);
+
+        // Sauvegarde de la tendance
+        return tendanceRepository.save(tendance);
+    }
     @Transactional
     public List<Tendance> getTendanceBySiteId(int numS){
         return tendanceRepository.findBySiteNumS(numS);

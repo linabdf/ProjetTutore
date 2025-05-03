@@ -35,7 +35,7 @@ body {
   animation: fadeIn 1s ease-out;
 }
 
-.header h2 {
+ h2 {
   color: black;
   font-size: 1.5rem;
   margin-bottom: 20px;
@@ -200,4 +200,23 @@ button:focus {
     transform: scale(1.5);
   }
   
+  h2 {
+    font-size: 2.5rem; /* Taille du texte */
+    font-weight: bold; /* Gras */
+    color: #2c3e50; /* Couleur sombre */
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 20px; /* Espacement sous le titre */
+    letter-spacing: 1px; /* Espacement entre les lettres */
+  }
+  
+  /* Style pour le paragraphe avec la classe "lead" */
+  p.lead {
+    font-size: 1.2rem; /* Taille du texte */
+    color: #34495e; /* Couleur légèrement plus claire */
+    text-align: center; /* Centrer le texte */
+    line-height: 1.6; /* Hauteur de ligne pour rendre le texte plus lisible */
+    margin: 0 auto; /* Centrer le texte dans son conteneur */
+    max-width: 800px; /* Largeur maximale pour éviter que le texte s'étende trop */
+    padding: 0 20px; /* Un peu de marge interne pour le confort */
+  }
 }

@@ -42,7 +42,9 @@ public class Site {
     public Integer getNumS() {
         return numS;
     }
-
+    public Article getNumA() {
+        return article;
+    }
     public void setNumS(Integer numS) {
         this.numS = numS;
     }

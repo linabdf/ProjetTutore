@@ -57,6 +57,9 @@ public class Article {
     private Integer updateNow;
     // --- Constructeurs ---
     public Article() {}
+
+
+
     public Integer getUpdateNow() {
         return updateNow;
     }
