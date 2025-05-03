@@ -1,11 +1,10 @@
-
-import {Component,OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ArticleService} from '../services/article.service';
 import {Article} from '../classes/article';
-import {CanvasJS, CanvasJSAngularChartsModule} from '@canvasjs/angular-charts';
+import { CanvasJSAngularChartsModule} from '@canvasjs/angular-charts';
 import {NgForOf, NgIf} from '@angular/common';
-import {findIndex, Subscription,Subject,forkJoin,interval,  takeUntil} from 'rxjs';
+import { Subscription,Subject,forkJoin,interval,  takeUntil} from 'rxjs';
 import {Graphique} from '../classes/graph';
 import {FormsModule} from '@angular/forms';
 import {Site} from '../classes/site';
@@ -94,7 +93,7 @@ export class ArticleDetailsComponent implements OnInit{
                   prixStr = prixStr.replace('€', '');
                 }
                 const prix = parseFloat(prixStr
-                  
+
                   .replace(/[^\d€,-\s]/g, '')  // Enlever tout sauf les chiffres, €, -, , et l'espace insécable
                   .replace('€', ',')           // Remplacer le symbole euro par une virgule
                   .replace(/\s/g, '')          // Enlever tous les espaces (y compris les espaces insécables)
@@ -132,12 +131,12 @@ export class ArticleDetailsComponent implements OnInit{
 
         // Appel de construireGraphGlobal ici, après que les données sont disponibles
         this.article.sites.forEach(s => {
-          this.updateChartOptions(s.graph, this.article, s.graph.dataPoints, s.graph.dataPoints[0].x);
+          this.updateChartOptions(s.graph, this.article, s.graph.dataPoints[0].x);
         })
         console.log("article avant construiregraphgloaal: ", this.article);
         console.log("article.sites avant construiregraphgloaal: ", this.article.sites);
         this.construireGraphGlobal(this.article, this.article.sites);
-        this.updateChartOptions(this.article.graph, this.article, this.article.graph.dataPoints, this.article.graph.dataPoints[0].x);
+        this.updateChartOptions(this.article.graph, this.article, this.article.graph.dataPoints[0].x);
         this.demarrage = this.article.derniereUpdate; // Initialiser la date de démarrage
         this.demarrerCompteARebours();
       }, error => console.log("Erreur getTendanceBySiteId", error));
@@ -252,6 +251,7 @@ export class ArticleDetailsComponent implements OnInit{
       seuil: article.seuil,  // Seuil sélectionné
       notif: article.notif,
         // Type de notification
+      updateNow: article.updateNow,  // Date de mise à jour actuelle
       selectedSites: article.selectedSites  // Sites sélectionnés
     };
     console.log('Données envoyées au backend:', updatedArticle);
@@ -278,62 +278,47 @@ export class ArticleDetailsComponent implements OnInit{
   }
 
   changerFiltre(filtre: string, graph : Graphique) {
-    this.filtre = filtre;
-    const maintenant = new Date();
-    let debutPeriode: Date | undefined;
+      this.filtre = filtre;
+      const maintenant = new Date();
+      let debutPeriode: Date | undefined;
 
-    switch (filtre) {
-      case 'heure':
-        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate(), maintenant.getHours() - 1);
-        break;
-      case 'jour':
-        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate());
-        break;
-      case 'semaine':
-        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate() - 7);
-        break;
-      case 'mois':
-        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth() - 1, maintenant.getDate());
-        break;
-      case 'semestre':
-        debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth() - 6, maintenant.getDate());
-        break;
-      case 'annee':
-        debutPeriode = new Date(maintenant.getFullYear() - 1, maintenant.getMonth(), maintenant.getDate());
-        break;
-      case 'tout':
-        debutPeriode = graph.dataPoints[0].x; // Pas de filtre
-        break;
-      default:
-        debutPeriode = graph.dataPoints[0].x;
-        break;
-    }
-
-      if (debutPeriode) {
-        console.log("dps avant filtrés", graph.dataPoints);
-        graph.filteredDps = graph.dataPoints.filter(dp => dp.x >= debutPeriode! && dp.x <= maintenant);
-        console.log("dps filtrés", graph.filteredDps);
-        if(graph.filteredDps[0].x == undefined) {
-          console.log("Données non trouvées pour le filtre demandé");
-          alert("données non trouvés pour le filtre demandé")
-          return;
-        } else {
-          this.updateChartOptions(graph, this.article, graph.filteredDps, debutPeriode);
-          return;
-        }
-      } else {
-        this.updateChartOptions(graph, this.article, graph.dataPoints, debutPeriode);
-        return;
+      switch (filtre) {
+        case 'heure':
+          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate(), maintenant.getHours() - 1);
+          break;
+        case 'jour':
+          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate());
+          break;
+        case 'semaine':
+          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate() - 7);
+          break;
+        case 'mois':
+          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth() - 1, maintenant.getDate());
+          break;
+        case 'semestre':
+          debutPeriode = new Date(maintenant.getFullYear(), maintenant.getMonth() - 6, maintenant.getDate());
+          break;
+        case 'annee':
+          debutPeriode = new Date(maintenant.getFullYear() - 1, maintenant.getMonth(), maintenant.getDate());
+          break;
+        case 'tout':
+          debutPeriode = graph.dataPoints[0].x; // Pas de filtre
+          break;
+        default:
+          debutPeriode = graph.dataPoints[0].x;
+          break;
       }
-}
+      this.updateChartOptions(graph, this.article, debutPeriode);
+  }
 
-  updateChartOptions(graph : Graphique, article : Article, dps : { x: Date, y: number, toolTipContent?: string }[], debutPeriode : Date): void {
+  updateChartOptions(graph : Graphique, article : Article, debutPeriode : Date): void {
+    console.log("debut periode :" + debutPeriode);
     graph.options = {
       animationEnabled: true,
         zoomEnabled : true,
         data: [{
         type: 'line',
-        dataPoints: dps,
+        dataPoints: graph.dataPoints,
         xValueType : 'DateTime'
       }],
         axisX : {
@@ -341,7 +326,7 @@ export class ArticleDetailsComponent implements OnInit{
           labelAngle : 0,
           minimum : graph.dataPoints[0].x,
           interval : article.frequence,
-          minimumViewport : debutPeriode
+          viewportMinimum : debutPeriode,
       },
       axisY : {
         title : 'Prix',
@@ -354,6 +339,7 @@ export class ArticleDetailsComponent implements OnInit{
       }
     }
   }
+
   forceUpdate(article : any) {
     article.updateNow = 1;
     this.demarrerCompteARebours();
@@ -431,4 +417,3 @@ export class ArticleDetailsComponent implements OnInit{
   }
 
 }
-

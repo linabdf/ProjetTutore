@@ -6,13 +6,11 @@ body {
   padding: 0;
   color: #333;
 }
-
-/* Header */
 header {
   background-color: #232f3e;
   color: white;
   text-align: center;
-  padding: 20px 0;
+  padding: 5px 0;
   margin-bottom: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -20,11 +18,12 @@ header {
 header ul {
   list-style: none;
   padding: 0;
+  display: flex; /* Utilisation de Flexbox pour une disposition horizontale */
+  justify-content: center; /* Centrage des éléments */
 }
 
 header li {
-  display: inline;
-  margin: 0 15px;
+  margin: 0 100px; /* Espacement entre les éléments */
 }
 
 header a {
@@ -53,12 +52,12 @@ header a:hover {
 /* Image Section */
 .divImgA {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .divImgA img {
   width: 100%;
-  max-width: 300px;
+  max-width: 200px;
   height: auto;
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -66,8 +65,20 @@ header a:hover {
   display: block;
   margin: auto;
 }
+.divInputWrapper {
+  margin-left: 6;
+  display: flex; /* Utilisation de Flexbox */
+  justify-content: space-between; /* Espacement égal entre les éléments */
+  gap: 10px; /* Espacement entre les éléments */
+  flex-wrap: wrap; /* Si l'écran est trop petit, les éléments se déplacent sur une nouvelle ligne */
+  align-items: center; /* Centrage vertical des éléments */
+}
 
-/* Image hover */
+.divInputWrapper > div {
+  margin-left: 6px;
+  flex: 1; /* Chaque élément prendra une largeur égale */
+  min-width: 150px; /* Optionnel : vous pouvez définir une largeur minimale */
+}
 .divImgA:hover img {
   transform: scale(1.05);
   opacity: 0.95;
@@ -90,19 +101,23 @@ header a:hover {
   line-height: 1.6;
 }
 
-/* Hover effect */
 .divDescA:hover h2,
 .divDescA:hover p {
   color: #ff9900;
 }
 
 /* Input & Button Section */
-.divSeuilA, .divFreqA {
+.divSeuilA, .divFreqA,.divNotifA {
   margin-bottom: 20px;
 }
-
+.divNotifA h2,
 .divSeuilA h2,
 .divFreqA h2 {
+  font-size: 1.5rem;
+  color: #232f3e;
+  margin-bottom: 10px;
+}
+.divNotifA h2 {
   font-size: 1.5rem;
   color: #232f3e;
   margin-bottom: 10px;
@@ -114,11 +129,41 @@ header a:hover {
   max-width: 250px;
   margin-top: 10px;
 }
+.divNotifA.form-select {
+  width: 100%;
+  max-width: 250px;
+  margin-top: 10px;
+}
+.divNotifA .btnTendancePrix {
+  margin-top: 10px;
+  background-color: #ffffff; /* Couleur d'arrière-plan du bouton */
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
 
-.divSeuilA .btnModifSeuil,
+.divSeuilA .btnModifSeuil {
+  margin-top: 10px;
+  background-color: #ffffff; /* même couleur que le texte de la page */
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+
 .divFreqA .btnTendancePrix {
   margin-top: 10px;
-  background-color: #ff9900;
+  background-color: #ffffff;
   border: none;
   color: white;
   padding: 12px 25px;
@@ -134,7 +179,10 @@ header a:hover {
   background-color: #e68a00;
   transform: scale(1.05);
 }
-
+.divNotifA .btnTendancePrix:hover {
+  background-color: #e68a00;
+  transform: scale(1.05);
+}
 /* Sites Section */
 .divSitesA {
   margin-bottom: 20px;
@@ -150,6 +198,7 @@ header a:hover {
   list-style: none;
   padding: 0;
 }
+
 
 .divSitesA li {
   display: flex;
@@ -168,39 +217,11 @@ header a:hover {
   transform: translateY(-3px);
 }
 
-.divSitesA .btnTendancePrix {
-  background-color: #ff9900;
-  border: none;
-  color: white;
-  padding: 12px 22px;
-  font-size: 1.3rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
+
 
 .divSitesA .btnTendancePrix:hover {
   background-color: #e68a00;
   transform: scale(1.1);
-}
-
-/* Graph Section */
-.divGraphS {
-  margin-top: 20px;
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.divGraphS canvas {
-  width: 100% !important;
-  height: auto !important;
-  max-width: 800px;
 }
 
 /* Best Price Section */
@@ -214,15 +235,17 @@ header a:hover {
   margin-bottom: 10px;
 }
 
-.divBestA .btnTendancePrix {
-  background-color: #ff9900;
-  border: none;
+.divBestA.btnTendancePrix {
+  background-color: #232f3e; /* Bleu sombre (Amazon-style) */
   color: white;
-  padding: 12px 25px;
-  font-size: 1.3rem;
-  border-radius: 5px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  padding: 10px 16px;
+  margin: 8px 0;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .divBestA .btnTendancePrix:hover {
@@ -230,19 +253,42 @@ header a:hover {
   transform: scale(1.05);
 }
 
-/* Save Button */
-button.btn.btn-primary.mt-3 {
-  background-color: #232f3e;
-  border: none;
-  padding: 12px 30px;
-  font-size: 1.2rem;
-  color: white;
-  border-radius: 5px;
-  transition: background 0.3s ease;
+/* Force Update */
+.divForceUpdate {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
-button.btn.btn-primary.mt-3:hover {
+.btnForceUpdate {
   background-color: #ff9900;
+  color: white;
+  font-size: 16px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.btnForceUpdate:hover {
+  background-color: #e68a00;
+  transform: scale(1.05);
+}
+
+.timer, .lastUpdate {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  font-style: italic;
 }
 
 /* Notifications */
@@ -260,10 +306,104 @@ button.btn.btn-primary.mt-3:hover {
   vertical-align: middle;
 }
 
-/* Responsive */
+/* Graph */
+.divGraphS canvas {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 800px;
+}
+
+/* Graph Filter Buttons */
+.divGraphSFiltre {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.divGraphSFiltre button {
+  background-color: #232f3e;
+  color: #ffffff;
+  border: 2px solid transparent;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.divGraphSFiltre button:hover {
+  background-color: #ff9900;
+  border-color: #ff9900;
+  transform: translateY(-3px);
+}
+
+.divGraphSFiltre button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 153, 0, 0.3);
+}
+
+.btnSitePrix {
+  background: none;
+  color: #232f3e;
+  border: 2px solid #232f3e;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btnSitePrix:hover {
+  background-color: #e6e6e6;
+}
+
+/* Footer */
+.footer {
+  background-color: #232f3e;
+  color: white;
+  padding: 30px 15px;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 50px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+  margin: 8px 0;
+}
+
+.footer a {
+  color: #ff9900;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #e68a00;
+}
+
+.footer .credits {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  color: #cccccc;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
   .container {
     padding: 15px;
+  }
+
+  header ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .divImgA img {
@@ -286,87 +426,48 @@ button.btn.btn-primary.mt-3:hover {
   }
 
   .divSitesA .btnTendancePrix,
-  .divBestA .btnTendancePrix {
-    font-size: 1.5rem;
+  .divBestA .btnTendancePrix,
+  .btnForceUpdate {
+    font-size: 1.1rem;
+    width: 100%;
   }
 
   button.btn.btn-primary.mt-3 {
     width: 100%;
   }
-  /* Footer */
-.footer {
-  background-color: #232f3e;
-  color: white;
-  padding: 30px 15px;
-  font-size: 1rem;
-  margin-top: 50px;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-}
 
-/* Footer */
-.footer {
-  background-color: #232f3e;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-  margin-top: 40px;
-}
+  h1, h2 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
 
-.footer a {
-  color: #ff9900;
-  text-decoration: none;
-  font-weight: bold;
-  margin: 0 10px;
-  transition: color 0.3s ease;
-}
-
-.footer a:hover {
-  color: #e68a00;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(-10px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-/* Footer */
-.footer {
-  background-color: #232f3e;
-  color: white;
-  padding: 30px 15px;
-  font-size: 1rem;
-  margin-top: 50px;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.footer p {
-  margin: 8px 0;
-}
-
-.footer a {
-  color: #ff9900;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer a:hover {
-  color: #e68a00;
-}
-
-.footer .credits {
-  font-size: 0.9rem;
-  margin-top: 10px;
-  color: #cccccc;
-}
-
-/* Responsive Footer */
-@media (max-width: 768px) {
   .footer {
     font-size: 0.9rem;
     padding: 20px 10px;
   }
 }
 
+@media (max-width: 480px) {
+  .divGraphSFiltre button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
 
+  .form-control {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
 
+  .btnForceUpdate,
+  .btnTendancePrix,
+  .btnModifSeuil {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .footer a {
+    display: block;
+    margin: 5px 0;
+  }
 }

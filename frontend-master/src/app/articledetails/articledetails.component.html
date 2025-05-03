@@ -2,17 +2,14 @@
   <ul>
     <li><a href="main">Liste d'articles suivis</a></li>
     <li><a href="profil">Profil</a></li>
-    <li><a (click)="deconnexion()">Déconnexion</a></li>
-    <li class="notification-item">
-      📩 <span class="notif-label">Notification</span>
-       
-    </li>
+    <li><a (click)="deconnexion()">Accueil</a></li>
   </ul>
 </header>
 
 <body>
-<h1>Détails de {{ article.nom }}</h1>
+
 <div class="container">
+  <h1>Détails de {{ article.nom }}</h1>
   <div class="divImgA">
 
     <img *ngIf="article.urlimage; else noImage" [src]="article.urlimage" alt="Image art">
@@ -26,49 +23,45 @@
     <p>{{ article.description }}</p>
   </div>
 
-  <div class="divSeuilA">
-    <h2>Seuil </h2>
-    <input type="number" [(ngModel)]="article.seuil" class="form-control" />
-      <button  class="btnModifSeuil" (click)="modifierArticle(article) "type="button">
-        📝
-      </button> <br>
-
-
-  </div>
-
-  <div class="divFreqA">
-    <h2>Fréquence</h2>
-    <input type="number" [(ngModel)]="article.frequence" class="form-control" />
-      <button  class="btnTendancePrix" (click)="modifierArticle(article)" type="button">
-        📝
-      </button>
-
-  </div>
-  <div class="divFreqA">
-    <h2>Notification</h2>
-    <select class="form-select" [(ngModel)]="article.notif">
-      <option value="email">Email</option>
-      <option value="push">Push</option>
-      <option value="deux">push-Email</option>
-    </select>
-    <button  class="btnTendancePrix"(click)="modifierArticle(article)" type="button">
-      📝
-    </button>
-    <div class="divForceUpdate">
-      <button (click)="forceUpdate(article)"> Forcer la récupération du prix </button>
-      <p *ngIf="timerDemarre">Temps écoulé depuis le dernier scan des données: {{ tempsRestant }}</p>
-      <p> Dernière mise à jour : {{article.derniereUpdate}}</p>
+  <div class="divInputWrapper">
+    <div class="divSeuilA">
+      <h2>Seuil</h2>
+      <input type="number" [(ngModel)]="article.seuil" class="form-control" />
+      <button class="btnModifSeuil" (click)="modifierArticle(article)" type="button">📝</button>
     </div>
-    <!--<button class="btn btn-primary mt-3" (click)="modifierArticle(article)">Enregistrer les modifications</button>
-  --> </div>
+  
+    <div class="divFreqA">
+      <h2>Fréquence</h2>
+      <input type="number" [(ngModel)]="article.frequence" class="form-control" />
+      <button class="btnTendancePrix" (click)="modifierArticle(article)" type="button">📝</button>
+    </div>
+  
+    <div class="divNotifA">
+      <h2>Notification</h2>
+      <select class="form-select" [(ngModel)]="article.notif">
+        <option value="email">Email</option>
+        <option value="push">Push</option>
+        <option value="deux">push-Email</option>
+      </select>
+      <button class="btnTendancePrix" (click)="modifierArticle(article)" type="button">📝</button>
+    </div>
+  </div>
+  
+  <div class="divForceUpdate">
+    <button class="btnForceUpdate" (click)="forceUpdate(article)"> Forcer la récupération du prix </button>
+    <p *ngIf="timerDemarre" class="timer">Temps écoulé depuis le dernier scan des données: {{ tempsRestant }}</p>
+    <p class="lastUpdate"> Dernière mise à jour : {{ article.derniereUpdate }}</p>
+  </div>
 
   <div class="divSitesA" >
-    <h2>Sites disponibles :</h2>
+    <h2>Sites</h2>
     <ul *ngIf="article && article.sites && article.sites.length">
       <li *ngFor="let s of article.sites; trackBy: trackById">
+        <h4> {{ s.nomSite }} </h4><br/>
         <button (click)="afficherTendancePrix()" class="btnTendancePrix" type="button">
-          <h4> {{ s.nomSite }} </h4>  📈
+           📈
         </button>
+       
         <div class="divGraphS" >
           <div class="divGraphSFiltre">
             <button (click)="changerFiltre('heure', s.graph)" >Dernière Heure</button>

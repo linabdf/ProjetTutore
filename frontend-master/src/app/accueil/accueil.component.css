@@ -186,5 +186,18 @@ button:focus {
   .content {
       padding: 20px 0;
   }
-
+  .zoom-container {
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .zoomable-image {
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+  }
+  
+  .zoomable-image:hover {
+    transform: scale(1.5);
+  }
+  
 }
