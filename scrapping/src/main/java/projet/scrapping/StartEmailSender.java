@@ -188,7 +188,7 @@ public class StartEmailSender {
 // Si on peut envoyer l'email
                                 if (canSendEmail) {
                                     String emailContent = "Bonjour !\n\n" +
-                                            "Le prix de " + article.getNomA() + " est passé à " + tendance.getPrix() +
+                                            "Le prix de " + article.getNomA() + " est tombé à " + tendance.getPrix() +
                                             " sur " + site.getNomSite() + " le " + tendance.getDate() + ".\n" +
                                             "Ce prix est en dessous de votre seuil de " + article.getSeuil() + "€.";
 
@@ -209,7 +209,8 @@ public class StartEmailSender {
 
 // Si on peut envoyer le push
                                 if (canSendPush) {
-                                    String pushMessage = "📉 Le prix de " + article.getNomA() + " est tombé à " + prixDecimal + "€ sur " + site.getNomSite() + " le " + tendance.getDate();
+                                    String pushMessage = "📉 Le prix de " + article.getNomA() + " est tombé à " + prixDecimal + "€ sur " + site.getNomSite() + " le " +
+                                            tendance.getDate()+".C'est en dessous de votre seuil de " + article.getSeuil() + " €.";;
 
                                     notificationController.sendNotificationToAll(pushMessage);
 

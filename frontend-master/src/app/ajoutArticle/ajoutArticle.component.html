@@ -10,20 +10,20 @@
      <label for="nom">Nom de l'Article</label>
      <input type="text" id="nom" name="nom" [(ngModel)]="article.nom" required />
  
-     <label for="seuil">Seuil</label>
+     <label for="seuil">Seuil (en €)</label>
      <input type="text" id="seuil" name="seuil" [(ngModel)]="article.seuil" required />
  
-     <label for="frequence">Fréquence</label>
+     <label for="frequence">Fréquence(en minutes)</label>
      <input type="text" id="frequence" name="frequence" [(ngModel)]="article.frequence" required />
  
      <label for="notif">Type de notification</label>
      <select id="notif" name="notif" [(ngModel)]="article.notif" required>
        <option value="email">Email</option>
        <option value="deux">push-Email</option>
-       <option value="email">Email</option>
+       <option value="push">push</option>
      </select>
  
-     <h3>Sites associés :</h3>
+     <h3>Sites associés </h3>
  
      <div class="switch-container">
        <span class="switch-label">Amazon</span>

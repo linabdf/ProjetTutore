@@ -1,33 +1,24 @@
-<!-- Header -->
 <header class="header">
   <div class="container">
     <div class="row text-center">
       <div class="col-lg-8 col-lg-push-2">
-        <h1>Comparateur de prix</h1>
-        <h2>Bienvenue sur notre plateforme</h2>
-        <p class="lead">
-          Comparez les prix d'articles sur plusieurs sites en un seul endroit !
-        </p>
-
-       
-
-       
-  <img src="probleme.jpeg" alt="Illustration site de vente"
-  height="200" width="200">       <form class="form-inline" role="form">
-          <button id="loginBtn" routerLink="login" routerLinkActive="active" class="btn btn-primary">Connexion</button>
-          <button id="signinBtn" routerLink="signin" routerLinkActive="active" class="btn btn-secondary">Créer un compte</button>
+        <div class="logo">
+          <div class="radar">
+            <span class="euro blink">€</span>
+          </div>
+          <span class="text">PrixRadar</span>
+        </div>
+        <div class="acroche">
+          Savoir quand et où acheter n’a jamais été aussi simple : notre comparateur vous guide vers le meilleur prix.
+        </div>
+        <form class="form-inline" role="form">
+          <button id="loginBtn" routerLink="login" routerLinkActive="active" class="btn btn-primary btn-sm">Connexion</button>
+          <button id="signinBtn" routerLink="signin" routerLinkActive="active" class="btn btn-secondary btn-sm">Créer un compte</button>
         </form>
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-     
       </div>
     </div>
   </div>
 </header>
-<!-- /Header -->
 
 <!-- Content -->
 <main class="content">
@@ -36,10 +27,21 @@
   <section class="container space-before space-after">
     <div class="row">
       <div class="col-sm-10 col-sm-push-1">
-        <h1 class="text-center">Suivez les prix de vos articles préférés</h1>
-        <p class="lead text-center">
-          Recherchez vos produits et suivez l'évolution des prix à travers différents sites.
-        </p>
+        
+        <div style="display: flex; align-items: center; gap: 20px;">
+  
+          <!-- Partie gauche : texte -->
+          <div>
+            <h1 class="text-center">Suivez les prix de vos articles préférés</h1>
+            <p class="lead text-center">
+              Recherchez vos produits et suivez l'évolution des prix à travers différents sites.
+            </p>
+          </div>
+        
+          <!-- Partie droite : image -->
+          <img src="image1.jpg" alt="Notifications de prix" style="width: 200px; height: auto;">
+          
+        </div>
       </div>
     </div>
   </section>
@@ -49,8 +51,7 @@
   <section class="container space-before">
 
     <div class="row featurelist space-after">
-      <div class="col-md-5 col-sm-6 col-md-push-1">
-      </div>
+     
       <div class="col-md-5 col-md-push-1 col-sm-6">
         <h2 class="space-before">Liste de souhaits</h2>
         <p>Enregistrez facilement vos articles préférés pour les retrouver rapidement et comparer leurs prix sur différents sites.</p>
@@ -58,11 +59,8 @@
     </div>
 
     <div class="row featurelist space-after">
-      <div class="col-md-5 col-sm-6 col-sm-push-6">
-        <div class="zoom-container">
-        <img class="img-feature img-responsive" Src="graphe.png" alt="Graphiques des prix" height="200" width="100">
-      </div>
-</div>
+        
+
 
       <div class="col-md-5 col-sm-6 col-md-pull-4 col-sm-pull-6">
         <h2 class="space-before">Graphiques des prix</h2>
@@ -76,10 +74,7 @@
         <h2 class="space-before">Notifications personnalisées</h2>
         <p>Définissez un seuil de prix pour vos articles et recevez une notification (par email ou push) lorsque le prix descend sous ce seuil.</p>
       </div>
-      <div class="col-md-5 col-sm-6 col-md-push-1 col-sm-6">
-        
-        <img class="img-feature img-responsive" src="notif.png" alt="Notifications de prix">
-      </div>
+    
     </div>
   </section>
   <!-- /Features -->

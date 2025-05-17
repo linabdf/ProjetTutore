@@ -313,53 +313,82 @@ header a:hover {
   max-width: 800px;
 }
 
-/* Graph Filter Buttons */
+.divGraphS {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.divGraphS:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons de filtre */
 .divGraphSFiltre {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
   justify-content: center;
-  gap: 12px;
-  margin: 20px 0;
 }
 
 .divGraphSFiltre button {
   background-color: #232f3e;
-  color: #ffffff;
-  border: 2px solid transparent;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 30px;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .divGraphSFiltre button:hover {
   background-color: #ff9900;
-  border-color: #ff9900;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-.divGraphSFiltre button:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(255, 153, 0, 0.3);
+/* CanvasJS chart container adjustment */
+canvasjs-chart {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  display: block;
 }
 
-.btnSitePrix {
-  background: none;
-  color: #232f3e;
-  border: 2px solid #232f3e;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 10px;
+/* Pour les sections .divSitesA et .divBestA */
+.divSitesA, .divBestA {
+  margin-top: 40px;
+}
+
+.divSitesA h2, .divBestA h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #2c3e50;
+  border-bottom: 2px solid #ff9900;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* Bouton 📈 */
+.btnTendancePrix {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  margin-left: 10px;
+  transition: transform 0.2s ease;
 }
 
-.btnSitePrix:hover {
-  background-color: #e6e6e6;
+.btnTendancePrix:hover {
+  transform: scale(1.2);
+  color: #ff9900;
 }
+
 
 /* Footer */
 .footer {
